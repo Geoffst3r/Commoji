@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 # from app.models import Server
 from sqlalchemy.exc import IntegrityError
 
-server_routes = Blueprint('users', __name__)
+server_routes = Blueprint('channels', __name__)
 
 
 @server_routes.route('/', methods=['POST'])
@@ -33,4 +33,3 @@ def new_server():
     #     except IntegrityError as e:
     #         print(e)
     #         return jsonify('Database entry error'), 400
-
