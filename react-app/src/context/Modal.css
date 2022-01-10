@@ -1,0 +1,41 @@
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  #modal-content {
+    box-sizing: border-box;
+    position: absolute;
+    background-color: #2f2f2f;
+    border-radius: 5px;
+    padding: 50px 100px 50px 100px;
+    
+  }
+
+  .modal-label {
+    font-family: sans-serif;
+    color: white;
+    padding: 0;
+    margin: 0 0 10px 0
+  }
+
+  .error-box {
+      box-sizing: border-box;
+      color: red;
+  }
