@@ -22,6 +22,9 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to='/form'>
+            <AddServerForm/>
+          </NavLink>
           <AddServerModal/>
         </li>
         <li>

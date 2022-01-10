@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../context/Modal';
-import AddServer from './AddServerForm';
+import AddServerForm from './AddServerForm';
 
 function AddServerModal() {
   const [showModal, setShowModal] = useState(false);
@@ -10,7 +10,7 @@ function AddServerModal() {
       <button onClick={() => setShowModal(true)}>Add Server</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddServer/>
+          <AddServerForm/>
         </Modal>
       )}
     </>

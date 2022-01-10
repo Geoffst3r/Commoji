@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 
 
-const AddServer = () => {
+const AddServerForm = () => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -37,7 +37,7 @@ const AddServer = () => {
     return (
         <>
             <h2 className='modal-label'>New Server</h2>
-            <form className='sign-up-form' onSubmit={onSubmit}>
+            <form className='add-server-form' onSubmit={onSubmit}>
                 <div>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
@@ -78,4 +78,4 @@ const AddServer = () => {
     );
 };
 
-export default AddServer;
+export default AddServerForm;
