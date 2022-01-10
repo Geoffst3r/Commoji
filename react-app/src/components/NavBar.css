@@ -1,9 +1,14 @@
 nav {
-    /* background-color: grey; */
     width: 100vw;
     height: 40px;
-
+    display: flex;
+    justify-content: flex-end;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 
 nav ul {
     display: flex;
@@ -28,4 +33,17 @@ ul button {
 
 ul button:hover {
     cursor: pointer;
+}
+
+.NavButtons{
+    border: none;
+    background-color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    transition-duration: .5s;
+    transition-property: box-shadow, color;
+}
+.NavButtons:hover{
+    box-shadow: 0 8px 15px rgb(0 0 0 / 20%);
+    color: #5865f2;
 }

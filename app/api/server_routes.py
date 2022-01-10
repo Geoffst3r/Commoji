@@ -8,7 +8,6 @@ server_routes = Blueprint('servers', __name__)
 # http://localhost:5000/channels/?title=firsttitle&description=someDescriptiveStuff&ownerId=1
 
 
-
 # SERVER ROUTES:
 @server_routes.route('/', methods=['POST'])
 def new_server():
@@ -51,7 +50,8 @@ def get_all_server():
     # servers = Server.query.filter(Server.ownerId == user.id).all()
     servers = Server.query.all()
     if servers:
-        server_list = [{'serverId': server.id, 'title': server.title, 'description': server.description, 'image': server.image if server.image else 'none', 'ownerId': server.ownerId } for server in servers ]
+        server_list = [{'serverId': server.id, 'title': server.title, 'description': server.description,
+                        'image': server.image if server.image else 'none', 'ownerId': server.ownerId} for server in servers]
         print('!!!!!!!0000000 server_list', server_list)
         return jsonify(server_list)
     else:
@@ -78,18 +78,18 @@ def update_server(server_id):
     server = Server.query.filter(Server.id == server_id).first()
 
     if not request.json:
-            return jsonify('bad data'), 400
+        return jsonify('bad data'), 400
     elif server:
         data = request.json
         print('DATA', data)
         if 'title' in data:
-          server.title = data['title']
+            server.title = data['title']
         if 'description' in data:
-          server.description = data['description']
+            server.description = data['description']
         if 'image' in data:
-          server.image = data['image']
+            server.image = data['image']
         if 'ownerId' in data:
-          server.ownerId = data['ownerId']
+            server.ownerId = data['ownerId']
 
         db.session.commit()
         return jsonify('updated server')
@@ -110,13 +110,9 @@ def delete_server(server_id):
         return jsonify("server not found in database."), 404
 
 # Channel Routes:
-from flask import Blueprint, jsonify, request
-from app.models import db, Channel, Server
-
-channels_routes = Blueprint('channels', __name__)
 
 
-@channels_routes.route('/<int:server_id>', methods=["POST"])
+@server_routes.route('/<int:server_id>', methods=["POST"])
 def new_channel(server_id):
     title = request.json["title"]
     serverId = request.json["serverId"]
@@ -139,7 +135,7 @@ def get_all_channels(server_id):
         channels_list = [{"id": channel.id, "title": channel.title,
                           "serverId": channel.serverId} for channel in channels]
         servers_list = {"id": server.id, "title": server.title,
-                         "description": server.description, "image": server.image, "ownerId": server.ownerId}
+                        "description": server.description, "image": server.image, "ownerId": server.ownerId}
         return jsonify(channels_list, servers_list)
     else:
         return jsonify("no servers with that channel")
