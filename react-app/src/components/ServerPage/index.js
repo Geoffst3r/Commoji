@@ -7,30 +7,24 @@ import { getServers } from '../../store/servers';
 import './ServerPage.css'
 
 
-const Server = () => {
+const  Server = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
 
-    const servers = useSelector(state => {
-        console.log(state)
-        return state.servers
+    let servers = useSelector(state => {
+        return state.servers.serversArray
     })
-
-    // console.log(servers)
-
-    const serverArr = Object.values(servers)
-
 
     if (servers) {
         return (
             <div className='ServerContainer'>
                 <ul className="Bar">
-                {serverArr.map(server => {
+                {servers.map(server => {
                     return (
-                        <NavLink to={`/channels/${server.id}`}><button className='ServerButtons'>${server.name}</button></NavLink>
+                        <NavLink to={`/channels/${server.serverId}`}><button className='ServerButtons'>{server.title}</button></NavLink>
                     )
                 })}
                 </ul >
@@ -38,6 +32,7 @@ const Server = () => {
 
         )
     }
+    return ('no servers :(')
 }
 
 export default Server;

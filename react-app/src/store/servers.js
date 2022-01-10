@@ -38,13 +38,18 @@ const serversReducer = (state = initialState, action) => {
             return state
         case LOAD:
             const servers = {}
-            console.log("ACTION", action.serversArray)
+            // console.log("ACTION", action.serversArray)
             // TODO Make sure this is an array
-            // action.serversArray.forEach(server => {
-            //     servers[server.id] = server
-            // });
+            // console.log()
+            const serversArray = action.serversArray
+            console.log('serversARRAY',serversArray)
+            action.serversArray.forEach(server => {
+                // console.log('SERVER.ID', server.serverId)
+                servers[server.serverId] = server
+            });
+            // console.log('THUNK SERVER', servers)
             return {
-                ...state, servers
+                ...state, servers, serversArray
             }
     }
 }
