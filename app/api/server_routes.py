@@ -110,9 +110,19 @@ def delete_server(server_id):
         return jsonify("server not found in database."), 404
 
 # Channel Routes:
+<<<<<<< HEAD
 
 
 @server_routes.route('/<int:server_id>', methods=["POST"])
+=======
+from flask import Blueprint, jsonify, request
+from app.models import db, Channel, Server
+
+channels_routes = Blueprint('channels', __name__)
+
+
+@channels_routes.route('/<int:server_id>', methods=["POST"])
+>>>>>>> 42715e55a0ab4c2df6c9c8b0c2a5f91d4dcf0033
 def new_channel(server_id):
     title = request.json["title"]
     serverId = request.json["serverId"]
@@ -124,40 +134,39 @@ def new_channel(server_id):
     return jsonify({"id": channel.id, "title": channel.title, "serverId": channel.serverId})
 
 
-@server_routes.route('/<int:server_id>')
+@channels_routes.route('/<int:server_id>')
 def get_all_channels(server_id):
-    # print('________Inside get server route______')
     channels = Channel.query.filter(
         Channel.serverId == server_id).all()
-    servers = Server.query.filter(
-        Server.id == server_id).all()
+    server = Server.query.filter(
+        Server.id == server_id).first()
     length = Channel.query.filter(Channel.serverId == server_id).count()
     if length:
         channels_list = [{"id": channel.id, "title": channel.title,
                           "serverId": channel.serverId} for channel in channels]
-        servers_list = [{"id": server.id, "title": server.title,
-                         "description": server.description, "image": server.image, "ownerId": server.ownerId} for server in servers]
+        servers_list = {"id": server.id, "title": server.title,
+                         "description": server.description, "image": server.image, "ownerId": server.ownerId}
         return jsonify(channels_list, servers_list)
     else:
         return jsonify("no servers with that channel")
 
 
-@server_routes.route('/<int:server_id>/<int:channel_id>', methods=["PUT"])
+@channels_routes.route('/<int:server_id>/<int:channel_id>', methods=["PUT"])
 def edit_channel(server_id, channel_id):
     channel = Channel.query.filter(Channel.id == channel_id).first()
     title = request.json["title"]
-    # serverId = request.json["serverId"]
+    serverId = request.json["serverId"]
     # print("===============", channel.title, "=====================")
     if channel:
         channel.title = title
-        # channel.id = serverId
+        channel.id = serverId
         db.session.commit()
-        return jsonify({"title": title, "serverId": server_id})
+        return jsonify({"title": title, "serverId": serverId})
     else:
         return jsonify("Channel Dosnt Exsist")
 
 
-@ server_routes.route('/<int:server_id>/<int:channel_id>', methods=["DELETE"])
+@ channels_routes.route('/<int:server_id>/<int:channel_id>', methods=["DELETE"])
 def delete_channel(server_id, channel_id):
     channel = Channel.query.filter(Channel.id == channel_id).first()
     if channel:
