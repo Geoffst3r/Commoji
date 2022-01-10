@@ -124,7 +124,7 @@ def new_channel(server_id):
     return jsonify({"id": channel.id, "title": channel.title, "serverId": channel.serverId})
 
 
-@channels_routes.route('/<int:server_id>')
+@server_routes.route('/<int:server_id>')
 def get_all_channels(server_id):
     channels = Channel.query.filter(
         Channel.serverId == server_id).all()
@@ -141,22 +141,19 @@ def get_all_channels(server_id):
         return jsonify("no servers with that channel")
 
 
-@channels_routes.route('/<int:server_id>/<int:channel_id>', methods=["PUT"])
+@server_routes.route('/<int:server_id>/<int:channel_id>', methods=["PUT"])
 def edit_channel(server_id, channel_id):
     channel = Channel.query.filter(Channel.id == channel_id).first()
     title = request.json["title"]
-    serverId = request.json["serverId"]
-    # print("===============", channel.title, "=====================")
     if channel:
         channel.title = title
-        channel.id = serverId
         db.session.commit()
-        return jsonify({"title": title, "serverId": serverId})
+        return jsonify({"title": title})
     else:
         return jsonify("Channel Dosnt Exsist")
 
 
-@ channels_routes.route('/<int:server_id>/<int:channel_id>', methods=["DELETE"])
+@server_routes.route('/<int:server_id>/<int:channel_id>', methods=["DELETE"])
 def delete_channel(server_id, channel_id):
     channel = Channel.query.filter(Channel.id == channel_id).first()
     if channel:
