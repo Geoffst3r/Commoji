@@ -38,7 +38,6 @@ def edit_channel(server_id, channel_id):
     channel = Channel.query.filter(Channel.id == channel_id).first()
     title = request.json["title"]
     serverId = request.json["serverId"]
-    print("===============", channel.title, "=====================")
     if channel:
         channel.title = title
         channel.id = serverId
