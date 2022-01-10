@@ -6,7 +6,7 @@ import serversReducer from './servers';
 
 const rootReducer = combineReducers({
   session,
-  serversReducer
+  servers: serversReducer
 });
 
 

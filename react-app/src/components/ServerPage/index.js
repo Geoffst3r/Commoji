@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 import { getServers } from '../../store/servers';
 import './ServerPage.css'
 
@@ -14,8 +15,11 @@ const Server = () => {
     }, [dispatch])
 
     const servers = useSelector(state => {
+        console.log(state)
         return state.servers
     })
+
+    // console.log(servers)
 
     const serverArr = Object.values(servers)
 

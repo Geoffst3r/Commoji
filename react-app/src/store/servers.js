@@ -13,10 +13,11 @@ const load = serversArray => ({
 
 export const getServers = () => async dispatch => {
 
-    const response = await fetch(`/api/servers`)
+    const response = await fetch(`/api/channels`)
 
     if (response.ok) {
         const serversArray = await response.json()
+        console.log("SERVERSARRAY:",serversArray)
         dispatch(load(serversArray))
     }
 }
@@ -29,9 +30,10 @@ const serversReducer = (state = initialState, action) => {
             return state
         case LOAD:
             const servers = {}
-            action.serversArray.forEach(server => {
-                servers[server.id] = server
-            });
+            // console.log(action)
+            // action.serversArray.forEach(server => {
+            //     servers[server.id] = server
+            // });
             return {
                 ...state, servers
             }
