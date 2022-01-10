@@ -1,38 +1,39 @@
 from flask import Blueprint, jsonify, request
-from app.models import db#, Server
+from app.models import db, Server
 from sqlalchemy.exc import IntegrityError
 
 server_routes = Blueprint('channels', __name__)
 
+# http://localhost:5000/ratings/title=firsttitle&description=someDescriptiveStuff&ownerId=1
 
 @server_routes.route('/', methods=['POST'])
 def new_server():
     pass
-    # if not request.args:
-    #     return jsonify('bad data'), 400
-    # elif len(request.args) != 4:
-    #     return jsonify('Missing arguments'), 400
+    if not request.args:
+        return jsonify('bad data'), 400
+    elif len(request.args) < 3:
+        return jsonify('Missing arguments'), 400
 
-    # else:
-    #     data = dict(request.args)
-    #     try:
+    else:
+        data = dict(request.args)
+        try:
 
-    #         new_server = {
-    #             'title': data['title'],
-    #             'description': data['description'],
-    #             'ownerId': data['ownerId']
-    #         }
+            new_server = {
+                'title': data['title'],
+                'description': data['description'],
+                'ownerId': data['ownerId']
+            }
 
-    #         if data['image']:
-    #             new_server['image'] = data['image']
+            if data['image']:
+                new_server['image'] = data['image']
 
-    #         new_server_db = Server(
-    #             **new_server
-    #         )
-    #         return new_server
-    #     except IntegrityError as e:
-    #         print(e)
-    #         return jsonify('Database entry error'), 400
+            new_server_db = Server(
+                **new_server
+            )
+            return new_server
+        except IntegrityError as e:
+            print(e)
+            return jsonify('Database entry error'), 400
 
 
 @server_routes.route('/<int:server_id>')
