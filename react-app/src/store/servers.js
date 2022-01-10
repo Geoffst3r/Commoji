@@ -28,12 +28,16 @@ export const getServers = () => async dispatch => {
 }
 
 export const createServer = (newServer) => async dispatch => {
-    const response = await fetch(`/api/channels`, {
+    console.log('made it here')
+    console.log(newServer)
+    const response = await fetch(`/api/channels/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newServer)
     })
+    // console.log(JSON.stringify(newServer))
     const server = await response.json()
+
     if (response.ok) dispatch(addOneServer(server))
 }
 
@@ -57,15 +61,17 @@ const serversReducer = (state = initialState, action) => {
                 ...state, servers, serversArray
             }}
         case ADD_ONE:{
+            console.log('ADDONESTATE', state)
             const server = action.server
             const servers = state.servers
-            const serversArray = state.servers.serversArray;
-            serversArray[server.serverId] = server
-            servers[server.serverId]= server
-            const newState = {
-                ...state, servers, serversArray
-            }
-            return newState
+            console.log(servers)
+            // // const serversArray = state.servers.serversArray;
+            // serversArray[server.serverId] = server
+            // servers[server.serverId]= server
+            // const newState = {
+            //     ...state, servers, serversArray
+            // }
+            // return newState
         }
 
     }

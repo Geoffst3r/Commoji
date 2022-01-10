@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../context/Modal';
-import AddServerForm from './AddServerForm';
+import AddServerForm from './AddServerForm.js';
 
 function AddServerModal() {
   const [showModal, setShowModal] = useState(false);

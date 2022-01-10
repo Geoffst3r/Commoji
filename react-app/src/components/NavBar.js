@@ -6,7 +6,7 @@ import LoginFormModal from './LoginFormModal';
 import SignUpModal from './SignUpModal'
 import './NavBar.css'
 import { useSelector } from 'react-redux';
-import AddServerForm from './AddServerForm';
+// import AddServerForm from './AddServerForm';
 import AddServerModal from './AddServerModal';
 
 
@@ -22,9 +22,6 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/form'>
-            <AddServerForm/>
-          </NavLink>
           <AddServerModal/>
         </li>
         <li>

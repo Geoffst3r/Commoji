@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { createServer } from '../store/servers';
 
 
 
@@ -10,14 +11,21 @@ const AddServerForm = () => {
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
+    const history = useHistory
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch();
-        if (data) {
-            setErrors(data)
+        const ownerId = user.id
+        const newServer = {
+            title,
+            description,
+            ownerId
         }
+        if (newServer) {
+            await dispatch(createServer(newServer));
+        }
+        // history.push('/channels')
 
     };
 
