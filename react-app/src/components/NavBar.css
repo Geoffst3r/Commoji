@@ -1,0 +1,31 @@
+nav {
+    /* background-color: grey; */
+    width: 100vw;
+    height: 40px;
+
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+
+}
+
+ul button {
+    font-size: 10px;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: black;
+    border: 1px solid white;
+    border-radius: 30px;
+    background-color: white;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+ul button:hover {
+    cursor: pointer;
+}
