@@ -15,7 +15,7 @@ const NavBar = () => {
       <>
         <li>
           <NavLink to='/channels'>
-            <button>Home</button>
+            <button className='NavButtons'>Home</button>
           </NavLink>
         </li>
         <li>
@@ -26,7 +26,7 @@ const NavBar = () => {
   } else {
     sessionLinks = (
       <>
-      <li>
+        <li>
           <LoginFormModal />
         </li>
         <li>
@@ -38,11 +38,7 @@ const NavBar = () => {
   return (
     <nav>
       <ul>
-      {sessionLinks}
-
-
-
-
+        {sessionLinks}
       </ul>
     </nav>
   );
