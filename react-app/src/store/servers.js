@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 
 const LOAD = 'servers/LOAD';
-// const ADD_ONE = 'servers/ADD_ONE';
+const ADD_ONE = 'servers/ADD_ONE';
 // const DELETE_ONE = 'servers/DELETE_ONE'
 // const EDIT_ONE = 'servers/EDIT_ONE'
 
@@ -11,16 +11,24 @@ const load = serversArray => ({
     serversArray
 })
 
+const addOneServer = server => ({
+    type: ADD_ONE,
+    server
+})
+
 export const getServers = () => async dispatch => {
 
     const response = await fetch(`/api/channels`)
 
     if (response.ok) {
         const serversArray = await response.json()
-        console.log("SERVERSARRAY:",serversArray)
+        // console.log("SERVERSARRAY:",serversArray)
         dispatch(load(serversArray))
     }
 }
+
+// export const createServer
+
 
 const initialState = {};
 
@@ -30,7 +38,8 @@ const serversReducer = (state = initialState, action) => {
             return state
         case LOAD:
             const servers = {}
-            // console.log(action)
+            console.log("ACTION", action.serversArray)
+            // TODO Make sure this is an array
             // action.serversArray.forEach(server => {
             //     servers[server.id] = server
             // });
