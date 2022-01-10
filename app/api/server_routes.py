@@ -54,14 +54,14 @@ def get_all_server():
     else:
         return jsonify("Servers not found in database for this user."), 404
 
-@server_routes.route('/<int:server_id>')
-def get_server(server_id):
-    pass
-    # server = Server.query.filter(Server.id == server_id).first()
-    # if server:
-    #     return server
-    # else:
-    #     return jsonify("Server not found in database."), 404
+# @server_routes.route('/<int:server_id>')
+# def get_server(server_id):
+#     pass
+#     server = Server.query.filter(Server.id == server_id).first()
+#     if server:
+#         return server
+#     else:
+#         return jsonify("Server not found in database."), 404
 
 
 @server_routes.route('/<int:server_id>', methods=['PUT'])
@@ -86,7 +86,7 @@ def update_server(server_id):
     #       server.image = data['image']
     #     if data['ownerId']:
     #       server.ownerId = data['ownerId']
-    #     db.session.commit
+    #     db.session.commit()
           # return server
 
     # else:
@@ -96,10 +96,10 @@ def update_server(server_id):
 @server_routes.route('/<int:server_id>', methods=['DELETE'])
 def delete_server(server_id):
     pass
-    
-    # server = Server.query.filter(Server.id == server_id).first()
-    # if server:
-    #     db.session.delete(server)
-    #     return server
-    # else:
-    #     return jsonify("server not found in database."), 404
+    server = Server.query.filter(Server.id == server_id).first()
+    if server:
+        db.session.delete(server)
+        db.session.commit()
+        return jsonify('deleted server')
+    else:
+        return jsonify("server not found in database."), 404
