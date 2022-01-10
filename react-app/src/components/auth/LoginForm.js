@@ -32,8 +32,10 @@ const LoginForm = () => {
   }
 
   return (
+    <>
+    <h2 className='modal-label'>Welcome Back!</h2>
     <form onSubmit={onLogin} className='login-form'>
-      <div>
+      <div className='error-box'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
@@ -58,6 +60,7 @@ const LoginForm = () => {
       </div>
       <button className='login-button' type='submit'>Login</button>
     </form>
+    </>
   );
 };
 

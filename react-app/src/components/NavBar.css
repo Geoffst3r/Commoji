@@ -14,7 +14,7 @@ nav ul {
 
 }
 
-ul a {
+ul button {
     font-size: 10px;
     font-family: sans-serif;
     text-decoration: none;
@@ -23,5 +23,9 @@ ul a {
     border-radius: 30px;
     background-color: white;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
+}
+
+ul button:hover {
+    cursor: pointer;
 }
