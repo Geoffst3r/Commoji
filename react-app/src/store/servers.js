@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 
 
 const LOAD = 'servers/LOAD';
@@ -11,6 +12,7 @@ const load = serversArray => ({
 })
 
 export const getServers = () => async dispatch => {
+
     const response = await fetch(`/api/servers`)
 
     if (response.ok) {
@@ -18,3 +20,22 @@ export const getServers = () => async dispatch => {
         dispatch(load(serversArray))
     }
 }
+
+const initialState = {};
+
+const serversReducer = (state = initialState, action) => {
+    switch(action.type) {
+        default:
+            return state
+        case LOAD:
+            const servers = {}
+            action.serversArray.forEach(server => {
+                servers[server.id] = server
+            });
+            return {
+                ...state, servers
+            }
+    }
+}
+
+export default serversReducer
