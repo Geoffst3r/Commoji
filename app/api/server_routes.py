@@ -9,15 +9,14 @@ server_routes = Blueprint('servers', __name__)
 
 @server_routes.route('/', methods=['POST'])
 def new_server():
-    if not request.args:
+    if not request.data:
         return jsonify('bad data'), 400
-    elif len(request.args) < 3:
-        return jsonify('Missing arguments'), 400
+    # elif len(request.args) < 3:
+    #     return jsonify('Missing arguments'), 400
 
     else:
-        print('befor dict!!!!!1')
-        data = dict(request.args)
-        print('AFTER dict!!!!!1')
+        print('befor dict!!!!!1', request.json)
+        data = request.json
         try:
             new_server = {
                 'title': data['title'],
@@ -49,9 +48,9 @@ def get_all_server():
     # servers = Server.query.filter(Server.ownerId == user.id).all()
     servers = Server.query.all()
     if servers:
-        servers_dict = {server.id: {'title': server.title, 'description': server.description, 'image': server.image if server.image else 'none', 'ownerId': server.ownerId } for server in servers }
-        print('!!!!!!!0000000 servers_dict', servers_dict)
-        return jsonify(servers_dict)
+        server_list = [{'serverId': server.id, 'title': server.title, 'description': server.description, 'image': server.image if server.image else 'none', 'ownerId': server.ownerId } for server in servers ]
+        print('!!!!!!!0000000 server_list', server_list)
+        return jsonify(server_list)
     else:
         return jsonify("Servers not found in database for this user."), 404
 
