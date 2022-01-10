@@ -12,6 +12,7 @@ import Server from '../ServerPage';
 const Channels = () => {
     const dispatch = useDispatch();
     const params = useParams();
+    const serverId = params.serverId;
     const [showModal, setShowModal] = useState(false);
 
     const sessionUser = useSelector(state => state.session.user);
@@ -20,23 +21,24 @@ const Channels = () => {
     // }
 
     const channelsObj = useSelector(state => state.channels);
+    // console.log(channelsObj);
     const channels = Object.values(channelsObj);
 
 
     useEffect(() => {
-        dispatch(channelActions.getChannels());
+        dispatch(channelActions.getChannels(serverId));
     }, [dispatch]);
 
     return (
         <div className='ChannelContainer'>
             <div className='channel-modsANDinfo'>
                 <p className='channels'>CHANNELS</p>
-                <button className="add-channel" onClick={() => setShowModal(true)} hidden={owner_define === true ? false : true}>Edit</button>
-                {showModal && (
+                {/* <button className="add-channel" onClick={() => setShowModal(true)} hidden={owner_define === true ? false : true}>Edit</button> */}
+                {/* {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <ChannelForm sessionUser={sessionUser} />
                     </Modal>
-                )}
+                )} */}
             </div>
             <ul className='channel-list'>
                 {channels.length > 0 && channels.map(channel => (

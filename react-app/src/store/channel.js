@@ -1,5 +1,5 @@
 // constants
-const GET_CHANNELS = '/channels/getChannels'
+const GET_CHANNELS = '/channels/getAllChannels'
 const ADD_CHANNEL = 'channels/addChannel'
 const REMOVE_CHANNEL = 'channels/removeChannel'
 const UPDATE_CHANNEL = 'channels/updateChannel'
@@ -7,7 +7,7 @@ const UPDATE_CHANNEL = 'channels/updateChannel'
 const get_Channels = (channels) => {
   return {
     type: GET_CHANNELS,
-    payload: channels
+    channels
   }
 }
 
@@ -35,9 +35,14 @@ const update_Channel = (channel) => {
 export const getChannels = (serverId) => async (dispatch) => {
   const res = await fetch(`/api/channels/${serverId}`);
   if (res.ok) {
-    const channels = res.json();
-    dispatch(get_Channels(channels));
-    return channels;
+    const [channels_list, servers_list] = await res.json();
+    console.log(servers_list)
+    if (channels_list.length > 0) {
+      dispatch(get_Channels(channels_list));
+      return channels_list;
+    } else {
+      return 'Nah'
+    }
   };
 };
 
@@ -85,8 +90,12 @@ export const updateChannel = (inputChannel) => async (dispatch) => {
 const channelReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
-      case SET_CHANNELS:
-          newState = { ...action.channels }
+      case GET_CHANNELS:
+          console.log(action.payload)
+          newState = {};
+          action.channels.forEach(channel => {
+            newState[channel.id] = channel
+          })
           return newState;
       case ADD_CHANNEL:
           newState = Object.assign({}, state);
