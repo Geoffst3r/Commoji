@@ -7,6 +7,7 @@ server_routes = Blueprint('servers', __name__)
 
 # http://localhost:5000/channels/?title=firsttitle&description=someDescriptiveStuff&ownerId=1
 
+
 @server_routes.route('/', methods=['POST'])
 def new_server():
     if not request.data:
@@ -67,7 +68,7 @@ def get_server(server_id):
 @server_routes.route('/<int:server_id>', methods=['PUT'])
 def update_server(server_id):
     pass
-    
+
     # title = None
     # description = None
     # image = None
@@ -87,7 +88,7 @@ def update_server(server_id):
     #     if data['ownerId']:
     #       server.ownerId = data['ownerId']
     #     db.session.commit
-          # return server
+    # return server
 
     # else:
     #     return jsonify("server not found in database."), 404
@@ -96,7 +97,7 @@ def update_server(server_id):
 @server_routes.route('/<int:server_id>', methods=['DELETE'])
 def delete_server(server_id):
     pass
-    
+
     # server = Server.query.filter(Server.id == server_id).first()
     # if server:
     #     db.session.delete(server)
