@@ -38,13 +38,15 @@ export const createServer = (newServer) => async dispatch => {
 }
 
 
+
+
 const initialState = {};
 
 const serversReducer = (state = initialState, action) => {
     switch(action.type) {
         default:
             return state
-        case LOAD:
+        case LOAD:{
             const servers = {}
             const serversArray = action.serversArray
             console.log('serversARRAY',serversArray)
@@ -53,7 +55,19 @@ const serversReducer = (state = initialState, action) => {
             });
             return {
                 ...state, servers, serversArray
+            }}
+        case ADD_ONE:{
+            const server = action.server
+            const servers = state.servers
+            const serversArray = state.servers.serversArray;
+            serversArray[server.serverId] = server
+            servers[server.serverId]= server
+            const newState = {
+                ...state, servers, serversArray
             }
+            return newState
+        }
+
     }
 }
 

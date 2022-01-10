@@ -6,6 +6,9 @@ import LoginFormModal from './LoginFormModal';
 import SignUpModal from './SignUpModal'
 import './NavBar.css'
 import { useSelector } from 'react-redux';
+import AddServerForm from './AddServerForm';
+import AddServerModal from './AddServerModal';
+
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -17,6 +20,9 @@ const NavBar = () => {
           <NavLink to='/channels'>
             <button>Home</button>
           </NavLink>
+        </li>
+        <li>
+          <AddServerModal/>
         </li>
         <li>
           <LogoutButton />
