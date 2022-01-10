@@ -35,13 +35,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/' exact={true}>
-        <Landing/>
-        </Route>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+          <Landing />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
