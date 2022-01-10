@@ -20,16 +20,24 @@ const  Server = () => {
 
     if (servers) {
         return (
+            <>
+
             <div className='ServerContainer'>
                 <ul className="Bar">
                 {servers.map(server => {
                     return (
-                        <NavLink to={`/channels/${server.serverId}`}><button className='ServerButtons'>{server.title}</button></NavLink>
+                        <li>
+                        <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons'>{server.title}</button></NavLink>
+                        </li>
                     )
                 })}
+                <li>
+                    <button className='add-server-button server-buttons'>Add Server</button>
+                </li>
                 </ul >
-            </div>
 
+            </div>
+            </>
         )
     }
     return ('no servers :(')

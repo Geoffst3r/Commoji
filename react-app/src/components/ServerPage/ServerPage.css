@@ -6,3 +6,17 @@
     overflow: hidden;
     background-color: #202225;
 }
+
+.ServerContainer ul {
+    list-style: none;
+
+}
+
+.server-buttons {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+}
+
+

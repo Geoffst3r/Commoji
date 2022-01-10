@@ -27,7 +27,15 @@ export const getServers = () => async dispatch => {
     }
 }
 
-// export const createServer
+export const createServer = (newServer) => async dispatch => {
+    const response = await fetch(`/api/channels`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newServer)
+    })
+    const server = await response.json()
+    if (response.ok) dispatch(addOneServer(server))
+}
 
 
 const initialState = {};
@@ -38,16 +46,11 @@ const serversReducer = (state = initialState, action) => {
             return state
         case LOAD:
             const servers = {}
-            // console.log("ACTION", action.serversArray)
-            // TODO Make sure this is an array
-            // console.log()
             const serversArray = action.serversArray
             console.log('serversARRAY',serversArray)
             action.serversArray.forEach(server => {
-                // console.log('SERVER.ID', server.serverId)
                 servers[server.serverId] = server
             });
-            // console.log('THUNK SERVER', servers)
             return {
                 ...state, servers, serversArray
             }
