@@ -12,6 +12,10 @@
 .channel-title{
     color: gray;
     padding: 2px;
+    width: 95%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .channel-list{
