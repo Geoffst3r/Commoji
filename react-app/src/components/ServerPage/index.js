@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { deleteServer, getServers } from '../../store/servers';
+
 import AddServerModal from '../AddServerModal';
 import './ServerPage.css'
 
@@ -21,7 +22,9 @@ const Server = () => {
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
-
+    if (!user) {
+        return <Redirect to='/' />;
+    }
     if (servers) {
         return (
             <>
