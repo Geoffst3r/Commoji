@@ -45,3 +45,12 @@
     border: none;
     border-radius: 5px;
 }
+.mod-channel-hidden, .edit-channel-button{
+    visibility: hidden;
+}
+.mod-channel-visible{
+    visibility: visible;
+}
+.channel:hover .edit-channel-button {
+    visibility: visible;
+}
