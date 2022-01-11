@@ -13,4 +13,16 @@ const ServerDetail = () => {
     useEffect(() => {
         console.log('something')
     },[dispatch])
+
+    const handleDelete = () => {
+        dispatch(deleteServer())
+    }
+
+    return (
+        <div className="server-detail-container">
+            <div className="server-detail">
+                <button onClick={handleDelete}>Delete?</button>
+            </div>
+        </div>
+    )
 }

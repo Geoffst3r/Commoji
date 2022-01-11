@@ -10,14 +10,12 @@ import './ServerPage.css'
 
 const Server = () => {
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
 
-    const handleDelete = () => {
-        dispatch(deleteServer())
-    }
+
 
     let servers = useSelector(state => {
         return state.servers.serversArray
@@ -33,7 +31,7 @@ const Server = () => {
                             return (
                                 <li>
                                     <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons'>{server.title}</button></NavLink>
-                                    <button onClick={handleDelete}>Delete</button>
+                                    
                                 </li>
                             )
                         })}
