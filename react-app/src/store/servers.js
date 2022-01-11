@@ -56,7 +56,7 @@ export const deleteServer = (serverToDelete) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(serverToDelete)
     })
-    // const server = await response.json()
+    
     if (response.ok) dispatch(deleteOneServer(serverToDelete))
 }
 

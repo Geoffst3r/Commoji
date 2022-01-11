@@ -70,7 +70,6 @@ def get_all_server():
     if servers:
         server_list = [{'serverId': server.id, 'title': server.title, 'description': server.description,
                         'image': server.image if server.image else 'none', 'ownerId': server.ownerId} for server in servers]
-        print('!!!!!!!0000000 server_list', server_list)
         return jsonify(server_list)
     else:
         return jsonify("Servers not found in database for this user."), 404

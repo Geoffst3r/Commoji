@@ -13,6 +13,7 @@ const Channels = () => {
     const params = useParams();
     const [showAddChannelModal, setShowAddChannelModal] = useState(false);
     const [showEditChannelModal, setShowEditChannelModal] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
     const [individualChannel, setIndividualChannel] = useState({});
 
     const serverId = params.serverId;
@@ -31,12 +32,46 @@ const Channels = () => {
 
     const callEditSetter = () => {
         setShowEditChannelModal(false);
+        const channelMod = document.getElementById(`channel-mod-${individualChannel.id}`);
+        channelMod.className = 'mod-channel-hidden';
     };
 
     const modChannel = (channel) => {
         setIndividualChannel(channel);
-        setShowEditChannelModal(true);
+        const channelMod = document.getElementById(`channel-mod-${channel.id}`);
+        const cogWheel = document.getElementById(`cog-wheel-${channel.id}`);
+
+        if (channelMod.className === 'mod-channel-visible') {
+            channelMod.className = 'mod-channel-hidden';
+            cogWheel.className = 'edit-channel-button';
+        } else {
+            channelMod.className = 'mod-channel-visible';
+            cogWheel.className = 'edit-channel-button-persist';
+        };
       };
+
+    useEffect(() => {
+        if (!individualChannel) return;
+
+        const closeMenu = (e) => {
+            console.log(e.target);
+            const channelMod = document.getElementById(`channel-mod-${individualChannel.id}`);
+            const cogWheel = document.getElementById(`cog-wheel-${individualChannel.id}`);
+
+
+            if (channelMod && cogWheel) {
+                if (e.target === channelMod) return
+                channelMod.className = 'mod-channel-hidden';
+                cogWheel.className = 'edit-channel-button';
+                setIndividualChannel({});
+            }
+            return
+        };
+
+        document.addEventListener('click', closeMenu, false);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [individualChannel]);
 
     useEffect(() => {
         dispatch(channelActions.getChannels(serverId));
@@ -57,15 +92,20 @@ const Channels = () => {
                 {channels.map(channel => (
                     <div className='channel' key={channel.id}>
                         <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
-                            <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title}</li>
+                            <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
                         </NavLink>
-                        <button className='edit-channel-button' onClick={() => modChannel(channel)}
+                        <button className='edit-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
                         hidden={owner_define === true ? false : true}><i className='fas fa-cog'></i></button>
-                        {showEditChannelModal && (
-                            <Modal onClose={() => setShowEditChannelModal(false)}>
-                                <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
-                            </Modal>
-                        )}
+                        <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
+                            <li>
+                                <button onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
+                                {showEditChannelModal && (
+                                    <Modal onClose={() => setShowEditChannelModal(false)}>
+                                        <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
+                                    </Modal>
+                                )}
+                            </li>
+                        </ul>
                     </div>
                 ))}
             </ul>

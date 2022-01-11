@@ -22,21 +22,23 @@ export const getMessages = (channelId) => async dispatch => {
 
     if (response.ok) {
         const messageArr = await response.json()
-        console.log("messageArr:",messageArr)
+        console.log("messageArr ##########',:",messageArr)
         dispatch(load(messageArr))
     }
 }
 
 export const createMessage = (newMessage, channelId) => async dispatch => {
-    console.log('newMessage', newMessage)
-
+   
     const response = await fetch(`/api/channels/messages/${channelId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newMessage)
+        // body: JSON.stringify(newMessage)
+        body: JSON.stringify({
+            "message": newMessage,
+            "channelId": channelId
+        })
     })
-
-    const message = await response.json()
+    const message = await response.body.json()
 
     if (response.ok) dispatch(addOneMessage(message))
 }
@@ -50,18 +52,19 @@ const messageReducer = (state = initialState, action) => {
             return state
         case LOAD:{
             const messages = {}
-            const messageArr = action.messageArr
+            // console.log('!!!!! ACTION', action)
+            const messageArr = action.messages
 
-            console.log('messageArr inside reducer', messageArr)
+            // console.log('messageArr inside reducer', messageArr)
 
-            action.messageArr.forEach(message => {
+            messageArr.forEach(message => {
                 messages[message.id] = message
             });
             return {
                 ...state, messages, messageArr
             }}
         case ADD_ONE:{
-            console.log('ADD_ONE inside reducer', state)
+            // console.log('ADD_ONE inside reducer', state)
 
             const message = action.message
             const messages = state.messages
