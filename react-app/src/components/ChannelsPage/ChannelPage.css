@@ -3,6 +3,28 @@
     width: 300px;
     left: 0;
     top: 0;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #2f3136;
+}::-webkit-scrollbar {
+    width: 0;
+
+}
+.channel-title{
+    color: gray;
+    padding: 2px;
+}
+.channel-title:hover{
+    background-color: gray;
+    color: honeydew;
+}
+
+.channel-list{
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.ChannelLinks{
+    text-decoration: none;
 }
