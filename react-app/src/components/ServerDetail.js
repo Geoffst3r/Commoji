@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { compose } from "redux";
-import { deleteServer } from "../store/servers";
 import './serverDetails.css'
+import { deleteServer, getServers } from "../store/servers";
+
+
 const ServerDetail = () => {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -24,6 +26,7 @@ const ServerDetail = () => {
     const handleDelete = async () => {
         await dispatch(deleteServer(servers[id]))
         history.push(`/channels`);
+
     }
 
     return (
