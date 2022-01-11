@@ -30,6 +30,7 @@ const AddServerForm = ({modalSetter}) => {
         }
         if (newServer) {
             await dispatch(createServer(newServer));
+            dispatch(getServers())
         }
         modalSetter();
 

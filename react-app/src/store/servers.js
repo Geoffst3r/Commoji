@@ -46,7 +46,8 @@ export const createServer = (newServer) => async dispatch => {
     })
     const server = await response.json()
     console.log('RESPONSE', server)
-    if (response.ok) await dispatch(addOneServer(server))
+    if (response.ok) dispatch(addOneServer(server))
+    return server
 }
 
 export const deleteServer = (serverToDelete) => async dispatch => {
@@ -86,17 +87,21 @@ const serversReducer = (state = initialState, action) => {
                 ...state, servers, serversArray
             }}
         case ADD_ONE:{
+            console.log(action)
             // console.log('ADDONESTATE', state)
-            const server = action.server
-            const servers = state.servers
-            console.log('SERVERID', typeof server.id)
-            const serversArray = state.serversArray;
-            serversArray[server.id] = server
-            servers[server.id]= server
-            const newState = {
-                ...state, servers, serversArray
-            }
-            return newState
+            let newState = Object.assign({}, state);
+            newState[action.server.id] = action.server;
+            return newState;
+            // const server = action.server
+            // const servers = state.servers
+            // //console.log('SERVERID', typeof server.id)
+            // const serversArray = state.serversArray;
+            // serversArray[server.id] = server
+            // servers[server.id]= server
+            // const newState = {
+            //     ...state, servers, serversArray
+            // }
+            // return newState
         }
         case DELETE_ONE:{
             const deleteServer = action.server;

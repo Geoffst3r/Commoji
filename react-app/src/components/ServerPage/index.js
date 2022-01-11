@@ -12,9 +12,7 @@ import './ServerPage.css'
 const Server = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
-    useEffect(() => {
-        dispatch(getServers())
-    }, [dispatch])
+
     let servers = useSelector(state => {
         return state.servers.serversArray
     })
@@ -22,9 +20,11 @@ const Server = () => {
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
+
     if (!user) {
         return <Redirect to='/' />;
     }
+
     if (servers) {
         return (
             <>
