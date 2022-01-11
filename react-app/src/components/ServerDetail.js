@@ -25,6 +25,7 @@ const ServerDetail = () => {
 
     const handleDelete = async () => {
         await dispatch(deleteServer(servers[id]))
+        await dispatch(getServers())
         history.push(`/channels`);
 
     }
