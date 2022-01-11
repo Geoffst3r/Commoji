@@ -20,7 +20,7 @@ const Landing = () => {
             <div className='splash-description'>
                 <h1 className='splash_text'>This can be anything...</h1>
                 <p className='splash_text'>Create a world and community for you and your friends.</p>
-                <button onClick={onClick}>Demo Now</button>
+                <button className='DemoButton' onClick={onClick}>Demo Now</button>
             </div>
         </div>
     )

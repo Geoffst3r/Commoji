@@ -16,3 +16,19 @@
 .splash_page{
     font-size: 20vm;
 }
+
+.DemoButton{
+    border: none;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    transition-duration: .5s;
+    transition-property: box-shadow, color;
+}
+.DemoButton:hover{
+    box-shadow: 0 8px 15px rgb(0 0 0 / 20%);
+    color: #5865f2;
+    cursor: pointer;
+}
