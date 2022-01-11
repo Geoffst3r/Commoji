@@ -1,21 +1,25 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+
+import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { getServers } from '../../store/servers';
+import { deleteServer, getServers } from '../../store/servers';
+
 import AddServerModal from '../AddServerModal';
 import './ServerPage.css'
 
 
 const Server = () => {
     const dispatch = useDispatch()
-    const user = useSelector(state => state.session.user);
-    useEffect(() => {
-        dispatch(getServers())
-    }, [dispatch])
+
     let servers = useSelector(state => {
         return state.servers.serversArray
     })
+
+    useEffect(() => {
+        dispatch(getServers())
+    }, [dispatch])
     if (!user) {
         return <Redirect to='/' />;
     }
@@ -33,13 +37,9 @@ const Server = () => {
                             )
                         })}
                         <li>
-                            {/* <AddServerModal /> */}
+                            <AddServerModal />
                         </li>
-                        <li>
-                            <button className='add-server-button server-buttons'>Add Server</button>
-                        </li>
-                    </ul >
-
+                    </ul>
                 </div>
             </>
         )

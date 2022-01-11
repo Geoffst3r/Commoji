@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -12,6 +10,7 @@ import { authenticate } from './store/session';
 import Server from './components/ServerPage';
 import Channels from './components/ChannelsPage';
 import Messages from './components/MessagePage';
+import ServerDetail from './components/ServerDetail'
 
 import Landing from './components/Landing';
 
@@ -55,7 +54,9 @@ function App() {
         </Route>
         <Route exact path='/channels/:serverId' >
           <div className='ChannelAndServerContainer'>
+
             <Server />
+            <ServerDetail />
             <Channels />
           </div>
         </Route>
