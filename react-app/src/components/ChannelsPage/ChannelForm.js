@@ -16,16 +16,26 @@ const ChannelForm = ({inputChannel, callSetter}) => {
 
   const onCreate = async (e) => {
     e.preventDefault();
+    setErrors([]);
     const requestChannel = {title, serverId};
-    await dispatch(addChannel(requestChannel));
+    await dispatch(addChannel(requestChannel))
+    .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) return setErrors(data.errors);
+    });
     callSetter();
     return
   };
 
   const onEdit = async (e) => {
       e.preventDefault();
+      setErrors([]);
       const requestChannel = {id: inputChannel.id, title, serverId};
-      await dispatch(updateChannel(requestChannel));
+      await dispatch(updateChannel(requestChannel))
+      .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) return setErrors(data.errors);
+      });
       callSetter();
       return
   };
@@ -40,7 +50,7 @@ const ChannelForm = ({inputChannel, callSetter}) => {
 
   return (
     <>
-    <form onSubmit={title ? onEdit : onCreate} className='channel-form'>
+    <form onSubmit={inputChannel ? onEdit : onCreate} className='channel-form'>
       <div className='channel-error-box'>
         {errors.length > 0 && errors.map((error, ind) => (
           <div key={ind}>{error}</div>
