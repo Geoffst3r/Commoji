@@ -1,3 +1,39 @@
 .server-detail-container{
     background-color: #2f3136;
 }
+.DeleteServerButton{
+    border: none;
+    background-color: rgb(255, 101, 101);
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    transition-duration: .3s;
+    transition-property: box-shadow, color,background-color;
+}
+.DeleteServerButton:hover{
+    box-shadow: 0 8px 15px rgba(253, 1, 1, 0.2);
+    color: #ffffff;
+    cursor: pointer;
+    background-color: rgb(248, 68, 68);
+}
+.EditServerButton{
+    border: none;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    transition-duration: .3s;
+    transition-property: box-shadow, color;
+}
+.EditServerButton:hover{
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
+    color: #5865f2;
+    cursor: pointer;
+}
+.server-detail{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}

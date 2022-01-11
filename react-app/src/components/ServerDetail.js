@@ -36,8 +36,8 @@ const ServerDetail = () => {
     return (
         <div className="server-detail-container">
             <div className="server-detail">
-                <button onClick={handleDelete}>Delete</button>
-                <EditServerModal/>
+                <button className="DeleteServerButton" onClick={handleDelete}>Delete</button>
+                <EditServerModal />
             </div>
 
         </div>

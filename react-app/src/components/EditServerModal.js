@@ -12,7 +12,7 @@ function EditServerModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit Server</button>
+      <button className='EditServerButton' onClick={() => setShowModal(true)}>Edit Server</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditServerForm modalSetter={modalSetter} />

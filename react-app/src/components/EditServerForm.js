@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom';
 
 
 
-const EditServerForm = ({modalSetter}) => {
-    const {serverId} = useParams()
+const EditServerForm = ({ modalSetter }) => {
+    const { serverId } = useParams()
     const id = parseInt(serverId)
     const serversContainer = useSelector(state => state.servers)
     const servers = serversContainer.servers
@@ -59,13 +59,13 @@ const EditServerForm = ({modalSetter}) => {
         <>
             <h2 className='modal-label'>Edit Server</h2>
             <form className='add-server-form' onSubmit={onSubmit}>
-                <div>
+                <div className='LabelAndInputContainer'>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
                 </div>
-                <label>Server Title</label>
-                <div>
+                <div className='LabelAndInputContainer'>
+                    <label>Server Title</label>
                     <input
                         type='text'
                         name='title'
@@ -73,8 +73,8 @@ const EditServerForm = ({modalSetter}) => {
                         value={title}
                     ></input>
                 </div>
-                <label>Server Description</label>
-                <div>
+                <div className='LabelAndInputContainer'>
+                    <label>Server Description</label>
                     <input
                         type='text'
                         name='email'
@@ -82,8 +82,8 @@ const EditServerForm = ({modalSetter}) => {
                         value={description}
                     ></input>
                 </div>
-                <label>Image Url</label>
-                <div>
+                <div className='LabelAndInputContainer'>
+                    <label>Image Url</label>
                     <input
                         type='text'
                         name='image'
