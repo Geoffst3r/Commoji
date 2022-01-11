@@ -31,18 +31,13 @@ const Server = () => {
                             return (
                                 <li className={"serverButtons"}>
                                     <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons'>{server.title}</button></NavLink>
-                                    
                                 </li>
                             )
                         })}
                         <li>
                             <AddServerModal />
                         </li>
-                        <li>
-                            <button className='add-server-button server-buttons'>Add Server</button>
-                        </li>
-                    </ul >
-
+                    </ul>
                 </div>
             </>
         )

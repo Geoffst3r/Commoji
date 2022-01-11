@@ -25,7 +25,7 @@ const AddServerForm = () => {
         if (newServer) {
             await dispatch(createServer(newServer));
         }
-        
+        <Redirect to='/channels/'/>
     };
 
     const updateTitle = (e) => {

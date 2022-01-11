@@ -1,21 +1,28 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { compose } from "redux";
 import { deleteServer } from "../store/servers";
 
 const ServerDetail = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const {serverId} = useParams()
+    const id = parseInt(serverId)
 
-    const servers = useSelector(state => state.servers.servers)
+    console.log(id)
+    const serversContainer = useSelector(state => state.servers)
+    console.log('STATE CONTAINTER', serversContainer)
+    const servers = serversContainer.servers
+    console.log('SERVERS',servers)
+    console.log(servers[id])
 
     useEffect(() => {
         console.log('something')
     },[dispatch])
 
     const handleDelete = () => {
-        dispatch(deleteServer())
+        dispatch(deleteServer(servers[id]))
     }
 
     return (
@@ -26,3 +33,5 @@ const ServerDetail = () => {
         </div>
     )
 }
+
+export default ServerDetail

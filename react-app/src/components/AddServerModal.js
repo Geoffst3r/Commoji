@@ -7,7 +7,7 @@ function AddServerModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add Server</button>
+      <button className='add-server-button server-buttons' onClick={() => setShowModal(true)}>Add Server</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddServerForm/>

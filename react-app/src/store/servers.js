@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const LOAD = 'servers/LOAD';
 const ADD_ONE = 'servers/ADD_ONE';
 const DELETE_ONE = 'servers/DELETE_ONE'
-// const EDIT_ONE = 'servers/EDIT_ONE'
+const EDIT_ONE = 'servers/EDIT_ONE'
 
 const load = serversArray => ({
     type: LOAD,
@@ -21,13 +21,17 @@ const deleteOneServer = server => ({
     server
 })
 
+const editOneServer = server => ({
+    type: EDIT_ONE,
+    server
+})
+
 export const getServers = () => async dispatch => {
 
     const response = await fetch(`/api/channels`)
 
     if (response.ok) {
         const serversArray = await response.json()
-        // console.log("SERVERSARRAY:",serversArray)
         dispatch(load(serversArray))
     }
 }
@@ -40,14 +44,11 @@ export const createServer = (newServer) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newServer)
     })
-    // console.log(JSON.stringify(newServer))
-    const server = await response.json()
-
-    if (response.ok) dispatch(addOneServer(server))
+    if (response.ok) dispatch(addOneServer(newServer))
 }
 
 export const deleteServer = (serverToDelete) => async dispatch => {
-    const response = await fetch(`/api/channels/${serverToDelete.id}`, {
+    const response = await fetch(`/api/channels/${serverToDelete.serverId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(serverToDelete)
@@ -56,7 +57,14 @@ export const deleteServer = (serverToDelete) => async dispatch => {
     if (response.ok) dispatch(deleteOneServer(serverToDelete))
 }
 
-
+export const editServer = (serverToEdit) => async dispatch => {
+    const response = await fetch(`/api/channels/${serverToEdit.serverId}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(serverToEdit)
+    })
+    if (response.ok) dispatch(editOneServer(serverToEdit))
+}
 
 
 const initialState = {};
@@ -68,7 +76,7 @@ const serversReducer = (state = initialState, action) => {
         case LOAD:{
             const servers = {}
             const serversArray = action.serversArray
-            console.log('serversARRAY',serversArray)
+            // console.log('serversARRAY',serversArray)
             action.serversArray.forEach(server => {
                 servers[server.serverId] = server
             });
@@ -76,10 +84,10 @@ const serversReducer = (state = initialState, action) => {
                 ...state, servers, serversArray
             }}
         case ADD_ONE:{
-            console.log('ADDONESTATE', state)
+            // console.log('ADDONESTATE', state)
             const server = action.server
             const servers = state.servers
-            console.log()
+            // console.log()
             const serversArray = state.serversArray;
             serversArray[server.serverId] = server
             servers[server.serverId]= server
@@ -90,13 +98,14 @@ const serversReducer = (state = initialState, action) => {
         }
         case DELETE_ONE:{
             const deleteServer = action.server;
+            // console.log(deleteServer)
             const serversArray = state.serversArray;
             const servers = state.servers;
-            delete servers[deleteServer.id]
+            delete servers[deleteServer.serverId]
             let index;
             for (let i = 0; i < serversArray.length; i++) {
                 const server = serversArray[i];
-                if (server.id === deleteServer.id) {
+                if (server.id === deleteServer.serverId) {
                     index = i
                 }
             }
@@ -105,6 +114,12 @@ const serversReducer = (state = initialState, action) => {
                 ...state, servers, serversArray
             }
             return newState
+        }
+        case EDIT_ONE: {
+            const editServer = action.server;
+            const serversArray = state.serversArray;
+            const servers = state.servers;
+            // servers[editServer.id]
         }
 
     }

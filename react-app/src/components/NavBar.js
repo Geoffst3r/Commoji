@@ -22,9 +22,6 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <AddServerModal/>
-        </li>
-        <li>
           <LogoutButton />
         </li>
       </>
