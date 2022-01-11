@@ -26,6 +26,8 @@ def new_server():
                 'ownerId': data['ownerId']
             }
 
+
+
             if 'image' in data:
                 print('image here')
                 new_server['image'] = data['image']
@@ -36,6 +38,18 @@ def new_server():
 
             db.session.add(new_server_db)
             db.session.commit()
+
+            new_channel = {
+                'title': 'General',
+                'serverId': new_server_db.id
+            }
+
+            new_channel_db = Channel(
+                **new_channel
+            )
+            db.session.add(new_channel_db)
+            db.session.commit()
+
             return new_server
         except IntegrityError as e:
             print(e)
