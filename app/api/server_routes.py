@@ -162,4 +162,3 @@ def delete_channel(server_id, channel_id):
         return jsonify("Success")
     else:
         return jsonify("Failed to Delete")
-    return
