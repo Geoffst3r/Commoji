@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createMessage } from '../../store/messages';
 import './MessageForm.css'
+import { getMessages } from '../../store/messages';
 
 
 const MessageForm = () => {
@@ -19,9 +20,11 @@ const MessageForm = () => {
     await dispatch(createMessage(messageContent, channelId))
       .catch(async (res) => {
         console.log('res', res)
-        // const data = await res.json();
-        // if (data && data.errors) return setErrors(data.errors);
-    });
+        const data = await res.json();
+        if (data && data.errors) return setErrors(data.errors);
+        
+      });
+    await dispatch(getMessages(channelId))
     return
   };
 

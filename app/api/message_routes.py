@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from app.models import db, Server, Channel, Message, User
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user
+from sqlalchemy import desc
+
 
 message_routes = Blueprint('messages', __name__)
 
@@ -45,10 +47,11 @@ def new_message(channel_id):
 @message_routes.route('/<int:channel_id>')
 def get_all_messages(channel_id):
     print('messagebakc ned ^^^^^^^^^^^^^^^^^^^^')
-    messages = db.session.query(Message, User).join(User).filter(Message.channelId == channel_id).all()
+    messages = db.session.query(Message, User).join(User).filter(Message.channelId == channel_id).order_by(desc(Message.id)).all()
     if messages:
         message_list = [{'id': message.id, 'message': message.message, 'userId': message.userId,
                         'channelId': message.channelId, 'username': user.username} for message, user in messages]
+        print ('message_list', message_list)
 
         return jsonify(message_list)
     else:

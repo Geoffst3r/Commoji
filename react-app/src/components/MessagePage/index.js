@@ -23,14 +23,22 @@ const Messages = () => {
 
     useEffect(() => {
         dispatch(getMessages(channelId))
+
     }, [dispatch])
 
     let messages = useSelector(state => {
-        // console.log('_______STATE_______', state)
+        // console.log('_______STATE in useSelector_______', state)
         return state.messages.messageArr
     })
 
-    console.log("messages in comp", messages)
+    let messagesRev;
+    if (messages) {
+
+        console.log("___________before rev messages__________", messages)
+        // console.log('reversing', messages.reverse())
+        // messagesRev = messages.reverse().map()
+        // console.log("___________after messages__________", messagesRev)
+    }
 
     if (messages) {
         return (
@@ -42,8 +50,8 @@ const Messages = () => {
                             return (
                                 <>
                                     <li>
-                                        <div>{message.message}</div>
-                                        <div>{message.username}</div>
+                                        <div className='mesageContent'>{message.message}</div>
+                                        <div className='messageUser'>{message.username}</div>
                                     </li>
 
 
