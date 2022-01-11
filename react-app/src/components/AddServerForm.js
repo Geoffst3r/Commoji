@@ -12,7 +12,7 @@ const AddServerForm = () => {
     const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
-    const history = useHistory
+    const history = useHistory()
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -25,8 +25,7 @@ const AddServerForm = () => {
         if (newServer) {
             await dispatch(createServer(newServer));
         }
-        // history.push('/channels')
-
+        
     };
 
     const updateTitle = (e) => {

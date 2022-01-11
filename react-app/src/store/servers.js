@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const LOAD = 'servers/LOAD';
 const ADD_ONE = 'servers/ADD_ONE';
-// const DELETE_ONE = 'servers/DELETE_ONE'
+const DELETE_ONE = 'servers/DELETE_ONE'
 // const EDIT_ONE = 'servers/EDIT_ONE'
 
 const load = serversArray => ({
@@ -13,6 +13,11 @@ const load = serversArray => ({
 
 const addOneServer = server => ({
     type: ADD_ONE,
+    server
+})
+
+const deleteOneServer = server => ({
+    type: DELETE_ONE,
     server
 })
 
@@ -41,6 +46,16 @@ export const createServer = (newServer) => async dispatch => {
     if (response.ok) dispatch(addOneServer(server))
 }
 
+export const deleteServer = (serverToDelete) => async dispatch => {
+    const response = await fetch(`/api/channels/${serverToDelete.id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(serverToDelete)
+    })
+    // const server = await response.json()
+    if (response.ok) dispatch(deleteOneServer(serverToDelete))
+}
+
 
 
 
@@ -64,14 +79,32 @@ const serversReducer = (state = initialState, action) => {
             console.log('ADDONESTATE', state)
             const server = action.server
             const servers = state.servers
-            console.log(servers)
-            // // const serversArray = state.servers.serversArray;
-            // serversArray[server.serverId] = server
-            // servers[server.serverId]= server
-            // const newState = {
-            //     ...state, servers, serversArray
-            // }
-            // return newState
+            console.log()
+            const serversArray = state.serversArray;
+            serversArray[server.serverId] = server
+            servers[server.serverId]= server
+            const newState = {
+                ...state, servers, serversArray
+            }
+            return newState
+        }
+        case DELETE_ONE:{
+            const deleteServer = action.server;
+            const serversArray = state.serversArray;
+            const servers = state.servers;
+            delete servers[deleteServer.id]
+            let index;
+            for (let i = 0; i < serversArray.length; i++) {
+                const server = serversArray[i];
+                if (server.id === deleteServer.id) {
+                    index = i
+                }
+            }
+            serversArray.splice(index, 1)
+            const newState = {
+                ...state, servers, serversArray
+            }
+            return newState
         }
 
     }
