@@ -44,7 +44,8 @@ export const createServer = (newServer) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newServer)
     })
-    if (response.ok) dispatch(addOneServer(newServer))
+    const server = await response.json()
+    if (response.ok) dispatch(addOneServer(server))
 }
 
 export const deleteServer = (serverToDelete) => async dispatch => {
@@ -98,10 +99,12 @@ const serversReducer = (state = initialState, action) => {
         }
         case DELETE_ONE:{
             const deleteServer = action.server;
-            // console.log(deleteServer)
+            console.log(deleteServer)
             const serversArray = state.serversArray;
             const servers = state.servers;
+            console.log('SERVERID',servers[deleteServer.serverId])
             delete servers[deleteServer.serverId]
+            console.log(servers)
             let index;
             for (let i = 0; i < serversArray.length; i++) {
                 const server = serversArray[i];

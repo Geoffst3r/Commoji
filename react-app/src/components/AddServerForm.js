@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { createServer } from '../store/servers';
+import { getServers } from '../store/servers';
+import { useEffect } from 'react';
 
 
 
@@ -13,6 +15,10 @@ const AddServerForm = ({modalSetter}) => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const history = useHistory()
+
+    useEffect(() => {
+        dispatch(getServers())
+    }, [dispatch])
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +32,7 @@ const AddServerForm = ({modalSetter}) => {
             await dispatch(createServer(newServer));
         }
         modalSetter();
-        <Redirect to='/channels/'/>
+
     };
 
     const updateTitle = (e) => {

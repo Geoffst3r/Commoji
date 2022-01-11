@@ -11,15 +11,18 @@ import './ServerPage.css'
 const Server = () => {
     const dispatch = useDispatch()
 
+
+    let servers = useSelector(state => {
+        return state.servers.serversArray
+    })
+
+
+
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
 
 
-
-    let servers = useSelector(state => {
-        return state.servers.serversArray
-    })
 
     if (servers) {
         return (
