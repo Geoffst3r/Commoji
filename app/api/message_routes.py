@@ -11,6 +11,9 @@ message_routes = Blueprint('messages', __name__)
 # SERVER ROUTES:
 @message_routes.route('/<int:channel_id>', methods=['POST'])
 def new_message(channel_id):
+# if current_user.is_authenticated:
+    #     user = current_user.to_dict()
+
     if not request.data:
         return jsonify('bad data'), 400
 
@@ -20,6 +23,7 @@ def new_message(channel_id):
             new_message = {
                 'message': data['message'],
                 'userId': data['userId'],
+                # 'userId': user.id
                 'channelId': channel_id
             }
 
@@ -30,7 +34,7 @@ def new_message(channel_id):
             db.session.add(new_message_db)
             db.session.commit()
             return new_message
-            
+
         except IntegrityError as e:
             print(e)
             return jsonify('Database entry error'), 400
