@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { NavLink, useParams, Redirect } from 'react-router-dom';
-import { getServers } from '../../store/servers';
 import { deleteServer, getServers } from '../../store/servers';
 
 import AddServerModal from '../AddServerModal';
