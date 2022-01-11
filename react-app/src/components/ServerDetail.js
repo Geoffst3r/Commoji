@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { compose } from "redux";
-import { deleteServer } from "../store/servers";
+import { deleteServer, getServers } from "../store/servers";
 
 const ServerDetail = () => {
     const dispatch = useDispatch()
@@ -18,11 +18,12 @@ const ServerDetail = () => {
 
 
     useEffect(() => {
-        
+
     },[dispatch])
 
-    const handleDelete = () => {
-        dispatch(deleteServer(servers[id]))
+    const handleDelete = async () => {
+        await dispatch(deleteServer(servers[id]))
+        dispatch(getServers())
     }
 
     return (
