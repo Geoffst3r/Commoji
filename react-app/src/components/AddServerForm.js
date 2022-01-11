@@ -26,7 +26,8 @@ const AddServerForm = ({ modalSetter }) => {
         const newServer = {
             title,
             description,
-            ownerId
+            ownerId,
+            image
         }
         if (newServer) {
             await dispatch(createServer(newServer));
