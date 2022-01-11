@@ -13,7 +13,7 @@ const Channels = () => {
     const params = useParams();
     const [showAddChannelModal, setShowAddChannelModal] = useState(false);
     const [showEditChannelModal, setShowEditChannelModal] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
+    const [cogWheelClicked, setCogWheelClicked] = useState(false);
     const [individualChannel, setIndividualChannel] = useState({});
 
     const serverId = params.serverId;
@@ -32,8 +32,6 @@ const Channels = () => {
 
     const callEditSetter = () => {
         setShowEditChannelModal(false);
-        const channelMod = document.getElementById(`channel-mod-${individualChannel.id}`);
-        channelMod.className = 'mod-channel-hidden';
     };
 
     const modChannel = (channel) => {
@@ -44,26 +42,26 @@ const Channels = () => {
         if (channelMod.className === 'mod-channel-visible') {
             channelMod.className = 'mod-channel-hidden';
             cogWheel.className = 'edit-channel-button';
+            setCogWheelClicked(false);
         } else {
             channelMod.className = 'mod-channel-visible';
             cogWheel.className = 'edit-channel-button-persist';
+            setCogWheelClicked(true);
         };
       };
 
     useEffect(() => {
-        if (!individualChannel) return;
+        if (!cogWheelClicked && !individualChannel) return;
 
         const closeMenu = (e) => {
-            console.log(e.target);
             const channelMod = document.getElementById(`channel-mod-${individualChannel.id}`);
             const cogWheel = document.getElementById(`cog-wheel-${individualChannel.id}`);
 
 
-            if (channelMod && cogWheel) {
-                if (e.target === channelMod) return
+            if (channelMod && cogWheel && e.target !== channelMod && e.target !== cogWheel) {
                 channelMod.className = 'mod-channel-hidden';
                 cogWheel.className = 'edit-channel-button';
-                setIndividualChannel({});
+                setCogWheelClicked(false);
             }
             return
         };
@@ -71,7 +69,7 @@ const Channels = () => {
         document.addEventListener('click', closeMenu, false);
 
         return () => document.removeEventListener("click", closeMenu);
-    }, [individualChannel]);
+    }, [individualChannel, cogWheelClicked]);
 
     useEffect(() => {
         dispatch(channelActions.getChannels(serverId));
