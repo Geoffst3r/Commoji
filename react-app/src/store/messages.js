@@ -38,7 +38,7 @@ export const createMessage = (newMessage, channelId) => async dispatch => {
             "channelId": channelId
         })
     })
-    const message = await response.body.json()
+    const message = await response.json()
 
     if (response.ok) dispatch(addOneMessage(message))
 }
@@ -54,6 +54,7 @@ const messageReducer = (state = initialState, action) => {
             const messages = {}
             // console.log('!!!!! ACTION', action)
             const messageArr = action.messages
+            // console.log('messageArr', messageArr)
 
             // console.log('messageArr inside reducer', messageArr)
 
@@ -69,15 +70,15 @@ const messageReducer = (state = initialState, action) => {
             const message = action.message
             const messages = state.messages
 
-            // console.log(messages)
+            // console.log('STATE MESSAGE ADD ONE -----', state)
 
-            // // const messageArr = state.messages.messageArr;
-            // messageArr[message.id] = message
-            // messages[message.id]= message
-            // const newState = {
-            //     ...state, messages, messageArr
-            // }
-            // return newState
+            const messageArr = state.messageArr;
+            messageArr[message.id] = message
+            messages[message.id]= message
+            const newState = {
+                ...state, messages, messageArr
+            }
+            return newState
         }
 
     }
