@@ -4,31 +4,31 @@ const ADD_CHANNEL = 'channels/addChannel'
 const REMOVE_CHANNEL = 'channels/removeChannel'
 const UPDATE_CHANNEL = 'channels/updateChannel'
 
-const get_Channels = (channels) => {
+const get_Channels = (channels, server) => {
   return {
     type: GET_CHANNELS,
-    channels
+    payload: {channels, server}
   }
 }
 
 const add_Channel = (channel) => {
   return {
     type: ADD_CHANNEL,
-    payload: channel
+    channel
   }
 }
 
 const remove_Channel = (id) => {
   return {
     type: REMOVE_CHANNEL,
-    payload: id
+    id
   }
 }
 
 const update_Channel = (channel) => {
   return {
     type: UPDATE_CHANNEL,
-    payload: channel
+    channel
   }
 }
 
@@ -36,13 +36,8 @@ export const getChannels = (serverId) => async (dispatch) => {
   const res = await fetch(`/api/channels/${serverId}`);
   if (res.ok) {
     const [channels_list, servers_list] = await res.json();
-    console.log(servers_list)
-    if (channels_list.length > 0) {
-      dispatch(get_Channels(channels_list));
-      return channels_list;
-    } else {
-      return 'Nah'
-    }
+    dispatch(get_Channels(channels_list, servers_list));
+    return {channels_list, servers_list};
   };
 };
 
@@ -58,7 +53,14 @@ export const addChannel = (inputChannel) => async (dispatch) => {
     const channel = await res.json();
     dispatch(add_Channel(channel));
     return channel;
-  };
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 };
 
 export const removeChannel = (inputChannel) => async (dispatch) => {
@@ -81,36 +83,38 @@ export const updateChannel = (inputChannel) => async (dispatch) => {
     })
   });
   if (res.ok) {
-    const channel = await res.json();
-    dispatch(update_Channel(channel));
-    return channel;
-  };
+    const data = await res.json();
+    inputChannel['title'] = data['title'];
+    dispatch(update_Channel(inputChannel));
+    return inputChannel;
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 };
 
 const channelReducer = (state = {}, action) => {
-  let newState;
+  let newState = {};
   switch (action.type) {
-      case GET_CHANNELS:
-          console.log(action.payload)
-          newState = {};
-          action.channels.forEach(channel => {
-            newState[channel.id] = channel
-          })
-          return newState;
-      case ADD_CHANNEL:
-          newState = Object.assign({}, state);
-          newState[action.channel.id] = action.channel;
-          return newState;
-      case REMOVE_CHANNEL:
-        newState = Object.assign({}, state);
-        delete newState[action.id];
-        return newState;
-      case UPDATE_CHANNEL:
-        newState = Object.assign({}, state);
-        newState[action.id] = action;
-        return newState
-      default:
-          return state;
+    case GET_CHANNELS:
+      action.payload.channels.forEach(channel => {
+        channel.serverOwnerId = action.payload.server.ownerId;
+        newState[channel.id] = channel;
+      });
+      return newState;
+    case ADD_CHANNEL:
+      newState = Object.assign({}, state);
+      newState[action.channel.id] = action.channel;
+      return newState;
+    case REMOVE_CHANNEL:
+      newState = Object.assign({}, state);
+      delete newState[action.id];
+      return newState;
+    case UPDATE_CHANNEL:
+      newState = Object.assign({}, state);
+      newState[action.channel.id] = action.channel;
+      return newState;
+    default:
+        return state;
   }
 };
 
