@@ -9,8 +9,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 
-import Channels from './components/ChannelsPage';
 import Server from './components/ServerPage';
+import Channels from './components/ChannelsPage';
+import Messages from './components/MessagePage';
 
 import Landing from './components/Landing';
 
@@ -56,6 +57,13 @@ function App() {
           <div className='ChannelAndServerContainer'>
             <Server />
             <Channels />
+          </div>
+        </Route>
+        <Route path='/channels/:serverId/:channelId' >
+          <div className='ChannelAndServerContainer'>
+            <Server />
+            <Channels />
+            <Messages />
           </div>
         </Route>
       </Switch>
