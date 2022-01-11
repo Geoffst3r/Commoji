@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { deleteServer, getServers } from "../store/servers";
+import EditServerModal from "./EditServerModal";
 
 const ServerDetail = () => {
     const dispatch = useDispatch()
@@ -26,11 +27,15 @@ const ServerDetail = () => {
         dispatch(getServers())
     }
 
+
+
     return (
         <div className="server-detail-container">
             <div className="server-detail">
-                <button onClick={handleDelete}>Delete?</button>
+                <button onClick={handleDelete}>Delete</button>
+                <EditServerModal/>
             </div>
+
         </div>
     )
 }
