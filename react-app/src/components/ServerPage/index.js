@@ -34,7 +34,11 @@ const Server = () => {
                         {servers.map(server => {
                             return (
                                 <li className={"serverButtons"}>
-                                    <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons'>{server.title}</button></NavLink>
+                                    <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons' style={{
+                                        backgroundImage: `url(${server.image})`,
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: "no-repeat"
+                                    }}></button></NavLink>
                                 </li>
                             )
                         })}

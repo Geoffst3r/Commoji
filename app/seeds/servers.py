@@ -5,13 +5,17 @@ from app.models import db, Server
 def seed_servers():
     server1 = Server(
         title='Demo', description='This is for seeding data, need to update',
-        ownerId=1)
+        ownerId=1,
+        image="https://cdn.shopify.com/s/files/1/1061/1924/products/16_large.png"
+        )
     server2 = Server(
         title='Demo2', description='This is for seeding data, need to update',
-        ownerId=2)
+        ownerId=2,
+        image="https://image.emojisky.com/542/2542-middle.png")
     server3 = Server(
         title='Demo3', description='This is for seeding data, need to update',
-        ownerId=3)
+        ownerId=3,
+        image="https://hotemoji.com/images/dl/1/devil-emoji-by-twitter.png")
 
     db.session.add(server1)
     db.session.add(server2)
