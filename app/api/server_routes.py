@@ -26,8 +26,6 @@ def new_server():
                 'ownerId': data['ownerId']
             }
 
-
-
             if 'image' in data:
                 print('image here')
                 new_server['image'] = data['image']
@@ -50,7 +48,13 @@ def new_server():
             db.session.add(new_channel_db)
             db.session.commit()
 
-            return new_server
+            new_server_db_dict = {
+                'id': new_server_db.id,
+                'title': new_server_db.title,
+                'description': new_server_db.description,
+                'ownerId': new_server_db.ownerId
+            }
+            return new_server_db_dict
         except IntegrityError as e:
             print(e)
             return jsonify('Database entry error'), 400
