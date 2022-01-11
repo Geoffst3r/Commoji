@@ -114,11 +114,11 @@ def delete_server(server_id):
 
 @server_routes.route('/<int:server_id>', methods=["POST"])
 def new_channel(server_id):
-    title = request.json["title"]
-    serverId = request.json["serverId"]
-    if title == None or serverId == None:
+    data = request.get_json(force=True)
+    title = data["title"]
+    if title == None or server_id == None:
         return jsonify("bad data")
-    channel = Channel(title=title, serverId=serverId)
+    channel = Channel(title=title, serverId=server_id)
     db.session.add(channel)
     db.session.commit()
     return jsonify({"id": channel.id, "title": channel.title, "serverId": channel.serverId})
@@ -143,8 +143,9 @@ def get_all_channels(server_id):
 
 @server_routes.route('/<int:server_id>/<int:channel_id>', methods=["PUT"])
 def edit_channel(server_id, channel_id):
+    data = request.get_json(force=True)
     channel = Channel.query.filter(Channel.id == channel_id).first()
-    title = request.json["title"]
+    title = data["title"]
     if channel:
         channel.title = title
         db.session.commit()

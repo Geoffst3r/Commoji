@@ -24,6 +24,14 @@ const Channels = () => {
         if (sessionUser.id === channels[0].serverOwnerId) owner_define = true;
     };
 
+    const callAddSetter = () => {
+        setShowAddChannelModal(false);
+    };
+
+    const callEditSetter = () => {
+        setShowEditChannelModal(false);
+    };
+
     useEffect(() => {
         dispatch(channelActions.getChannels(serverId));
     }, [dispatch, serverId, channelId]);
@@ -35,7 +43,7 @@ const Channels = () => {
                 <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>
                 {showAddChannelModal && (
                     <Modal onClose={() => setShowAddChannelModal(false)}>
-                        <ChannelForm />
+                        <ChannelForm callSetter={callAddSetter} />
                     </Modal>
                 )}
             </div>
@@ -49,7 +57,7 @@ const Channels = () => {
                     onClick={() => setShowEditChannelModal(true)} hidden={owner_define === true ? false : true}>Edit</button>
                     {showEditChannelModal && (
                         <Modal onClose={() => setShowEditChannelModal(false)}>
-                            <ChannelForm inputChannel={channel} />
+                            <ChannelForm callSetter={callEditSetter} inputChannel={channel} />
                         </Modal>
                     )}
                     </div>

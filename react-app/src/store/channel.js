@@ -83,10 +83,13 @@ export const updateChannel = (inputChannel) => async (dispatch) => {
     })
   });
   if (res.ok) {
-    const channel = await res.json();
-    dispatch(update_Channel(channel));
-    return channel;
-  };
+    const data = await res.json();
+    inputChannel['title'] = data['title'];
+    dispatch(update_Channel(inputChannel));
+    return inputChannel;
+  } else {
+    return ['An error occurred. Please try again.']
+  }
 };
 
 const channelReducer = (state = {}, action) => {
