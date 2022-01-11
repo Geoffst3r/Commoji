@@ -33,8 +33,8 @@ const ServerDetail = () => {
 
     const ownerLinks = (
         <div className="server-detail">
-                <button onClick={handleDelete}>Delete</button>
-                <EditServerModal/>
+                 <button className="DeleteServerButton" onClick={handleDelete}>Delete</button>
+                <EditServerModal />
         </div>
     )
     const owner = () => {
@@ -48,10 +48,7 @@ const ServerDetail = () => {
 
     return (
         <div className="server-detail-container">
-
             {owner() ? ownerLinks : null }
-
-
         </div>
     )
 }

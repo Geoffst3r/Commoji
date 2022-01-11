@@ -4,10 +4,10 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { createServer } from '../store/servers';
 import { getServers } from '../store/servers';
 import { useEffect } from 'react';
+import "./ServerForms.css"
 
 
-
-const AddServerForm = ({modalSetter}) => {
+const AddServerForm = ({ modalSetter }) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -26,7 +26,8 @@ const AddServerForm = ({modalSetter}) => {
         const newServer = {
             title,
             description,
-            ownerId
+            ownerId,
+            image
         }
         if (newServer) {
             await dispatch(createServer(newServer));
@@ -58,8 +59,8 @@ const AddServerForm = ({modalSetter}) => {
                         <div key={ind}>{error}</div>
                     ))}
                 </div>
-                <label>Server Title</label>
-                <div>
+                <div className='LabelAndInputContainer'>
+                    <label>Server Title</label>
                     <input
                         type='text'
                         name='title'
@@ -67,8 +68,8 @@ const AddServerForm = ({modalSetter}) => {
                         value={title}
                     ></input>
                 </div>
-                <label>Server Description</label>
-                <div>
+                <div className='LabelAndInputContainer'>
+                    <label>Server Description</label>
                     <input
                         type='text'
                         name='email'
@@ -76,8 +77,8 @@ const AddServerForm = ({modalSetter}) => {
                         value={description}
                     ></input>
                 </div>
-                <label>Image Url</label>
-                <div>
+                <div className='LabelAndInputContainer'>
+                    <label>Image Url</label>
                     <input
                         type='text'
                         name='image'

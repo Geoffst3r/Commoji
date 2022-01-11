@@ -38,14 +38,14 @@ export const getServers = () => async dispatch => {
 
 export const createServer = (newServer) => async dispatch => {
     // console.log('made it here')
-    console.log(newServer)
+    console.log("NEW SERVER",newServer)
     const response = await fetch(`/api/channels/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newServer)
     })
     const server = await response.json()
-    console.log('RESPONSE', server)
+    //console.log('RESPONSE', server)
     if (response.ok) dispatch(addOneServer(server))
     return server
 }
@@ -56,7 +56,7 @@ export const deleteServer = (serverToDelete) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(serverToDelete)
     })
-    
+
     if (response.ok) dispatch(deleteOneServer(serverToDelete))
 }
 

@@ -12,6 +12,10 @@
 .channel-title{
     color: gray;
     padding: 2px;
+    width: 95%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .channel-list{
@@ -44,4 +48,13 @@
 .add-channel{
     border: none;
     border-radius: 5px;
+}
+.mod-channel-hidden, .edit-channel-button{
+    visibility: hidden;
+}
+.mod-channel-visible{
+    visibility: visible;
+}
+.channel:hover .edit-channel-button {
+    visibility: visible;
 }
