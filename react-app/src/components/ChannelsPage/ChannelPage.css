@@ -35,5 +35,13 @@
     color: honeydew;
 }
 .channel:hover{
-    background-color: gray;
+    background-color: #606163;
+}
+.edit-channel-button-hidden{
+    border: none;
+    border-radius: 5px;
+}
+.add-channel{
+    border: none;
+    border-radius: 5px;
 }
