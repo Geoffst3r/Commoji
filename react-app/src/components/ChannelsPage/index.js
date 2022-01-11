@@ -13,6 +13,7 @@ const Channels = () => {
     const params = useParams();
     const [showAddChannelModal, setShowAddChannelModal] = useState(false);
     const [showEditChannelModal, setShowEditChannelModal] = useState(false);
+    const [individualChannel, setIndividualChannel] = useState({});
 
     const serverId = params.serverId;
     const channelId = params.channelId;
@@ -31,6 +32,11 @@ const Channels = () => {
     const callEditSetter = () => {
         setShowEditChannelModal(false);
     };
+
+    const modChannel = (channel) => {
+        setIndividualChannel(channel);
+        setShowEditChannelModal(true);
+      };
 
     useEffect(() => {
         dispatch(channelActions.getChannels(serverId));
@@ -53,11 +59,11 @@ const Channels = () => {
                         <NavLink className={"ChannelLinks"} to={`/channels/${channel.id}`}>
                             <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title}</li>
                         </NavLink>
-                        <button className='edit-channel-button-hidden'
-                            onClick={() => setShowEditChannelModal(true)} hidden={owner_define === true ? false : true}>Edit</button>
+                        <button className='edit-channel-button' onClick={() => modChannel(channel)}
+                        hidden={owner_define === true ? false : true}><i className='fas fa-cog'></i></button>
                         {showEditChannelModal && (
                             <Modal onClose={() => setShowEditChannelModal(false)}>
-                                <ChannelForm callSetter={callEditSetter} inputChannel={channel} />
+                                <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
                             </Modal>
                         )}
                     </div>
