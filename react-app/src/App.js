@@ -52,7 +52,7 @@ function App() {
             <Channels />
           </div>
         </Route>
-        <Route path='/channels/:serverId' >
+        <Route exact path='/channels/:serverId' >
           <div className='ChannelAndServerContainer'>
 
             <Server />

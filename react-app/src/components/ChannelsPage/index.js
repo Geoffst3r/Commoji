@@ -50,7 +50,7 @@ const Channels = () => {
             {channels.length > 0 && <ul className='channel-list'>
                 {channels.map(channel => (
                     <div className='channel' key={channel.id}>
-                        <NavLink className={"ChannelLinks"} to={`/channels/${channel.id}`}>
+                        <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
                             <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title}</li>
                         </NavLink>
                         <button className='edit-channel-button-hidden'

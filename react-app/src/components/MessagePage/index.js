@@ -1,25 +1,31 @@
-// import React from 'react';
-// import { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
-
-// import { getMessages } from '../../store/messages';
-// // import AddServerModal from '../AddServerModal';
-// import './MessagePage.css'
+import React from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router';
 
 
-// const Messages = () => {
-//     const dispatch = useDispatch()
-// // OBTAIN channelId !!!! maybe from state or url params ...
-//     channelId = 2
+import { getMessages } from '../../store/messages';
+// import AddServerModal from '../AddServerModal';
+import './MessagePage.css'
 
-//     useEffect(() => {
-//         dispatch(getMessages(channelId))
-//     }, [dispatch])
 
-//     let messages = useSelector(state => {
-//         return state.messages.messageArr
-//     })
+const Messages = () => {
+    const params = useParams();
+    const dispatch = useDispatch()
+
+    const serverId = params.serverId;
+    const channelId = params.channelId;
+
+// OBTAIN channelId !!!! maybe from state or url params ...
+
+    useEffect(() => {
+        dispatch(getMessages(channelId))
+    }, [dispatch])
+
+    // let messages = useSelector(state => {
+    //     return state.messages.messageArr
+    // })
 
 //     if (messages) {
 //         return (
@@ -44,6 +50,9 @@
 //         )
 //     }
 //     return ('no messages here!')
-// }
+    console.log('params', params)
+        return (`no messages channel number ${channelId}`)
 
-// export default Messages;
+}
+
+export default Messages;
