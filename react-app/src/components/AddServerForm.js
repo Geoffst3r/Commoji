@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { createServer } from '../store/servers';
+import { getServers } from '../store/servers';
+import { useEffect } from 'react';
 
 
 
-const AddServerForm = () => {
+const AddServerForm = ({modalSetter}) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
-    const history = useHistory
+    const history = useHistory()
+
+    useEffect(() => {
+        dispatch(getServers())
+    }, [dispatch])
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +31,7 @@ const AddServerForm = () => {
         if (newServer) {
             await dispatch(createServer(newServer));
         }
-        // history.push('/channels')
+        modalSetter();
 
     };
 

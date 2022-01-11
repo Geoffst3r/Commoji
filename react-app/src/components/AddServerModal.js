@@ -5,12 +5,16 @@ import AddServerForm from './AddServerForm.js';
 function AddServerModal() {
   const [showModal, setShowModal] = useState(false);
 
+  const modalSetter = () => {
+    setShowModal(false)
+  }
+
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add Server</button>
+      <button className='add-server-button server-buttons' onClick={() => setShowModal(true)}>Add Server</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddServerForm/>
+          <AddServerForm modalSetter={modalSetter} />
         </Modal>
       )}
     </>
