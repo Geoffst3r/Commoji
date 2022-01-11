@@ -38,7 +38,7 @@ export const createMessage = (newMessage, channelId) => async dispatch => {
 
     const message = await response.json()
 
-    if (response.ok) dispatch(addOneServer(message))
+    if (response.ok) dispatch(addOneMessage(message))
 }
 
 
