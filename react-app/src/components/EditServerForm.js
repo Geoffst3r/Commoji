@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom';
-import { createServer } from '../store/servers';
+import { editServer } from '../store/servers';
 import { getServers } from '../store/servers';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 
 
-const AddServerForm = ({modalSetter}) => {
+const EditServerForm = ({modalSetter}) => {
+    const {serverId} = useParams()
+    const id = parseInt(serverId)
+    const serversContainer = useSelector(state => state.servers)
+    const servers = serversContainer.servers
+    const server = servers[id]
+
     const [errors, setErrors] = useState([]);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const [title, setTitle] = useState(server.title);
+    const [description, setDescription] = useState(server.description);
+    const [image, setImage] = useState(server.image);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
-    const history = useHistory()
 
     useEffect(() => {
         dispatch(getServers())
@@ -24,12 +29,13 @@ const AddServerForm = ({modalSetter}) => {
         e.preventDefault();
         const ownerId = user.id
         const newServer = {
+            id,
             title,
             description,
             ownerId
         }
         if (newServer) {
-            await dispatch(createServer(newServer));
+            await dispatch(editServer(newServer));
             dispatch(getServers())
         }
         modalSetter();
@@ -51,7 +57,7 @@ const AddServerForm = ({modalSetter}) => {
 
     return (
         <>
-            <h2 className='modal-label'>New Server</h2>
+            <h2 className='modal-label'>Edit Server</h2>
             <form className='add-server-form' onSubmit={onSubmit}>
                 <div>
                     {errors.map((error, ind) => (
@@ -87,10 +93,11 @@ const AddServerForm = ({modalSetter}) => {
                 </div>
 
 
-                <button className='newserver-submit-button' type='submit'>Create Server</button>
+                <button className='editserver-submit-button' type='submit'>Edit Server</button>
+
             </form>
         </>
     );
 };
 
-export default AddServerForm;
+export default EditServerForm;

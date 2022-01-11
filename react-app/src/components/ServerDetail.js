@@ -1,35 +1,57 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { compose } from "redux";
-import { deleteServer } from "../store/servers";
+import './serverDetails.css'
+import { deleteServer, getServers } from "../store/servers";
+import EditServerModal from "./EditServerModal";
+
 
 const ServerDetail = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const {serverId} = useParams()
+    const { serverId } = useParams()
     const id = parseInt(serverId)
 
 
     const serversContainer = useSelector(state => state.servers)
 
     const servers = serversContainer.servers
-
-
-
+    const server = servers[id]
+    const user = useSelector(state => state.session.user);
+    console.log('SERVER', server)
+    console.log('USER', user)
     useEffect(() => {
-        
-    },[dispatch])
 
-    const handleDelete = () => {
-        dispatch(deleteServer(servers[id]))
+    }, [dispatch])
+
+    const handleDelete = async () => {
+        await dispatch(deleteServer(server))
+        await dispatch(getServers());
+        history.push(`/channels/`);
     }
+
+    const ownerLinks = (
+        <div className="server-detail">
+                <button onClick={handleDelete}>Delete</button>
+                <EditServerModal/>
+        </div>
+    )
+    const owner = () => {
+        if (server) {
+            return user.id === server.ownerId
+        }
+        return false
+    }
+
+
 
     return (
         <div className="server-detail-container">
-            <div className="server-detail">
-                <button onClick={handleDelete}>Delete?</button>
-            </div>
+
+            {owner() ? ownerLinks : null }
+
+
         </div>
     )
 }
