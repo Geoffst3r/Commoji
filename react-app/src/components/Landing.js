@@ -1,9 +1,13 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom';
 import "./Landing.css"
 
 const Landing = () => {
+    const user = useSelector(state => state.session.user);
+    if (user) {
+        return <Redirect to='/channels' />;
+    }
     return (
         <div className='splash-container'>
             <div className='splash-description'>
