@@ -61,7 +61,8 @@ export const deleteServer = (serverToDelete) => async dispatch => {
 }
 
 export const editServer = (serverToEdit) => async dispatch => {
-    const response = await fetch(`/api/channels/${serverToEdit.serverId}`, {
+    console.log('SERVEREDIT',serverToEdit)
+    const response = await fetch(`/api/channels/${serverToEdit.id}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(serverToEdit)
@@ -105,12 +106,12 @@ const serversReducer = (state = initialState, action) => {
         }
         case DELETE_ONE:{
             const deleteServer = action.server;
-            console.log(deleteServer)
+            //console.log(deleteServer)
             const serversArray = state.serversArray;
             const servers = state.servers;
-            console.log('SERVERID',servers[deleteServer.serverId])
+            //console.log('SERVERID',servers[deleteServer.serverId])
             delete servers[deleteServer.serverId]
-            console.log(servers)
+            //console.log(servers)
             let index;
             for (let i = 0; i < serversArray.length; i++) {
                 const server = serversArray[i];
@@ -125,10 +126,9 @@ const serversReducer = (state = initialState, action) => {
             return newState
         }
         case EDIT_ONE: {
-            const editServer = action.server;
-            const serversArray = state.serversArray;
-            const servers = state.servers;
-            // servers[editServer.id]
+            let newState = Object.assign({}, state);
+            newState[action.server.id] = action.server;
+            return newState
         }
 
     }
