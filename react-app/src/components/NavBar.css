@@ -19,7 +19,7 @@ nav ul {
 
 }
 
-ul button {
+.NavButtons{
     font-size: 10px;
     font-family: sans-serif;
     text-decoration: none;
