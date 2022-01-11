@@ -3,6 +3,45 @@
     width: 300px;
     left: 0;
     top: 0;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #2f3136;
+}::-webkit-scrollbar {
+    width: 0;
+
+}
+.channel-title{
+    color: gray;
+    padding: 2px;
+}
+
+.channel-list{
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+}
+
+.ChannelLinks{
+    text-decoration: none;
+}
+.channel{
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    transition-duration: .2s;
+    transition-property: background-color,color;
+}
+.channel:hover .channel-title{
+    color: honeydew;
+}
+.channel:hover{
+    background-color: #606163;
+}
+.edit-channel-button-hidden{
+    border: none;
+    border-radius: 5px;
+}
+.add-channel{
+    border: none;
+    border-radius: 5px;
 }

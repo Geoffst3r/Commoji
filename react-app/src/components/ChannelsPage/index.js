@@ -50,16 +50,16 @@ const Channels = () => {
             {channels.length > 0 && <ul className='channel-list'>
                 {channels.map(channel => (
                     <div className='channel' key={channel.id}>
-                    <NavLink to={`/channels/${serverId}/${channel.id}`}>
-                        <li className='channel-title'># {channel.title}</li>
-                    </NavLink>
-                    <button className='edit-channel-button-hidden'
-                    onClick={() => setShowEditChannelModal(true)} hidden={owner_define === true ? false : true}>Edit</button>
-                    {showEditChannelModal && (
-                        <Modal onClose={() => setShowEditChannelModal(false)}>
-                            <ChannelForm callSetter={callEditSetter} inputChannel={channel} />
-                        </Modal>
-                    )}
+                        <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
+                            <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title}</li>
+                        </NavLink>
+                        <button className='edit-channel-button-hidden'
+                            onClick={() => setShowEditChannelModal(true)} hidden={owner_define === true ? false : true}>Edit</button>
+                        {showEditChannelModal && (
+                            <Modal onClose={() => setShowEditChannelModal(false)}>
+                                <ChannelForm callSetter={callEditSetter} inputChannel={channel} />
+                            </Modal>
+                        )}
                     </div>
                 ))}
             </ul>
