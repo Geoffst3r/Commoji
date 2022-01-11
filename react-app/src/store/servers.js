@@ -37,7 +37,7 @@ export const getServers = () => async dispatch => {
 }
 
 export const createServer = (newServer) => async dispatch => {
-    console.log('made it here')
+    // console.log('made it here')
     console.log(newServer)
     const response = await fetch(`/api/channels/`, {
         method: 'POST',
@@ -45,7 +45,8 @@ export const createServer = (newServer) => async dispatch => {
         body: JSON.stringify(newServer)
     })
     const server = await response.json()
-    if (response.ok) dispatch(addOneServer(server))
+    console.log('RESPONSE', server)
+    if (response.ok) await dispatch(addOneServer(server))
 }
 
 export const deleteServer = (serverToDelete) => async dispatch => {
@@ -88,10 +89,10 @@ const serversReducer = (state = initialState, action) => {
             // console.log('ADDONESTATE', state)
             const server = action.server
             const servers = state.servers
-            // console.log()
+            console.log('SERVERID', typeof server.id)
             const serversArray = state.serversArray;
-            serversArray[server.serverId] = server
-            servers[server.serverId]= server
+            serversArray[server.id] = server
+            servers[server.id]= server
             const newState = {
                 ...state, servers, serversArray
             }
