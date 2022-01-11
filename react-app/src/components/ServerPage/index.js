@@ -21,7 +21,9 @@ const Server = () => {
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
-
+    if (!user) {
+        return <Redirect to='/' />;
+    }
     if (servers) {
         return (
             <>
