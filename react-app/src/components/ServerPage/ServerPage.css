@@ -1,8 +1,40 @@
 .ServerContainer{
     height: 100%;
-    width: 150px;
+    width: 70px;
     left: 0;
     top: 0;
     overflow: hidden;
     background-color: #202225;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+}
+.Bar{
+    display: flex;
+    flex-direction: column;
+}
+
+.serverButtons{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.ServerContainer ul {
+    list-style: none;
+
+}
+
+.server-buttons {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    transition-duration: .15s;
+    transition-timing-function: ease-out;
+    transition-property: border-radius, background-color;
+}
+.server-buttons:hover{
+    border-radius: 20%;
+    background-color: rgb(105, 72, 105);
 }
