@@ -10,15 +10,15 @@ const ServerDetail = () => {
     const {serverId} = useParams()
     const id = parseInt(serverId)
 
-    console.log(id)
+
     const serversContainer = useSelector(state => state.servers)
-    console.log('STATE CONTAINTER', serversContainer)
+
     const servers = serversContainer.servers
-    console.log('SERVERS',servers)
-    console.log(servers[id])
+
+
 
     useEffect(() => {
-        console.log('something')
+        
     },[dispatch])
 
     const handleDelete = () => {

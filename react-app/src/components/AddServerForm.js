@@ -5,7 +5,7 @@ import { createServer } from '../store/servers';
 
 
 
-const AddServerForm = () => {
+const AddServerForm = ({modalSetter}) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -25,6 +25,7 @@ const AddServerForm = () => {
         if (newServer) {
             await dispatch(createServer(newServer));
         }
+        modalSetter();
         <Redirect to='/channels/'/>
     };
 
