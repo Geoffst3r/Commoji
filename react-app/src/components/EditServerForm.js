@@ -94,6 +94,7 @@ const EditServerForm = ({modalSetter}) => {
 
 
                 <button className='editserver-submit-button' type='submit'>Edit Server</button>
+
             </form>
         </>
     );

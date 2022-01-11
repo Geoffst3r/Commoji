@@ -44,8 +44,11 @@ const ServerDetail = () => {
         return false
     }
 
+
+
     return (
         <div className="server-detail-container">
+
             {owner() ? ownerLinks : null }
 
 
