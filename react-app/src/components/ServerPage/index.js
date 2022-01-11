@@ -27,7 +27,7 @@ const Server = () => {
                     <ul className="Bar">
                         {servers.map(server => {
                             return (
-                                <li>
+                                <li className={"serverButtons"}>
                                     <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons'>{server.title}</button></NavLink>
                                 </li>
                             )

@@ -43,7 +43,7 @@ const Channels = () => {
             <ul className='channel-list'>
                 {channels.length > 0 && channels.map(channel => (
                     <NavLink style={{ "textDecoration": "none", "color": "black" }}
-                        key={channel.id} to={`/channels/${channel.id}`}>
+                        key={channel.id} to={`/channels/${serverId}/${channel.id}`}>
                         <ul className='channels'>
                             <li className='channel-title'>{channel.title}</li>
                         </ul>
