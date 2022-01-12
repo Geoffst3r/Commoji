@@ -21,6 +21,7 @@
     display: flex;
     row-gap: 5px;
     flex-direction: column;
+    margin-left: 30px;
 }
 
 .ChannelLinks{
@@ -59,4 +60,39 @@
 }
 .channel:hover .mod-channel-button {
     visibility: visible;
+}
+.edit-channel-button, .delete-channel-button, .mod-channel-button, .mod-channel-button-persist, .add-channel{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+.mod-channel-button, .mod-channel-button-persist, .add-channel{
+    color: gray;
+}
+.delete-channel-button{
+    color: red;
+}
+.edit-channel-button, .add-channel:hover, .mod-channel-button:hover, .mod-channel-button-persist:hover{
+    color: white;
+}
+.mod-channel-hidden, .mod-channel-visible{
+    display: flex;
+}
+.channel-wrap, .channel-modsANDinfo{
+    display: flex;
+    justify-content: space-between;
+}
+.mod-channel-button{
+    justify-self: flex-end;
+}
+.channels{
+    margin: 10px 5px 5px 5px;
+    color: gray;
+}
+.add-channel{
+    margin-right: 10px;
+    font-size: 30px;
 }
