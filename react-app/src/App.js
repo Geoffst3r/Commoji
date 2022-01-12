@@ -56,7 +56,7 @@ function App() {
           <div className='ChannelAndServerContainer'>
 
             <Server />
-            <ServerDetail />
+            {/* <ServerDetail /> */}
             <Channels />
           </div>
         </Route>
@@ -65,7 +65,7 @@ function App() {
             <Server />
             <Channels />
             <Messages />
-            <ServerDetail />
+            {/* <ServerDetail /> */}
           </div>
         </Route>
       </Switch>
