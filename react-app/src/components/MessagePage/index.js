@@ -26,7 +26,7 @@ const Messages = () => {
     const messages = useSelector(state => state.messages.messages);
 
 
-    if (messages) {
+    if (messages && user) {
         return (
 
 
