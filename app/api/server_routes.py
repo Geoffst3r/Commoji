@@ -11,53 +11,46 @@ server_routes = Blueprint('servers', __name__)
 # SERVER ROUTES:
 @server_routes.route('/', methods=['POST'])
 def new_server():
-    if not request.data:
-        return jsonify('bad data'), 400
-    # elif len(request.args) < 3:
-    #     return jsonify('Missing arguments'), 400
 
-    else:
-        print('befor dict!!!!!1', request.json)
-        data = request.json
-        try:
-            new_server = {
-                'title': data['title'],
-                'description': data['description'],
-                'ownerId': data['ownerId']
-            }
-
-            if 'image' in data:
-                print('image here')
-                new_server['image'] = data['image']
-
-            new_server_db = Server(
-                **new_server
-            )
-
-            db.session.add(new_server_db)
-            db.session.commit()
-
-            new_channel = {
-                'title': 'General',
-                'serverId': new_server_db.id
-            }
-
-            new_channel_db = Channel(
-                **new_channel
-            )
-            db.session.add(new_channel_db)
-            db.session.commit()
-
-            new_server_db_dict = {
-                'id': new_server_db.id,
-                'title': new_server_db.title,
-                'description': new_server_db.description,
-                'ownerId': new_server_db.ownerId
-            }
-            return new_server_db_dict
-        except IntegrityError as e:
-            print(e)
-            return jsonify('Database entry error'), 400
+    print('befor dict!!!!!1', request.json)
+    data = request.json
+    title = data["title"]
+    description = data["description"]
+    if title == '' or description == '':
+        return jsonify("bad data")
+    try:
+        new_server = {
+            'title': data['title'],
+            'description': data['description'],
+            'ownerId': data['ownerId']
+        }
+        if 'image' in data and data["image"] != '':
+            print('image here')
+            new_server['image'] = data['image']
+        new_server_db = Server(
+            **new_server
+        )
+        db.session.add(new_server_db)
+        db.session.commit()
+        new_channel = {
+            'title': 'General',
+            'serverId': new_server_db.id
+        }
+        new_channel_db = Channel(
+            **new_channel
+        )
+        db.session.add(new_channel_db)
+        db.session.commit()
+        new_server_db_dict = {
+            'id': new_server_db.id,
+            'title': new_server_db.title,
+            'description': new_server_db.description,
+            'ownerId': new_server_db.ownerId
+        }
+        return new_server_db_dict
+    except IntegrityError as e:
+        print(e)
+        return jsonify('Database entry error'), 400
 
 
 @server_routes.route('/')
@@ -133,7 +126,7 @@ def delete_server(server_id):
 def new_channel(server_id):
     data = request.get_json(force=True)
     title = data["title"]
-    if title == None or server_id == None:
+    if title == '' or server_id == '':
         return jsonify("bad data")
     channel = Channel(title=title, serverId=server_id)
     db.session.add(channel)

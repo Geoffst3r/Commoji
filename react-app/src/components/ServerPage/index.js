@@ -24,7 +24,6 @@ const Server = () => {
     if (!user) {
         return <Redirect to='/' />;
     }
-
     if (servers) {
         return (
             <>

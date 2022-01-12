@@ -7,7 +7,6 @@
     background-color: #2f3136;
 }::-webkit-scrollbar {
     width: 0;
-
 }
 .channel-title{
     color: gray;
@@ -29,9 +28,12 @@
 }
 .channel{
     display: flex;
-    display: flex;
     justify-content: space-between;
     padding: 5px;
+    transition-duration: .2s;
+    transition-property: background-color,color;
+    flex-direction: column;
+    align-items: flex-start;
     transition-duration: .2s;
     transition-property: background-color,color;
 }
