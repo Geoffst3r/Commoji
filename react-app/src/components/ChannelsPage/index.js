@@ -7,6 +7,7 @@ import { Modal } from '../../context/Modal';
 import * as channelActions from '../../store/channel';
 import ChannelForm from './ChannelForm';
 import './ChannelPage.css';
+import ServerDetail from '../ServerDetail';
 
 const Channels = () => {
     const dispatch = useDispatch();
@@ -90,7 +91,13 @@ const Channels = () => {
 
     return (
         <div className='ChannelContainer'>
-            <div className='server-name-container'>{title}</div>
+
+            <div className='server-name-container'>
+                {title}
+                <div classNam='server-options'>
+                    <ServerDetail/>
+                </div>
+            </div>
             <div className='channel-modsANDinfo'>
                 <p className='channels'>CHANNELS</p>
                 <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>

@@ -34,8 +34,8 @@ const ServerDetail = () => {
 
     const ownerLinks = (
         <div className="server-detail">
-            <button className="DeleteServerButton" onClick={handleDelete}>Delete</button>
             <EditServerModal />
+            <button className="DeleteServerButton" onClick={handleDelete}>Delete</button>
         </div>
     )
     const owner = () => {
