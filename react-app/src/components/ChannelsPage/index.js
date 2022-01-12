@@ -95,7 +95,7 @@ const Channels = () => {
             <div className='ChannelContainer'>
                 <div className='server-name-container'>
                     {title}
-                    <div classNam='server-options'>
+                    <div className='server-options'>
                         <ServerDetail />
                     </div>
                 </div>
