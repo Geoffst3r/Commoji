@@ -11,7 +11,7 @@ message_routes = Blueprint('messages', __name__)
 
 
 # SERVER ROUTES:
-@message_routes.route('/<int:channel_id>', methods=['POST'])
+@message_routes.route('/<int:channel_id>/', methods=['POST'])
 def new_message(channel_id):
     userId = None
     if current_user.is_authenticated:
@@ -44,7 +44,7 @@ def new_message(channel_id):
             return jsonify('Database entry error'), 400
 
 
-@message_routes.route('/<int:channel_id>')
+@message_routes.route('/<int:channel_id>/')
 def get_all_messages(channel_id):
     print('messagebakc ned ^^^^^^^^^^^^^^^^^^^^')
     messages = db.session.query(Message, User).join(User).filter(Message.channelId == channel_id).all()

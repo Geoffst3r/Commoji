@@ -4,7 +4,7 @@ WORKDIR /react-app
 COPY react-app/. .
 
 # You have to set this because it should be set during build time.
-ENV REACT_APP_BASE_URL=postgres://aegysafkakhoiu:bda4d447d9bc91ed4ba442ec197d10b92f1d2d459d1ad869b5d936ba15a6b494@ec2-3-227-154-49.compute-1.amazonaws.com:5432/d94o2vo2fi52u
+ENV REACT_APP_BASE_URL=https://commoji.heroku.com
 
 # Build our React App
 RUN npm install

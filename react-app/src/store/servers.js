@@ -28,7 +28,7 @@ const editOneServer = server => ({
 
 export const getServers = () => async dispatch => {
 
-    const response = await fetch(`/api/channels`)
+    const response = await fetch(`/api/channels/`)
 
     if (response.ok) {
         const serversArray = await response.json()
@@ -51,7 +51,7 @@ export const createServer = (newServer) => async dispatch => {
 }
 
 export const deleteServer = (serverToDelete) => async dispatch => {
-    const response = await fetch(`/api/channels/${serverToDelete.serverId}`, {
+    const response = await fetch(`/api/channels/${serverToDelete.serverId}/`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(serverToDelete)
@@ -62,7 +62,7 @@ export const deleteServer = (serverToDelete) => async dispatch => {
 
 export const editServer = (serverToEdit) => async dispatch => {
     console.log('SERVEREDIT',serverToEdit)
-    const response = await fetch(`/api/channels/${serverToEdit.id}`, {
+    const response = await fetch(`/api/channels/${serverToEdit.id}/`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(serverToEdit)
