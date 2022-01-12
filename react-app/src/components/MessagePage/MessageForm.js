@@ -19,10 +19,10 @@ const MessageForm = () => {
     // const requestChannel = {title, serverId};
     await dispatch(createMessage(messageContent, channelId))
       .catch(async (res) => {
-        console.log('res', res)
-        const data = await res.json();
-        if (data && data.errors) return setErrors(data.errors);
-        
+        // console.log('res', res)
+        // const data = await res.json();
+        // if (data && data.errors) return setErrors(data.errors);
+
       });
     await dispatch(getMessages(channelId))
     return
@@ -35,23 +35,25 @@ const MessageForm = () => {
 
   return (
     <>
-    <form onSubmit={onPost} className='message-form'>
-      <div className='message-error-box'>
-        {errors.length > 0 && errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <label htmlFor='message'></label>
-      <div>
-        <input
-          name='message'
-          type='text'
-          value={messageContent}
-          onChange={updateMessageContent}
-        />
-      </div>
-      <button className='channel-button' type='submit'>submit</button>
-    </form>
+      <form onSubmit={onPost} className='message-form'>
+        <div className='message-error-box'>
+          {errors.length > 0 && errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <label htmlFor='message'></label>
+        <div>
+          <input
+            name='message'
+            type='text'
+            value={messageContent}
+            onChange={updateMessageContent}
+            className='messageInput'
+            placeholder='Message this channel'
+          />
+        </div>
+        <button className='message-button' type='submit'>submit</button>
+      </form>
     </>
   );
 };

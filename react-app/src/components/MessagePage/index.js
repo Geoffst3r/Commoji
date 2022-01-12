@@ -6,7 +6,6 @@ import { useHistory, useParams } from 'react-router';
 
 
 import { getMessages } from '../../store/messages';
-// import AddServerModal from '../AddServerModal';
 import './MessagePage.css'
 import MessageForm from './MessageForm';
 
@@ -19,56 +18,56 @@ const Messages = () => {
     const serverId = params.serverId;
     const channelId = params.channelId;
 
-    // OBTAIN channelId !!!! maybe from state or url params ...
 
-    useEffect(() => {
-        dispatch(getMessages(channelId))
+    useEffect(async () => {
+        await dispatch(getMessages(channelId))
 
     }, [dispatch])
 
     let messages = useSelector(state => {
-        // console.log('_______STATE in useSelector_______', state)
+        console.log('state.messages.messageArr in useSelector_______', state.messages.messageArr)
         return state.messages.messageArr
     })
 
-    let messagesRev;
-    if (messages) {
-
-        console.log("___________before rev messages__________", messages)
-        // console.log('reversing', messages.reverse())
-        // messagesRev = messages.reverse().map()
-        // console.log("___________after messages__________", messagesRev)
-    }
 
     if (messages) {
         return (
-            <>
 
-                <div className='MessageContainer'>
+
+                <div className='messageWrapper'>
                     <ul className="MessageUl">
                         {messages.map(message => {
                             return (
                                 <>
                                     <li>
-                                        <div className='mesageContent'>{message.message}</div>
+                                        {/* <div className='mesageContent'>{message.id}</div> */}
                                         <div className='messageUser'>{message.username}</div>
+                                        <div className='messageContent'>{message.message}</div>
                                     </li>
-
-
                                 </>
                             )
                         })}
-
-
                     </ul >
                     <MessageForm />
                 </div>
-            </>
+
         )
     }
-    return ('no messages here!')
-    console.log('params', params)
-    return (`no messages channel number ${channelId}`)
+    else {
+        return (
+            <div className='messageWrapper'>
+                <div className='MessageContainer'>
+                    <ul className="MessageUl">
+                        <li>
+                            <div> Be the first to post a message to this channel! </div>
+                        </li>
+                    </ul >
+                    <MessageForm />
+                </div>
+            </div>
+
+        )
+    }
 
 }
 
