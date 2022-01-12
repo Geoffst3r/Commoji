@@ -98,14 +98,16 @@ const Channels = () => {
             {channels.length > 0 && <ul className='channel-list'>
                 {channels.map(channel => (
                     <div className='channel' key={channel.id}>
-                        <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
-                            <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
-                        </NavLink>
-                        <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
-                        hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                        <div className='channel-wrap'>
+                            <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
+                                <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
+                            </NavLink>
+                            <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
+                            hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                        </div>
                         <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                             <li>
-                                <button onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
+                                <button className='edit-channel-button' onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
                                 {showEditChannelModal && (
                                     <Modal onClose={() => setShowEditChannelModal(false)}>
                                         <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
@@ -113,7 +115,7 @@ const Channels = () => {
                                 )}
                             </li>
                             <li>
-                                <button onClick={() => handleDelete()}>Delete Channel</button>
+                                <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
                             </li>
                         </ul>
                     </div>
