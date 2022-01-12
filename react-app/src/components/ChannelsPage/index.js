@@ -55,12 +55,12 @@ const Channels = () => {
 
         const closeMenu = (e) => {
             const channelMod = document.getElementById(`channel-mod-${individualChannel.id}`);
-            const cogWheel = document.getElementById(`cog-wheel-${individualChannel.id}`);
+            const cogWheelButton = document.getElementById(`cog-wheel-${individualChannel.id}`);
+            const cogWheel = document.getElementById(`cog-icon-${individualChannel.id}`)
 
-
-            if (channelMod && cogWheel && e.target !== channelMod && e.target !== cogWheel) {
+            if (channelMod && cogWheelButton && e.target !== channelMod && e.target !== cogWheelButton && e.target !== cogWheel) {
                 channelMod.className = 'mod-channel-hidden';
-                cogWheel.className = 'edit-channel-button';
+                cogWheelButton.className = 'edit-channel-button';
                 setCogWheelClicked(false);
             }
             return
@@ -93,7 +93,7 @@ const Channels = () => {
                             <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
                         </NavLink>
                         <button className='edit-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
-                        hidden={owner_define === true ? false : true}><i className='fas fa-cog'></i></button>
+                        hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
                         <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                             <li>
                                 <button onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
