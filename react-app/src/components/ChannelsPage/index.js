@@ -7,6 +7,7 @@ import { Modal } from '../../context/Modal';
 import * as channelActions from '../../store/channel';
 import ChannelForm from './ChannelForm';
 import './ChannelPage.css';
+import ServerDetail from '../ServerDetail';
 
 const Channels = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const Channels = () => {
 
     const serverId = params.serverId;
     const sessionUser = useSelector(state => state.session.user);
+    const servers = useSelector(state => state.servers.servers)
+    const server = servers?.[serverId]
+    const title = server?.title
     const channelsObj = useSelector(state => state.channels);
     const channels = Object.values(channelsObj);
     let owner_define = false;
@@ -84,12 +88,18 @@ const Channels = () => {
         dispatch(channelActions.getChannels(serverId));
     }, [dispatch, serverId]);
 
+
     if (serverId) {
 
         return (
             <div className='ChannelContainer'>
-
-              <div className='channel-modsANDinfo'>
+                <div className='server-name-container'>
+                    {title}
+                    <div classNam='server-options'>
+                        <ServerDetail />
+                    </div>
+                </div>
+                <div className='channel-modsANDinfo'>
                     <p className='channels'>CHANNELS</p>
                     <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>
                     {showAddChannelModal && (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { NavLink, Redirect } from 'react-router-dom';
@@ -12,6 +12,7 @@ import './ServerPage.css'
 const Server = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
+    const [selected, setSelected] = useState()
 
     let servers = useSelector(state => {
         return state.servers.serversArray

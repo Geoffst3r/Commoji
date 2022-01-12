@@ -100,3 +100,13 @@
     margin-right: 10px;
     font-size: 30px;
 }
+
+.server-name-container {
+    display: flex;
+    text-align: center;
+    color: gray;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: #1e1f22 1px solid;
+
+}
