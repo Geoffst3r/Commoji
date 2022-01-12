@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { compose } from "redux";
+import { useHistory, useParams } from "react-router-dom";
 import './serverDetails.css'
 import { deleteServer, getServers } from "../store/servers";
 import EditServerModal from "./EditServerModal";

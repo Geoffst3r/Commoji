@@ -19,7 +19,6 @@ const Channels = () => {
     const [individualChannel, setIndividualChannel] = useState({});
 
     const serverId = params.serverId;
-    const channelId = params.channelId;
     const sessionUser = useSelector(state => state.session.user);
     const servers = useSelector(state => state.servers.servers)
     const server = servers?.[serverId]

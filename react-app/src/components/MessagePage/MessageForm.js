@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Redirect, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { createMessage } from '../../store/messages';
 import './MessageForm.css'
 import { getMessages } from '../../store/messages';
@@ -12,7 +12,6 @@ const MessageForm = () => {
   const [messageContent, setMessageContent] = useState('');
   const dispatch = useDispatch();
   const params = useParams();
-  const serverId = params.serverId;
   const channelId = params.channelId;
 
   const onPost = async (e) => {

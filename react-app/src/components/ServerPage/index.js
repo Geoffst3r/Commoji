@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { NavLink, useParams, Redirect } from 'react-router-dom';
-import { deleteServer, getServers } from '../../store/servers';
+import { NavLink, Redirect } from 'react-router-dom';
+import { getServers } from '../../store/servers';
 
 import AddServerModal from '../AddServerModal';
 import './ServerPage.css'
@@ -54,12 +54,12 @@ const Server = () => {
                                 </li>
                             )
                         })}
-                        <div className='seperator'></div>
-                        <li className="server-pop" title="Add a server"key={'add-server-modal'}>
+                        <div key='seperator' className='seperator'></div>
+                        <li className="server-pop" title="Add a server" key='add-server-modal'>
                             <AddServerModal />
                         </li>
 
-                        <div className='emptySpace'></div>
+                        <div key='empty-space' className='emptySpace'></div>
                     </ul>
                 </div>
             </>
