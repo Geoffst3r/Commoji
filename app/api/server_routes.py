@@ -45,7 +45,8 @@ def new_server():
             'id': new_server_db.id,
             'title': new_server_db.title,
             'description': new_server_db.description,
-            'ownerId': new_server_db.ownerId
+            'ownerId': new_server_db.ownerId,
+            'generalId': new_channel_db.id
         }
         return new_server_db_dict
     except IntegrityError as e:
