@@ -4,22 +4,22 @@ from app.models import db, Server
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
     server1 = Server(
-        title='Demo', description='This is for seeding data, need to update',
-        ownerId=1,
+        title='Fruit Seeds', description='This is for seeding data, need to update',
+        ownerId=2,
         image="https://cdn.shopify.com/s/files/1/1061/1924/products/16_large.png"
         )
     server2 = Server(
-        title='Demo2', description='This is for seeding data, need to update',
+        title='Vegetable Seeds', description='This is for seeding data, need to update',
         ownerId=2,
         image="https://image.emojisky.com/542/2542-middle.png")
-    server3 = Server(
-        title='Demo3', description='This is for seeding data, need to update',
-        ownerId=3,
-        image="https://hotemoji.com/images/dl/1/devil-emoji-by-twitter.png")
+    # server3 = Server(
+    #     title='Tree Seeds', description='This is for seeding data, need to update',
+    #     ownerId=3,
+    #     image="https://hotemoji.com/images/dl/1/devil-emoji-by-twitter.png")
 
     db.session.add(server1)
     db.session.add(server2)
-    db.session.add(server3)
+    # db.session.add(server3)
 
     db.session.commit()
 

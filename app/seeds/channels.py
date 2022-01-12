@@ -4,11 +4,11 @@ from app.models import db, Channel
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
     channel1 = Channel(
-        title='This is for seeding data, need to update', serverId=1)
+        title='Apple Seed', serverId=1)
     channel2 = Channel(
-        title='This is for seeding data, need to update', serverId=2)
+        title='Strawberry Seed', serverId=1)
     channel3 = Channel(
-        title='This is for seeding data, need to update', serverId=3)
+        title='Potato Seed', serverId=2)
 
     db.session.add(channel1)
     db.session.add(channel2)

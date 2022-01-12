@@ -3,9 +3,9 @@ from app.models import db, Message
 
 # Adds a demo user, you can add other users here if you want
 def seed_messages():
-    message1 = Message(channelId=1, userId=1, message="Testing")
-    message2 = Message(channelId=2, userId=2, message="Testing")
-    message3 = Message(channelId=3, userId=3, message="Testing")
+    message1 = Message(channelId=1, userId=2, message="Welcome to #Apple Seed")
+    message2 = Message(channelId=2, userId=2, message="Welcome to #Strawberry Seed")
+    message3 = Message(channelId=3, userId=2, message="Welcome to #Potato Seed")
 
     db.session.add(message1)
     db.session.add(message2)
