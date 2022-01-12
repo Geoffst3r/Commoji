@@ -20,6 +20,9 @@ const Channels = () => {
     const serverId = params.serverId;
     const channelId = params.channelId;
     const sessionUser = useSelector(state => state.session.user);
+    const servers = useSelector(state => state.servers.servers)
+    const server = servers?.[serverId]
+    const title = server?.title
     const channelsObj = useSelector(state => state.channels);
     const channels = Object.values(channelsObj);
     let owner_define = false;
@@ -87,6 +90,7 @@ const Channels = () => {
 
     return (
         <div className='ChannelContainer'>
+            <div className='server-name-container'>{title}</div>
             <div className='channel-modsANDinfo'>
                 <p className='channels'>CHANNELS</p>
                 <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>
