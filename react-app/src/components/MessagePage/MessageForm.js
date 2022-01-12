@@ -35,25 +35,27 @@ const MessageForm = () => {
 
   return (
     <>
-      <form onSubmit={onPost} className='message-form'>
-        <div className='message-error-box'>
-          {errors.length > 0 && errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <label htmlFor='message'></label>
-        <div>
-          <input
-            name='message'
-            type='text'
-            value={messageContent}
-            onChange={updateMessageContent}
-            className='messageInput'
-            placeholder='Message this channel'
-          />
-        </div>
-        <button className='message-button' type='submit'>submit</button>
-      </form>
+      <div className='MessageFormContainer'>
+        <form onSubmit={onPost} className='message-form'>
+          <div className='message-error-box'>
+            {errors.length > 0 && errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <label htmlFor='message'></label>
+          <div>
+            <input
+              name='message'
+              type='text'
+              value={messageContent}
+              onChange={updateMessageContent}
+              className='messageInput'
+              placeholder='Message this channel'
+            />
+          </div>
+          <button className='message-button' type='submit'>submit</button>
+        </form>
+      </div>
     </>
   );
 };

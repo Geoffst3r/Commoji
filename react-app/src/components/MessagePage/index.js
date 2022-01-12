@@ -36,20 +36,24 @@ const Messages = () => {
 
 
             <div className='messageWrapper'>
-                <ul className="MessageUl">
-                    {messages.map(message => {
-                        return (
-                            <>
-                                <li key={message.id}>
-                                    {/* <div className='mesageContent'>{message.id}</div> */}
-                                    <div className='messageUser'>{message.username}</div>
-                                    <div className='messageContent'>{message.message}</div>
-                                </li>
-                            </>
-                        )
-                    })}
-                </ul >
-                <MessageForm />
+                <div>
+                    <div className='MessagesContainer'>
+                        <ul className="MessageUl">
+                            {messages.map(message => {
+                                return (
+                                    <>
+                                        <li key={message.id}>
+                                            {/* <div className='mesageContent'>{message.id}</div> */}
+                                            <div className='messageUser'>{message.username}</div>
+                                            <div className='messageContent'>{message.message}</div>
+                                        </li>
+                                    </>
+                                )
+                            })}
+                        </ul >
+                    </div>
+                    <MessageForm />
+                </div>
             </div>
 
         )

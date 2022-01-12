@@ -9,8 +9,16 @@
   width: 0;
 
 }
-.messageWrapper{
+
+
+.MessagesContainer{
+  max-height: 650px;
   overflow: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+}
+.MessagesContainer > ul > li:last-child {
+  scroll-snap-align: end;
 }
 
 .message-form {
@@ -23,7 +31,6 @@
 }
 
 .MessageUl{
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,6 +50,7 @@ background-color: #40444b;
 .messageWrapper {
   background-color: #36393f;
   width: 100%;
+  overflow: scroll;
 }::-webkit-scrollbar {
   width: 0;
 
