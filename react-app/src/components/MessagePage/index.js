@@ -37,7 +37,7 @@ const Messages = () => {
                             {Object.keys(messages).map(message => {
                                 return (
                                     <>
-                                        <li key={message.id}>
+                                        <li key={message}>
                                             {/* <div className='mesageContent'>{message.id}</div> */}
                                             {user.id === messages[message].userId ? <><div className='userMessage messageUser'>{messages[message].username}</div><div className='userMessage messageContent'>{messages[message].message}</div></> :
                                                 <><div className='messageUser'>{messages[message].username}</div><div className='messageContent'>{messages[message].message}</div></>}
@@ -58,9 +58,9 @@ const Messages = () => {
             <div className='messageWrapper'>
                 <div className='MessageContainer'>
                     <ul className="MessageUl">
-                        <li>
-                            <div> Be the first to post a message to this channel! </div>
-                        </li>
+
+                            <div key='key'> Be the first to post a message to this channel! </div>
+
                     </ul >
                     <MessageForm />
                 </div>
