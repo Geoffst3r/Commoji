@@ -29,11 +29,18 @@ const AddServerForm = ({ modalSetter }) => {
             ownerId,
             image
         }
+        let newServerDb = null
         if (newServer) {
-            await dispatch(createServer(newServer));
+            newServerDb = await dispatch(createServer(newServer));
+            console.log('newServer____________________________', newServerDb)
+
             dispatch(getServers())
         }
         modalSetter();
+        console.log('newServer_______OUT_____________________', newServerDb['generalId'])
+
+        // return history.push(`/channels/${newServerDb['id']}`)
+        return history.push(`/channels/${newServerDb['id']}/${newServerDb['generalId']}`)
 
     };
 

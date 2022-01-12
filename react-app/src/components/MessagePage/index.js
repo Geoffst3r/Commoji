@@ -19,7 +19,7 @@ const Messages = () => {
     const channelId = params.channelId;
     useEffect(async () => {
         await dispatch(getMessages(channelId))
-    }, [dispatch, channelId])
+    }, [dispatch, channelId, serverId])
 
 
 
