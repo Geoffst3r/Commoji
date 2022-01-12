@@ -9,9 +9,12 @@
   width: 0;
 
 }
+.messageWrapper{
+  overflow: scroll;
+}
 
 .message-form {
-  position: fixed; 
+  position: fixed;
   bottom: 0;
   left: 37%;
   right: 0;

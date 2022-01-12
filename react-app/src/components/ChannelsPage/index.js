@@ -49,15 +49,15 @@ const Channels = () => {
             cogWheel.className = 'mod-channel-button-persist';
             setCogWheelClicked(true);
         };
-      };
+    };
 
-      const handleDelete = () => {
-          const confirmed = window.confirm('Are you sure you want to remove this channel from your server?')
-          if (confirmed) {
-              dispatch(channelActions.removeChannel(individualChannel));
-              history.push(`/channels/${serverId}`);
-          }
-      }
+    const handleDelete = () => {
+        const confirmed = window.confirm('Are you sure you want to remove this channel from your server?')
+        if (confirmed) {
+            dispatch(channelActions.removeChannel(individualChannel));
+            history.push(`/channels/${serverId}`);
+        }
+    }
 
     useEffect(() => {
         if (!cogWheelClicked && !individualChannel) return;
@@ -103,7 +103,7 @@ const Channels = () => {
                                 <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
                             </NavLink>
                             <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
-                            hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                                hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
                         </div>
                         <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                             <li>
@@ -120,6 +120,7 @@ const Channels = () => {
                         </ul>
                     </div>
                 ))}
+                <div className='ChannelsEmptySpace'></div>
             </ul>
             }
         </div>

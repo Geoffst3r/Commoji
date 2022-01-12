@@ -16,6 +16,10 @@
     white-space: nowrap;
     overflow: hidden;
 }
+.ChannelsEmptySpace{
+    width: 270px;
+    height: 50px;
+}
 
 .channel-list{
     display: flex;

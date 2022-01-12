@@ -44,6 +44,7 @@ const Server = () => {
                         <li key={'add-server-modal'}>
                             <AddServerModal />
                         </li>
+                        <div className='emptySpace'></div>
                     </ul>
                 </div>
             </>

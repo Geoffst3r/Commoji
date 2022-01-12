@@ -17,40 +17,40 @@ const Messages = () => {
 
     const serverId = params.serverId;
     const channelId = params.channelId;
+    useEffect(async () => {
+        await dispatch(getMessages(channelId))
+    }, [dispatch, channelId])
 
 
 
     // let messages = useSelector(state => {
-    //         console.log('state.messages.messageArr in useSelector_______', state.messages.messageArr)
-    //         return state.messages.messageArr
-    //     })
-        const messagesObj = useSelector(state => state.messages.messages);
-        const messages = Object.values(messagesObj);
+    //     console.log('state.messages.messageArr in useSelector_______', state.messages.messageArr)
+    //     return state.messages.messageArr
+    // })
+    const messages = useSelector(state => state.messages.messageArr);
+    // const messages = Object.values(messagesObj);
 
-        useEffect(() => {
-            dispatch(getMessages(channelId))
-        }, [dispatch, channelId])
 
     if (messages) {
         return (
 
 
-                <div className='messageWrapper'>
-                    <ul className="MessageUl">
-                        {messages.map(message => {
-                            return (
-                                <>
-                                    <li key={message.id}>
-                                        {/* <div className='mesageContent'>{message.id}</div> */}
-                                        <div className='messageUser'>{message.username}</div>
-                                        <div className='messageContent'>{message.message}</div>
-                                    </li>
-                                </>
-                            )
-                        })}
-                    </ul >
-                    <MessageForm />
-                </div>
+            <div className='messageWrapper'>
+                <ul className="MessageUl">
+                    {messages.map(message => {
+                        return (
+                            <>
+                                <li key={message.id}>
+                                    {/* <div className='mesageContent'>{message.id}</div> */}
+                                    <div className='messageUser'>{message.username}</div>
+                                    <div className='messageContent'>{message.message}</div>
+                                </li>
+                            </>
+                        )
+                    })}
+                </ul >
+                <MessageForm />
+            </div>
 
         )
     }
