@@ -13,7 +13,6 @@ const MessageForm = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const serverId = params.serverId;
-  console.log('serverId', serverId)
   const channelId = params.channelId;
 
   const onPost = async (e) => {
@@ -29,8 +28,7 @@ const MessageForm = () => {
       });
     setMessageContent('');
     await dispatch(getMessages(channelId))
-    return <Redirect to={`/channels/${serverId}/${channelId}`} />
-    
+    return
   }
 
 
