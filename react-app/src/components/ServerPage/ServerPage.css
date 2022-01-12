@@ -43,33 +43,16 @@
     background-color: rgb(105, 72, 105);
 }
 
-.server-pop {
-    display: inline;
-    position: relative;
-  }
 
-  .server-pop:hover:after {
-    background: #eee;
 
+.server-pop:hover:after {
+    background: #202225;
     border-radius: 5px;
-    bottom: -34px;
-    color: black;
-    content: attr(name);
-    left: 20%;
-    padding: 5px 15px;
-    position: absolute;
+    color: white;
+    content: attr(title);
+    left: 7%;
+    padding: 5px 8px;
+    position: fixed;
     z-index: 98;
     width: auto;
-    white-space:nowrap;
-  }
-
-  .server-pop:hover:before {
-    border: solid;
-    border-color: #ddd transparent;
-    border-width: 0 6px 6px 6px;
-    bottom: -4px;
-    content: "";
-    left: 40%;
-    position: absolute;
-    z-index: 99;
-  }
+}

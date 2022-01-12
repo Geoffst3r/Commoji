@@ -56,7 +56,7 @@ const messageReducer = (state = initialState, action) => {
             const messageArr = action.messages
             // console.log('messageArr', messageArr)
 
-            // console.log('messageArr inside reducer', messageArr)
+            console.log('messageArr inside reducer', messageArr)
 
             messageArr.forEach(message => {
                 messages[message.id] = message

@@ -32,8 +32,8 @@ const Server = () => {
                     <ul className="Bar">
                         {servers.map(server => {
                             return (
-                                <li className={"serverButtons"} key={server.id}>
-                                    <NavLink name={server.title} to={`/channels/${server.serverId}`}><button className='server-buttons server-pop' style={{
+                                <li className={"serverButtons server-pop"} key={server.id} title={`${server.title}`}>
+                                    <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons ' style={{
                                         backgroundImage: `url(${server.image})`,
                                         backgroundSize: 'cover',
                                         backgroundRepeat: "no-repeat"
