@@ -7,6 +7,7 @@ const LogoutButton = () => {
   const dispatch = useDispatch()
   const history = useHistory();
   const onLogout = async (e) => {
+    console.log("logedOut")
     await dispatch(logout());
     history.push(`/`);
   };
