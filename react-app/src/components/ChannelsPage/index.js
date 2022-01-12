@@ -33,6 +33,7 @@ const Channels = () => {
 
     const callEditSetter = () => {
         setShowEditChannelModal(false);
+        dispatch(channelActions.getChannels(serverId))
     };
 
     const modChannel = (channel) => {
@@ -82,7 +83,7 @@ const Channels = () => {
 
     useEffect(() => {
         dispatch(channelActions.getChannels(serverId));
-    }, [dispatch, serverId, channelId]);
+    }, [dispatch, serverId]);
 
     return (
         <div className='ChannelContainer'>
@@ -100,12 +101,13 @@ const Channels = () => {
                     <div className='channel' key={channel.id}>
                         <div className='channel-wrap'>
                             <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
-                                <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
+                                {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().slice(0, 19)}</li>
+                                : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}
                             </NavLink>
                             <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
-                                hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                                hidden={owner_define === true && channel.title.toLowerCase() !== 'general' ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
                         </div>
-                        <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
+                        {owner_define && <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                             <li>
                                 <button className='edit-channel-button' onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
                                 {showEditChannelModal && (
@@ -117,7 +119,7 @@ const Channels = () => {
                             <li>
                                 <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
                             </li>
-                        </ul>
+                        </ul>}
                     </div>
                 ))}
                 <div className='ChannelsEmptySpace'></div>
