@@ -13,16 +13,9 @@ const ServerDetail = () => {
     const { serverId } = useParams()
     const id = parseInt(serverId)
 
-
     const serversContainer = useSelector(state => state.servers)
-
-    const servers = serversContainer.servers
-    const server = servers[id]
-    const user = useSelector(state => state.session.user);
-    console.log('SERVER', server)
-    console.log('USER', user)
     useEffect(() => {
-
+        dispatch(getServers())
     }, [dispatch])
 
     const handleDelete = async () => {
@@ -31,10 +24,17 @@ const ServerDetail = () => {
         history.push(`/channels/`);
     }
 
+
+    const servers = serversContainer.servers
+    const server = servers?.[id]
+    const user = useSelector(state => state.session.user);
+    console.log('SERVER', server)
+    console.log('USER', user)
+
     const ownerLinks = (
         <div className="server-detail">
-                 <button className="DeleteServerButton" onClick={handleDelete}>Delete</button>
-                <EditServerModal />
+            <button className="DeleteServerButton" onClick={handleDelete}>Delete</button>
+            <EditServerModal />
         </div>
     )
     const owner = () => {
@@ -48,7 +48,7 @@ const ServerDetail = () => {
 
     return (
         <div className="server-detail-container">
-            {owner() ? ownerLinks : null }
+            {owner() ? ownerLinks : null}
         </div>
     )
 }
