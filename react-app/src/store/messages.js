@@ -22,7 +22,7 @@ export const getMessages = (channelId) => async dispatch => {
 
     if (response.ok) {
         const messageArr = await response.json()
-        console.log("messageArr ##########',:",messageArr)
+        // console.log("messageArr ##########',:",messageArr)
         dispatch(load(messageArr))
     }
 }
@@ -54,10 +54,10 @@ const messageReducer = (state = initialState, action) => {
             const messages = {}
             // console.log('!!!!! ACTION', action)
             const messageArr = action.messages
-            console.log('______________________!!! messageArr', messageArr)
+            // console.log('______________________!!! messageArr', messageArr)
             // console.log('messageArr', messageArr)
 
-            console.log('messageArr inside reducer', messageArr)
+            // console.log('messageArr inside reducer', messageArr)
 
             messageArr.forEach(message => {
                 messages[message.id] = message

@@ -108,7 +108,7 @@ def update_server(server_id):
         return jsonify("server not found in database."), 404
 
 
-@server_routes.route('/<int:server_id>', methods=['DELETE'])
+@server_routes.route('/<int:server_id>/', methods=['DELETE'])
 def delete_server(server_id):
     pass
     server = Server.query.filter(Server.id == server_id).first()
@@ -136,6 +136,9 @@ def new_channel(server_id):
     db.session.add(new_user)
     db.session.commit()
     new_message = Message(message=f'Welcome to #{channel.title}!', userId=new_user.id, channelId=channel.id)
+
+    db.session.add(new_message)
+    db.session.commit()
     return jsonify({"id": channel.id, "title": channel.title, "serverId": channel.serverId})
 
 
