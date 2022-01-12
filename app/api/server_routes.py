@@ -108,7 +108,7 @@ def update_server(server_id):
         return jsonify("server not found in database."), 404
 
 
-@server_routes.route('/<int:server_id>', methods=['DELETE'])
+@server_routes.route('/<int:server_id>/', methods=['DELETE'])
 def delete_server(server_id):
     pass
     server = Server.query.filter(Server.id == server_id).first()
