@@ -42,3 +42,17 @@
     border-radius: 20%;
     background-color: rgb(105, 72, 105);
 }
+
+
+
+.server-pop:hover:after {
+    background: #202225;
+    border-radius: 5px;
+    color: white;
+    content: attr(title);
+    left: 7%;
+    padding: 5px 8px;
+    position: fixed;
+    z-index: 98;
+    width: auto;
+}
