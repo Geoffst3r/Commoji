@@ -19,16 +19,17 @@ const Messages = () => {
     const channelId = params.channelId;
 
 
-    useEffect(async () => {
-        await dispatch(getMessages(channelId))
 
-    }, [dispatch])
+    // let messages = useSelector(state => {
+    //         console.log('state.messages.messageArr in useSelector_______', state.messages.messageArr)
+    //         return state.messages.messageArr
+    //     })
+        const messagesObj = useSelector(state => state.messages.messages);
+        const messages = Object.values(messagesObj);
 
-    let messages = useSelector(state => {
-        console.log('state.messages.messageArr in useSelector_______', state.messages.messageArr)
-        return state.messages.messageArr
-    })
-
+        useEffect(() => {
+            dispatch(getMessages(channelId))
+        }, [dispatch, channelId])
 
     if (messages) {
         return (
@@ -39,7 +40,7 @@ const Messages = () => {
                         {messages.map(message => {
                             return (
                                 <>
-                                    <li>
+                                    <li key={message.id}>
                                         {/* <div className='mesageContent'>{message.id}</div> */}
                                         <div className='messageUser'>{message.username}</div>
                                         <div className='messageContent'>{message.message}</div>

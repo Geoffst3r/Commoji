@@ -11,6 +11,7 @@ import './ChannelPage.css';
 const Channels = () => {
     const dispatch = useDispatch();
     const params = useParams();
+    const history = useHistory();
     const [showAddChannelModal, setShowAddChannelModal] = useState(false);
     const [showEditChannelModal, setShowEditChannelModal] = useState(false);
     const [cogWheelClicked, setCogWheelClicked] = useState(false);
@@ -41,14 +42,22 @@ const Channels = () => {
 
         if (channelMod.className === 'mod-channel-visible') {
             channelMod.className = 'mod-channel-hidden';
-            cogWheel.className = 'edit-channel-button';
+            cogWheel.className = 'mod-channel-button';
             setCogWheelClicked(false);
         } else {
             channelMod.className = 'mod-channel-visible';
-            cogWheel.className = 'edit-channel-button-persist';
+            cogWheel.className = 'mod-channel-button-persist';
             setCogWheelClicked(true);
         };
       };
+
+      const handleDelete = () => {
+          const confirmed = window.confirm('Are you sure you want to remove this channel from your server?')
+          if (confirmed) {
+              dispatch(channelActions.removeChannel(individualChannel));
+              history.push(`/channels/${serverId}`);
+          }
+      }
 
     useEffect(() => {
         if (!cogWheelClicked && !individualChannel) return;
@@ -60,7 +69,7 @@ const Channels = () => {
 
             if (channelMod && cogWheelButton && e.target !== channelMod && e.target !== cogWheelButton && e.target !== cogWheel) {
                 channelMod.className = 'mod-channel-hidden';
-                cogWheelButton.className = 'edit-channel-button';
+                cogWheelButton.className = 'mod-channel-button';
                 setCogWheelClicked(false);
             }
             return
@@ -90,9 +99,9 @@ const Channels = () => {
                 {channels.map(channel => (
                     <div className='channel' key={channel.id}>
                         <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
-                            <li className='channel-title'><i class="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
+                            <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>
                         </NavLink>
-                        <button className='edit-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
+                        <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
                         hidden={owner_define === true ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
                         <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                             <li>
@@ -102,6 +111,9 @@ const Channels = () => {
                                         <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
                                     </Modal>
                                 )}
+                            </li>
+                            <li>
+                                <button onClick={() => handleDelete()}>Delete Channel</button>
                             </li>
                         </ul>
                     </div>

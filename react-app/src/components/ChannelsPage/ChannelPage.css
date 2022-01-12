@@ -43,7 +43,7 @@
 .channel:hover{
     background-color: #606163;
 }
-.edit-channel-button-hidden{
+.mod-channel-button-hidden{
     border: none;
     border-radius: 5px;
 }
@@ -51,12 +51,12 @@
     border: none;
     border-radius: 5px;
 }
-.mod-channel-hidden, .edit-channel-button{
+.mod-channel-hidden, .mod-channel-button{
     visibility: hidden;
 }
 .mod-channel-visible{
     visibility: visible;
 }
-.channel:hover .edit-channel-button {
+.channel:hover .mod-channel-button {
     visibility: visible;
 }
