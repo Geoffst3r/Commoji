@@ -24,6 +24,7 @@ const Messages = () => {
 
 
     const messages = useSelector(state => state.messages.messages);
+    console.log('_________messages from state inside component:________   ', messages)
    
 
     if (messages) {

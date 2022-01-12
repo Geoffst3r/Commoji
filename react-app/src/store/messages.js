@@ -18,18 +18,18 @@ const addOneMessage = (message) => {
 
 export const getMessages = (channelId) => async dispatch => {
 
-    const response = await fetch(`/api/channels/messages/${channelId}`)
+    const response = await fetch(`/api/channels/messages/${channelId}/`)
 
     if (response.ok) {
         const messageArr = await response.json()
-        console.log("messageArr ##########',:",messageArr)
+        // console.log("messageArr ##########',:",messageArr)
         dispatch(load(messageArr))
     }
 }
 
 export const createMessage = (newMessage, channelId) => async dispatch => {
 
-    const response = await fetch(`/api/channels/messages/${channelId}`, {
+    const response = await fetch(`/api/channels/messages/${channelId}/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // body: JSON.stringify(newMessage)
@@ -54,10 +54,10 @@ const messageReducer = (state = initialState, action) => {
             const messages = {}
             // console.log('!!!!! ACTION', action)
             const messageArr = action.messages
-            console.log('______________________!!! messageArr', messageArr)
+            // console.log('______________________!!! messageArr', messageArr)
             // console.log('messageArr', messageArr)
 
-            console.log('messageArr inside reducer', messageArr)
+            // console.log('messageArr inside reducer', messageArr)
 
             messageArr.forEach(message => {
                 messages[message.id] = message
