@@ -18,7 +18,6 @@ const Channels = () => {
     const [individualChannel, setIndividualChannel] = useState({});
 
     const serverId = params.serverId;
-    const channelId = params.channelId;
     const sessionUser = useSelector(state => state.session.user);
     const channelsObj = useSelector(state => state.channels);
     const channels = Object.values(channelsObj);
@@ -86,10 +85,10 @@ const Channels = () => {
     }, [dispatch, serverId]);
 
     if (serverId) {
-        
+
         return (
             <div className='ChannelContainer'>
-    
+
               <div className='channel-modsANDinfo'>
                     <p className='channels'>CHANNELS</p>
                     <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>
@@ -125,13 +124,13 @@ const Channels = () => {
                             </ul>}
                         </div>
                     ))}
-                
-    
+
+
                     <div className='ChannelsEmptySpace'></div>
                 </ul>
                 }
             </div>
-        ) 
+        )
     } else {
         return (
             <div className='ChannelContainer'>
@@ -139,7 +138,7 @@ const Channels = () => {
             </div>
         )
     }
-} 
+}
 
 
 export default Channels;

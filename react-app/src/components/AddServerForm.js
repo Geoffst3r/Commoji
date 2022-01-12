@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createServer } from '../store/servers';
 import { getServers } from '../store/servers';
 import { useEffect } from 'react';

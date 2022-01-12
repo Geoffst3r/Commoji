@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -6,8 +5,6 @@ import LoginFormModal from './LoginFormModal';
 import SignUpModal from './SignUpModal'
 import './NavBar.css'
 import { useSelector } from 'react-redux';
-// import AddServerForm from './AddServerForm';
-import AddServerModal from './AddServerModal';
 
 
 const NavBar = () => {

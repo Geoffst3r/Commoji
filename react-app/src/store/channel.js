@@ -33,6 +33,7 @@ const update_Channel = (channel) => {
 }
 
 export const getChannels = (serverId) => async (dispatch) => {
+  if (!serverId) return;
   const res = await fetch(`/api/channels/${serverId}/`);
   if (res.ok) {
     const [channels_list, servers_list] = await res.json();
@@ -51,7 +52,7 @@ export const addChannel = (inputChannel) => async (dispatch) => {
   });
   if (res.ok) {
     const channel = await res.json();
-    if (channel != "bad data") {
+    if (channel !== "bad data") {
       dispatch(add_Channel(channel));
     }
     return channel;

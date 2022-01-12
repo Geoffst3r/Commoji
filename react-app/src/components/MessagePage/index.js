@@ -1,8 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 
 import { getMessages } from '../../store/messages';
@@ -17,8 +16,8 @@ const Messages = () => {
     const user = useSelector(state => state.session.user);
     const serverId = params.serverId;
     const channelId = params.channelId;
-    useEffect(async () => {
-        await dispatch(getMessages(channelId))
+    useEffect(() => {
+        dispatch(getMessages(channelId))
     }, [dispatch, channelId, serverId])
 
 
@@ -37,7 +36,7 @@ const Messages = () => {
                             {Object.keys(messages).map(message => {
                                 return (
                                     <>
-                                        <li key={message}>
+                                        <li key={message.id}>
                                             {/* <div className='mesageContent'>{message.id}</div> */}
                                             {user.id === messages[message].userId ? <><div className='userMessage messageUser'>{messages[message].username}</div><div className='userMessage messageContent'>{messages[message].message}</div></> :
                                                 <><div className='messageUser'>{messages[message].username}</div><div className='messageContent'>{messages[message].message}</div></>}
@@ -58,9 +57,7 @@ const Messages = () => {
             <div className='messageWrapper'>
                 <div className='MessageContainer'>
                     <ul className="MessageUl">
-
-                            <div key='key'> Be the first to post a message to this channel! </div>
-
+                        <li key='key'> Be the first to post a message to this channel! </li>
                     </ul >
                     <MessageForm />
                 </div>

@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux";
-
-
 const LOAD = 'servers/LOAD';
 const ADD_ONE = 'servers/ADD_ONE';
 const DELETE_ONE = 'servers/DELETE_ONE'
