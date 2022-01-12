@@ -23,13 +23,8 @@ const Messages = () => {
 
 
 
-    // let messages = useSelector(state => {
-    //     console.log('state.messages.messageArr in useSelector_______', state.messages.messageArr)
-    //     return state.messages.messageArr
-    // })
-    const messages = useSelector(state => state.messages.messageArr);
-    // const messages = Object.values(messagesObj);
-
+    const messages = useSelector(state => state.messages.messages);
+   
 
     if (messages) {
         return (
@@ -39,13 +34,13 @@ const Messages = () => {
                 <div className='messageOuterWrapper'>
                     <div className='MessagesContainer'>
                         <ul className="MessageUl">
-                            {messages.map(message => {
+                            {Object.keys(messages).map(message => {
                                 return (
                                     <>
                                         <li key={message.id}>
                                             {/* <div className='mesageContent'>{message.id}</div> */}
-                                            <div className='messageUser'>{message.username}</div>
-                                            <div className='messageContent'>{message.message}</div>
+                                            <div className='messageUser'>{messages[message].username}</div>
+                                            <div className='messageContent'>{messages[message].message}</div>
                                         </li>
                                     </>
                                 )
