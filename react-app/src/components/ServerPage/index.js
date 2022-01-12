@@ -24,6 +24,7 @@ const Server = () => {
     if (!user) {
         return <Redirect to='/' />;
     }
+
     if (servers) {
         return (
             <>
@@ -31,13 +32,24 @@ const Server = () => {
                 <div className='ServerContainer'>
                     <ul className="Bar">
                         {servers.map(server => {
+                            let color
+                            console.log("SERVERIMAGE",server.image)
+                            if (server.image !== 'none') {
+                                console.log("inside conditional")
+                               color = 'transparent'
+                            } else {
+                                color = 'black'
+                            }
+                            console.log("afterconditional", color)
                             return (
                                 <li className={"serverButtons server-pop"} key={server.id} title={`${server.title}`}>
-                                    <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons ' style={{
+                                    <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons' style={{
                                         backgroundImage: `url(${server.image})`,
                                         backgroundSize: 'cover',
-                                        backgroundRepeat: "no-repeat"
-                                    }}></button></NavLink>
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundClip: "text",
+                                        color: color
+                                    }}>{(server.title[0])}</button></NavLink>
                                 </li>
                             )
                         })}
