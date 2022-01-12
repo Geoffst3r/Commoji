@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addChannel, updateChannel } from '../../store/channel';
 import './ChannelForm.css'
 
 const ChannelForm = ({ inputChannel, callSetter }) => {
+  const history = useHistory()
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState(inputChannel ? inputChannel.title : '');
   const dispatch = useDispatch();
@@ -16,13 +18,15 @@ const ChannelForm = ({ inputChannel, callSetter }) => {
     e.preventDefault();
     setErrors([]);
     const requestChannel = { title, serverId };
-    await dispatch(addChannel(requestChannel))
+
+    let newChannel = await dispatch(addChannel(requestChannel))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) return setErrors(data.errors);
       });
     callSetter();
-    return
+    console.log('!!!!!!!!!!!!!! newChannel', newChannel, 'servid', serverId)
+    return history.push(`/channels/${serverId}/${newChannel['id']}`)
   };
 
   const onEdit = async (e) => {
