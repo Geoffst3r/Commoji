@@ -38,7 +38,7 @@ const Server = () => {
                                 console.log("inside conditional")
                                color = 'transparent'
                             } else {
-                                color = 'black'
+                                color = 'white'
                             }
                             console.log("afterconditional", color)
                             return (
@@ -53,7 +53,8 @@ const Server = () => {
                                 </li>
                             )
                         })}
-                        <li key={'add-server-modal'}>
+                        <div className='seperator'></div>
+                        <li className="server-pop" title="Add a server"key={'add-server-modal'}>
                             <AddServerModal />
                         </li>
 

@@ -37,6 +37,8 @@
     transition-duration: .15s;
     transition-timing-function: ease-out;
     transition-property: border-radius, background-color;
+    font-size: larger;
+    background-color: #2f3136;
 }
 .server-buttons:hover{
     border-radius: 20%;
@@ -58,6 +60,12 @@
 }
 
 .add-server-button {
+    margin-top:5px;
     background-color: #2f3136;
+    color: green;
 
+}.seperator {
+    width: 30px;
+    border-bottom: solid 1px #2f3136;
+    margin: 5px 10px 5px 10px
 }
