@@ -36,7 +36,7 @@ const Messages = () => {
 
 
             <div className='messageWrapper'>
-                <div>
+                <div className='messageOuterWrapper'>
                     <div className='MessagesContainer'>
                         <ul className="MessageUl">
                             {messages.map(message => {

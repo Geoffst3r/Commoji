@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Server, Channel
+from app.models import db, Server, Channel, Message, User
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user
 
@@ -131,6 +131,11 @@ def new_channel(server_id):
     channel = Channel(title=title, serverId=server_id)
     db.session.add(channel)
     db.session.commit()
+
+    new_user = User(username=channel.title, email=f'{channel.title}@channel.com', hashed_password='pbkdf2:sha256:2600000$PCG9')
+    db.session.add(new_user)
+    db.session.commit()
+    new_message = Message(message=f'Welcome to #{channel.title}!', userId=new_user.id, channelId=channel.id)
     return jsonify({"id": channel.id, "title": channel.title, "serverId": channel.serverId})
 
 

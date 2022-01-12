@@ -54,6 +54,7 @@ const messageReducer = (state = initialState, action) => {
             const messages = {}
             // console.log('!!!!! ACTION', action)
             const messageArr = action.messages
+            console.log('______________________!!! messageArr', messageArr)
             // console.log('messageArr', messageArr)
 
             console.log('messageArr inside reducer', messageArr)
