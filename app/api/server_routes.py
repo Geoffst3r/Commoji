@@ -41,6 +41,17 @@ def new_server():
         )
         db.session.add(new_channel_db)
         db.session.commit()
+
+        # new_user = User(username=new_channel_db.title,
+        #                 email=f'{new_channel_db.title}@channel.com', hashed_password='pbkdf2:sha256:2600000$PCG9')
+        # db.session.add(new_user)
+        # db.session.commit()
+        # new_message = Message(
+        #     message=f'Welcome to #{new_channel_db.title}!', userId=new_user.id, channelId=new_channel_db.id)
+
+        # db.session.add(new_message)
+        # db.session.commit()
+
         new_server_db_dict = {
             'id': new_server_db.id,
             'title': new_server_db.title,
@@ -133,10 +144,12 @@ def new_channel(server_id):
     db.session.add(channel)
     db.session.commit()
 
-    new_user = User(username=channel.title, email=f'{channel.title}@channel.com', hashed_password='pbkdf2:sha256:2600000$PCG9')
+    new_user = User(username=channel.title,
+                    email=f'{channel.title}@channel.com', hashed_password='pbkdf2:sha256:2600000$PCG9')
     db.session.add(new_user)
     db.session.commit()
-    new_message = Message(message=f'Welcome to #{channel.title}!', userId=new_user.id, channelId=channel.id)
+    new_message = Message(
+        message=f'Welcome to #{channel.title}!', userId=new_user.id, channelId=channel.id)
 
     db.session.add(new_message)
     db.session.commit()
