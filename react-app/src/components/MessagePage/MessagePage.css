@@ -12,10 +12,13 @@
 
 
 .MessagesContainer{
-  max-height: 650px;
-  overflow: scroll;
-  overscroll-behavior-y: contain;
-  scroll-snap-type: y proximity;
+  display: flex;
+    height: 650px;
+    overflow: scroll;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y proximity;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 .MessagesContainer > ul > li:last-child {
   scroll-snap-align: end;
