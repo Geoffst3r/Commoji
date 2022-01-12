@@ -7,7 +7,7 @@ const UPDATE_CHANNEL = 'channels/updateChannel'
 const get_Channels = (channels, server) => {
   return {
     type: GET_CHANNELS,
-    payload: {channels, server}
+    payload: { channels, server }
   }
 }
 
@@ -37,21 +37,23 @@ export const getChannels = (serverId) => async (dispatch) => {
   if (res.ok) {
     const [channels_list, servers_list] = await res.json();
     dispatch(get_Channels(channels_list, servers_list));
-    return {channels_list, servers_list};
+    return { channels_list, servers_list };
   };
 };
 
 export const addChannel = (inputChannel) => async (dispatch) => {
-  const {title, serverId} = inputChannel;
+  const { title, serverId } = inputChannel;
   const res = await fetch(`/api/channels/${serverId}`, {
-      method: 'POST',
-      body: JSON.stringify({
-          title, serverId
-      })
+    method: 'POST',
+    body: JSON.stringify({
+      title, serverId
+    })
   });
   if (res.ok) {
     const channel = await res.json();
-    dispatch(add_Channel(channel));
+    if (channel != "bad data") {
+      dispatch(add_Channel(channel));
+    }
     return channel;
   } else if (res.status < 500) {
     const data = await res.json();
@@ -64,7 +66,7 @@ export const addChannel = (inputChannel) => async (dispatch) => {
 };
 
 export const removeChannel = (inputChannel) => async (dispatch) => {
-  const {id, serverId} = inputChannel;
+  const { id, serverId } = inputChannel;
   const res = await fetch(`/api/channels/${serverId}/${id}`, {
     method: 'DELETE'
   });
@@ -75,7 +77,7 @@ export const removeChannel = (inputChannel) => async (dispatch) => {
 };
 
 export const updateChannel = (inputChannel) => async (dispatch) => {
-  const {id, title, serverId} = inputChannel;
+  const { id, title, serverId } = inputChannel;
   const res = await fetch(`/api/channels/${serverId}/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -114,7 +116,7 @@ const channelReducer = (state = {}, action) => {
       newState[action.channel.id] = action.channel;
       return newState;
     default:
-        return state;
+      return state;
   }
 };
 
