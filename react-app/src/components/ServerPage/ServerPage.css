@@ -3,18 +3,22 @@
     width: 70px;
     left: 0;
     top: 0;
-    overflow: hidden;
+    overflow: scroll;
     background-color: #202225;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
+
 }
 .Bar{
     display: flex;
     flex-direction: column;
 }
-
+.emptySpace{
+    height: 50px;
+    width: 50px;
+}
 .serverButtons{
     margin-top: 5px;
     margin-bottom: 5px;

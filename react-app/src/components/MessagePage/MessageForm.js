@@ -24,8 +24,8 @@ const MessageForm = () => {
         // if (data && data.errors) return setErrors(data.errors);
 
       });
-      setMessageContent('');
-    // await dispatch(getMessages(channelId))
+    // setMessageContent('');
+    await dispatch(getMessages(channelId))
     return
   };
 
