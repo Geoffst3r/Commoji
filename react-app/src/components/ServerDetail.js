@@ -38,7 +38,7 @@ const ServerDetail = () => {
         </div>
     )
     const owner = () => {
-        if (server) {
+        if (server && user) {
             return user.id === server.ownerId
         }
         return false

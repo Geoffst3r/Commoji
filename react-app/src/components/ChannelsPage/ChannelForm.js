@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
-import { addChannel, updateChannel, removeChannel } from '../../store/channel';
+import { useDispatch } from 'react-redux';
+import { addChannel, updateChannel } from '../../store/channel';
 import './ChannelForm.css'
 
 const ChannelForm = ({ inputChannel, callSetter }) => {
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState(inputChannel ? inputChannel.title : '');
-  //   const [channelId, setChannelId] = useState(inputChannel ? inputChannel.id : 0)
   const dispatch = useDispatch();
   const params = useParams();
   const serverId = params.serverId;
@@ -43,10 +41,6 @@ const ChannelForm = ({ inputChannel, callSetter }) => {
   const updateTitle = (e) => {
     setTitle(e.target.value);
   };
-
-  //   if (user) {
-  //     return <Redirect to='/' />;
-  //   }
 
   return (
     <>
