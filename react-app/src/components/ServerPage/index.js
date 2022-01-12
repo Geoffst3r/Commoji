@@ -33,7 +33,7 @@ const Server = () => {
                         {servers.map(server => {
                             return (
                                 <li className={"serverButtons"} key={server.id}>
-                                    <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons' style={{
+                                    <NavLink name={server.title} to={`/channels/${server.serverId}`}><button className='server-buttons server-pop' style={{
                                         backgroundImage: `url(${server.image})`,
                                         backgroundSize: 'cover',
                                         backgroundRepeat: "no-repeat"
@@ -44,6 +44,7 @@ const Server = () => {
                         <li key={'add-server-modal'}>
                             <AddServerModal />
                         </li>
+
                         <div className='emptySpace'></div>
                     </ul>
                 </div>
