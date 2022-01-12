@@ -7,6 +7,7 @@ import { deleteServer, getServers } from "../store/servers";
 import EditServerModal from "./EditServerModal";
 
 
+
 const ServerDetail = () => {
     const dispatch = useDispatch()
     const history = useHistory()

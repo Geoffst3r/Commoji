@@ -65,6 +65,7 @@ function App() {
             <Server />
             <Channels />
             <Messages />
+            <ServerDetail />
           </div>
         </Route>
       </Switch>
