@@ -32,7 +32,7 @@ const Server = () => {
                     <ul className="Bar">
                         {servers.map(server => {
                             return (
-                                <li className={"serverButtons"}>
+                                <li className={"serverButtons"} key={server.id}>
                                     <NavLink to={`/channels/${server.serverId}`}><button className='server-buttons' style={{
                                         backgroundImage: `url(${server.image})`,
                                         backgroundSize: 'cover',
@@ -41,7 +41,7 @@ const Server = () => {
                                 </li>
                             )
                         })}
-                        <li>
+                        <li key={'add-server-modal'}>
                             <AddServerModal />
                         </li>
                     </ul>

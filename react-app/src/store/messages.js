@@ -28,7 +28,7 @@ export const getMessages = (channelId) => async dispatch => {
 }
 
 export const createMessage = (newMessage, channelId) => async dispatch => {
-   
+
     const response = await fetch(`/api/channels/messages/${channelId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
