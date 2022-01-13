@@ -13,13 +13,14 @@ const Messages = () => {
     // const [messages, setMessages] = useState([])
     const params = useParams();
     const dispatch = useDispatch()
+    const [showReactionDiv, setShowReactionDiv] = useState(false)
     const user = useSelector(state => state.session.user);
     const messages = useSelector(state => state.messages.messages);
     const channels = useSelector(state => state.channels)
     const serverId = params.serverId;
     const channelId = params.channelId;
     let intChannelId = parseInt(channelId)
-    
+
 
     useEffect(() => {
         // create websocket/connect
@@ -59,8 +60,23 @@ const Messages = () => {
                                         <>
                                             <li className='messageContentHolder' key={message.id}>
                                                 {/* <div className='mesageContent'>{message.id}</div> */}
-                                                {user.id === messages[message].userId ? <><div className='userMessage messageUser'>{messages[message].username}</div><div className='userMessage messageContent'>{messages[message].message}</div></> :
-                                                    <><div className='messageUser'>{messages[message].username}</div><div className='messageContent'>{messages[message].message}</div></>}
+                                                {user.id === messages[message].userId ? <>
+                                                    <div className='MessageAndButton'>
+                                                        <div className='justNameAndButton'>
+                                                            <div className='userMessage messageUser'>{messages[message].username}</div><div className='ReactionsButton' onClick={() => setShowReactionDiv(!showReactionDiv)} >
+                                                            </div> {showReactionDiv && <div className='ReactionChoice'><span>1</span><span>2</span><span>3</span></div>} </div><div className='userMessage messageContent'>{messages[message].message}</div> </div>
+                                                    <div className='reactionsContainer'><span>hello</span>
+                                                    </div>
+                                                </>
+                                                    :
+                                                    <>
+                                                        <div className='MessageAndButton'>
+                                                            <div className='justNameAndButton'>
+                                                                <div className='messageUser'>{messages[message].username}</div><div className='ReactionsButton'>
+                                                                </div> <div className='ReactionChoice'><span>1</span><span>2</span><span>3</span></div> </div><div className='userMessage messageContent'>{messages[message].message}</div> </div>
+                                                        <div className='reactionsContainer'><div className='Reactions'>hello</div>
+                                                        </div>
+                                                    </>}
                                             </li>
                                         </>
                                     )
@@ -70,7 +86,7 @@ const Messages = () => {
 
                     </div>
 
-                    <MessageForm socket={socket}/>
+                    <MessageForm socket={socket} />
 
                 </div>
             </>
