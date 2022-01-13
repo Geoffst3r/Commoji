@@ -97,18 +97,20 @@ background-color: #40444b;
   display: none;
 }
 
+.messageContent {
+  margin-right: 5px;
+  color: rgb(193, 193, 193);
+  font: 16px  "Fira Sans", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  
+}
 .messageUser {
   margin-right: 5px;
   margin-top: 5px;
   color: white;
   font-weight: bold;
-  font: 16px Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif;
-
-}
-.messageContent {
-  margin-right: 5px;
-  color: rgb(193, 193, 193);
-  font: 16px Whitney, "Helvitica Neue";
 
 }
 
