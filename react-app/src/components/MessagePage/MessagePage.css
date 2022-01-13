@@ -12,30 +12,36 @@
 
 
 .MessagesContainer{
+  margin-top: 15px;
   display: flex;
-    max-height: 98%;
-    height: 98%;
-    overflow: scroll;
-    overscroll-behavior-y: contain;
-    scroll-snap-type: y proximity;
-    flex-direction: column;
-    justify-content: flex-end;
+  max-height: 98%;
+  height: 98%;
+  overflow: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* width: 60vw; */
+  padding: 0;
 }
 .MessagesContainer > ul > li:last-child {
   scroll-snap-align: end;
 }
 
 .messageOuterWrapper {
-  height: 90%
+  height: 90%;
+  padding: 0;
 }
 
 .message-form {
-  position: fixed;
-  bottom: 0;
-  left: 37%;
-  right: 0;
+  /* position: absolute; */
+  /* bottom: 8%;
+  left: 50%;
+  right: 0; */
   height: 50px;
   margin-bottom: 20px;
+  width: 100%;
+  margin: 0 15px 0 15px;
 
 }
 
@@ -47,6 +53,8 @@
   scroll-snap-type: y proximity;
   flex-direction: column;
   justify-content: flex-end;
+  max-width: 860px;
+  padding: 0;
 
 }
 
@@ -64,7 +72,7 @@ background-color: #40444b;
 
 .messageWrapper {
   background-color: #36393f;
-  width: 100%;
+  width: 75vw;
 }
 
 .messageInput {
@@ -72,10 +80,12 @@ background-color: #40444b;
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: 50vh;
-  border-radius: 3px;
+  border-radius: 4.5px;
   color: #ffffff;
   height: 30px;
   width: 90%;
+  padding: 4px 8px 4px 8px;
+  border: none;
 }
 
 .message-button {
