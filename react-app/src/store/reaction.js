@@ -57,7 +57,7 @@ const reactionReducer = (state = {}, action) => {
       action.reactions.forEach(reaction => {
         if (newState[reaction.messageId]) {
           newState[reaction.messageId] = {...newState[reaction.messageId], reaction}
-        } else newState[reaction.id] = reaction;
+        } else newState[reaction.messageId] = reaction;
       });
       return newState;
     case ADD_REACTION:
