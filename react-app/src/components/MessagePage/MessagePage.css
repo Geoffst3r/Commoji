@@ -162,5 +162,11 @@ background-color: #40444b;
   display: flex;
 }
 .ReactionChoice{
+
+}
+.dontDisplay{
   display: none;
+}
+.display{
+
 }

@@ -64,7 +64,7 @@ const Messages = () => {
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
                                                             <div className='userMessage messageUser'>{messages[message].username}</div><div className='ReactionsButton' onClick={() => setShowReactionDiv(!showReactionDiv)} >
-                                                            </div> {showReactionDiv && <div className='ReactionChoice'><span>1</span><span>2</span><span>3</span></div>} </div><div className='userMessage messageContent'>{messages[message].message}</div> </div>
+                                                            </div> {showReactionDiv ? <div className='ReactionChoice display'><span>1</span><span>2</span><span>3</span></div> : <div className='ReactionChoice dontDisplay'><span>1</span><span>2</span><span>3</span></div>} </div><div className='userMessage messageContent'>{messages[message].message}</div> </div>
                                                     <div className='reactionsContainer'><span>hello</span>
                                                     </div>
                                                 </>
