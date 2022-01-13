@@ -35,7 +35,7 @@ const Messages = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [dispatch])
+    }, [dispatch, channelId])
 
     useEffect(() => {
         dispatch(getMessages(channelId))
