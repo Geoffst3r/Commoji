@@ -42,12 +42,13 @@ const Messages = () => {
         dispatch(getMessages(channelId))
     }, [dispatch, channelId, serverId])
 
-    if (messages && user && intChannelId) {
+
+    if (messages && user && channels[intChannelId].title) {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
                     < h1 >
-                        {channels?.[intChannelId].title}
+                        {channels[intChannelId].title}
                     </h1 >
                 </div >
                     <div className='messageOuterWrapper'>
