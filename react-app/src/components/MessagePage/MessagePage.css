@@ -58,14 +58,6 @@
 
 }
 
-.MessageUl > li {
-  display: flex;
-  justify-content: left;
-  flex-direction: column;
-  margin-left: 30px;
-  margin-bottom: 15px;
-
-}
 /* .message-form {
 background-color: #40444b;
 } */
@@ -86,6 +78,19 @@ background-color: #40444b;
   width: 90%;
   padding: 4px 8px 4px 8px;
   border: none;
+}
+
+
+.messageContentHolder{
+  padding: 0 3px 0 3px;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-left: 17px;
+  margin-bottom: 15px;
+}
+.messageInput:hover{
+  background-color: #70757d;
 }
 
 .message-button {
