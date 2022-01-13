@@ -17,5 +17,4 @@ socketio = SocketIO(cors_allowed_origins=origins)
 
 @socketio.on("message")
 def handle_message(data):
-  print("___________________________________________________!!!!!!!!!!!!!!!!!!!!! backend messsage ")
   emit("message", data, broadcast=True)

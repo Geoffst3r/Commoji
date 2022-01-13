@@ -18,8 +18,8 @@ const Messages = () => {
     const channels = useSelector(state => state.channels)
     const serverId = params.serverId;
     const channelId = params.channelId;
-
-
+    let intChannelId = parseInt(channelId)
+    
 
     useEffect(() => {
         // create websocket/connect
@@ -38,14 +38,12 @@ const Messages = () => {
         })
     }, [dispatch, channelId])
 
-
-    let intChannelId = parseInt(channelId)
-
     useEffect(() => {
         dispatch(getMessages(channelId))
     }, [dispatch, channelId, serverId])
 
-    if (messages && user) {
+
+    if (messages && user && channels[intChannelId].title) {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
