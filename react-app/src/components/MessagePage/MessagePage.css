@@ -13,20 +13,21 @@
 
 .MessagesContainer{
   display: flex;
-    max-height: 98%;
-    height: 98%;
-    overflow: scroll;
-    overscroll-behavior-y: contain;
-    scroll-snap-type: y proximity;
-    flex-direction: column;
-    justify-content: flex-end;
+  max-height: 98%;
+  height: 98%;
+  overflow: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .MessagesContainer > ul > li:last-child {
   scroll-snap-align: end;
 }
 
 .messageOuterWrapper {
-  height: 90%
+  height: 90%;
+  width: 100%;
 }
 
 .message-form {
@@ -64,7 +65,7 @@ background-color: #40444b;
 
 .messageWrapper {
   background-color: #36393f;
-  width: 100%;
+  width: 91%;
 }
 
 .messageInput {
