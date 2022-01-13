@@ -5,6 +5,7 @@
     top: 0;
     overflow: scroll;
     background-color: #2f3136;
+    flex-shrink: 0;
 }::-webkit-scrollbar {
     width: 0;
 }
