@@ -61,6 +61,7 @@ const ChannelForm = ({ inputChannel, callSetter }) => {
             type='text'
             value={title}
             onChange={updateTitle}
+            required
           />
         </div>
         <button className='channel-button' type='submit'>{text}</button>

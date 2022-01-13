@@ -119,3 +119,17 @@ background-color: #40444b;
 .fa-hashtag{
   padding-right: 5px;
 }
+.ChannelName{
+  margin: 0;
+  height: 38px;
+  background-color: #3a3c41;
+  border-bottom: #2b2a2a4b 1px solid;
+  box-shadow: 0px 0.5px 5px 2px #2c2c2c;
+
+}
+.ChannelName h1{
+  margin: 0;
+}
+.MessageAndTitleContainer{
+  width: 100%;
+}
