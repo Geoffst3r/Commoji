@@ -8,6 +8,8 @@ import * as channelActions from '../../store/channel';
 import ChannelForm from './ChannelForm';
 import './ChannelPage.css';
 import ServerDetail from '../ServerDetail';
+import LogoutButton from '../auth/LogoutButton';
+import User from '../User'
 
 const Channels = () => {
     const dispatch = useDispatch();
@@ -132,9 +134,13 @@ const Channels = () => {
                                     <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
                                 </li>
                             </ul>}
+
                         </div>
                     ))}
-
+                    <div className='user-bar'>
+                                <User/>
+                                <LogoutButton/>
+                            </div>
 
                     <div className='ChannelsEmptySpace'></div>
                 </ul>
