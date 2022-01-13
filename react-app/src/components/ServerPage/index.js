@@ -17,6 +17,30 @@ const Server = () => {
         return state.servers.serversArray
     })
 
+    // const newServerAsChosen = (id) => {
+    //     const newServer = document.querySelector(`.server-${id}`);
+    // }
+
+    const chosenServer = (id) => {
+        const chosen = document.querySelector(`.server-${id}`);
+        const prevChosen = document.querySelector('.current-chosen-server');
+
+        const homeOrAdd = (e) => {
+            const homeButton = document.querySelector('.home-button');
+            if (e.target === homeButton) {
+                if (prevChosen) prevChosen.classList.remove('current-chosen-server');
+                return
+            }
+            else {
+                if (prevChosen) prevChosen.classList.remove('current-chosen-server');
+                return chosen.classList.add('current-chosen-server');
+            };
+        };
+
+        document.addEventListener('click', homeOrAdd, false)
+        return () => document.removeEventListener("click", homeOrAdd);
+    };
+
     useEffect(() => {
         dispatch(getServers())
     }, [dispatch])
@@ -42,9 +66,10 @@ const Server = () => {
                                 color = 'white'
                             }
                             return (
-                                <li className={"serverButtons server-pop"} key={server.id} title={`${server.title}`}>
-                                    <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons' style={{
-                                        backgroundImage: `url(${server.image})`,
+                                <li className={`serverButtons server-pop server-${server.serverId}`} key={server.id} title={`${server.title}`}>
+                                    <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons'
+                                        onClick={() => chosenServer(server.serverId)}
+                                        style={{backgroundImage: `url(${server.image})`,
                                         backgroundSize: 'cover',
                                         backgroundRepeat: "no-repeat",
                                         backgroundClip: "text",
@@ -53,7 +78,7 @@ const Server = () => {
                                 </li>
                             )
                         })}
-                        <div key='seperator' className='seperator'></div>
+                        <div key='seperator-bottom' className='seperator'></div>
                         <li className="server-pop" title="Add a server" key='add-server-modal'>
                             <AddServerModal />
                         </li>

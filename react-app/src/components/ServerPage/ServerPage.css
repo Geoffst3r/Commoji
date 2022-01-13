@@ -88,3 +88,15 @@
     width: auto;
     transform: translate(70px, 2px);
 }
+
+.current-chosen-server:after{
+    background: white;
+    border-radius: 5px;
+    color: white;
+    content: '';
+    padding: 24px 5px;
+    position: fixed;
+    z-index: 98;
+    width: auto;
+    transform: translate(-67px, 2px);
+}
