@@ -68,3 +68,11 @@
     border-bottom: solid 1px #2f3136;
     margin: 5px 10px 5px 10px
 }
+
+.home-button {
+    margin-top: 10px;
+    background-image: url('https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/microsoft/310/eye-in-speech-bubble_1f441-fe0f-200d-1f5e8-fe0f.png');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}

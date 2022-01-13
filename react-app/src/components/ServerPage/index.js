@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { NavLink, Redirect } from 'react-router-dom';
@@ -12,7 +12,7 @@ import './ServerPage.css'
 const Server = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
-    const [selected, setSelected] = useState()
+    // const [selected, setSelected] = useState()
 
     let servers = useSelector(state => {
         return state.servers.serversArray
@@ -29,19 +29,19 @@ const Server = () => {
     if (servers) {
         return (
             <>
-
                 <div className='ServerContainer'>
+                    <NavLink to='/channels/'>
+                        <div title='Home' className='server-buttons home-button server-pop'></div>
+                    </NavLink>
                     <ul className="Bar">
+                    <div key='seperator' className='seperator'></div>
                         {servers.map(server => {
                             let color
-                            console.log("SERVERIMAGE",server.image)
                             if (server.image !== 'none') {
-                                console.log("inside conditional")
                                color = 'transparent'
                             } else {
                                 color = 'white'
                             }
-                            console.log("afterconditional", color)
                             return (
                                 <li className={"serverButtons server-pop"} key={server.id} title={`${server.title}`}>
                                     <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons' style={{
