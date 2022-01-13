@@ -66,14 +66,6 @@ const Channels = () => {
     };
 
     useEffect(() => {
-        const newPersist = document.getElementById(`channel-${channelId}`);
-        const anotherPersist = document.querySelector('.persist');
-        if (anotherPersist) anotherPersist.classList.remove('persist');
-        if (newPersist) newPersist.classList.add('persist');
-        return
-    }, [channelId])
-
-    useEffect(() => {
         if (!cogWheelClicked && !individualChannel) return;
 
         const closeMenu = (e) => {
@@ -94,9 +86,14 @@ const Channels = () => {
         return () => document.removeEventListener("click", closeMenu);
     }, [individualChannel, cogWheelClicked]);
 
-    useEffect(() => {
-        dispatch(channelActions.getChannels(serverId));
-    }, [dispatch, serverId]);
+    useEffect(async () => {
+        await dispatch(channelActions.getChannels(serverId));
+        const newPersist = document.getElementById(`channel-${channelId}`);
+        const anotherPersist = document.querySelector('.persist');
+        if (anotherPersist) anotherPersist.classList.remove('persist');
+        if (newPersist) newPersist.classList.add('persist');
+        return
+    }, [dispatch, serverId, channelId]);
 
     if (serverId && sessionUser) {
 
