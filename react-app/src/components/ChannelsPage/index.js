@@ -116,8 +116,10 @@ const Channels = () => {
                                     {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().slice(0, 19)}</li>
                                         : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}
                                 </NavLink>
-                                <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
-                                    hidden={owner_define === true && channel.title.toLowerCase() !== 'general' ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                                {owner_define && channel.title.toLowerCase() !== 'general' &&
+                                <button className='mod-channel-button' id={`cog-wheel-${channel.id}`}
+                                onClick={() => modChannel(channel)}><i className='fas fa-cog'
+                                id={`cog-icon-${channel.id}`}></i></button>}
                             </div>
                             {owner_define && <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                                 <li>
