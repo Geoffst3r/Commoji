@@ -20,6 +20,7 @@ const Channels = () => {
     const [individualChannel, setIndividualChannel] = useState({});
 
     const serverId = params.serverId;
+    const channelId = params.channelId;
     const sessionUser = useSelector(state => state.session.user);
     const servers = useSelector(state => state.servers.servers)
     const server = servers?.[serverId]
@@ -56,13 +57,6 @@ const Channels = () => {
         };
     };
 
-    const persist = (id) => {
-        const newPersist = document.getElementById(`channel-${id}`)
-        const anotherPersist = document.querySelector('.persist');
-        if (anotherPersist) anotherPersist.classList.remove('persist');
-        return newPersist.classList.add('persist');
-    }
-
     const handleDelete = () => {
         const confirmed = window.confirm('Are you sure you want to remove this channel from your server?')
         if (confirmed) {
@@ -92,9 +86,14 @@ const Channels = () => {
         return () => document.removeEventListener("click", closeMenu);
     }, [individualChannel, cogWheelClicked]);
 
-    useEffect(() => {
-        dispatch(channelActions.getChannels(serverId));
-    }, [dispatch, serverId]);
+    useEffect(async () => {
+        await dispatch(channelActions.getChannels(serverId));
+        const newPersist = document.getElementById(`channel-${channelId}`);
+        const anotherPersist = document.querySelector('.persist');
+        if (anotherPersist) anotherPersist.classList.remove('persist');
+        if (newPersist) newPersist.classList.add('persist');
+        return
+    }, [dispatch, serverId, channelId]);
 
     if (serverId && sessionUser) {
 
@@ -119,7 +118,7 @@ const Channels = () => {
                     {channels.length > 0 && <ul className='channel-list'>
                         {channels.map(channel => (
                             <div className='channel' key={channel.id}>
-                                <div onClick={() => persist(channel.id)} className='channel-wrap' id={`channel-${channel.id}`}>
+                                <div className='channel-wrap' id={`channel-${channel.id}`}>
                                     <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
                                         {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().slice(0, 19)}</li>
                                             : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}

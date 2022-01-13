@@ -11,42 +11,20 @@ import './ServerPage.css'
 const Server = () => {
     const dispatch = useDispatch();
     const params = useParams();
-    let serverId;
-    if (params) serverId = params.serverId
+    const serverId = params.serverId
     const user = useSelector(state => state.session.user);
 
     let servers = useSelector(state => {
         return state.servers.serversArray
     })
 
-    const chosenServer = (id) => {
-        const chosen = document.querySelector(`.server-${id}`);
-        const prevChosen = document.querySelector('.current-chosen-server');
-
-        const homeOrAdd = (e) => {
-            const homeButton = document.querySelector('.home-button');
-            if (e.target === homeButton) {
-                if (prevChosen) prevChosen.classList.remove('current-chosen-server');
-                return
-            }
-            else {
-                if (prevChosen) prevChosen.classList.remove('current-chosen-server');
-                return chosen.classList.add('current-chosen-server');
-            };
-        };
-
-        document.addEventListener('click', homeOrAdd, false)
-        return () => document.removeEventListener("click", homeOrAdd);
-    };
-
     useEffect(async () => {
-        await dispatch(getServers())
-        const prevChosen = document.querySelector('.current-chosen-server');
-        if (prevChosen) prevChosen.classList.remove('current-chosen-server')
-        if (serverId) {
-            const chosen = document.querySelector(`.server-${serverId}`);
-            chosen.classList.add('current-chosen-server');
-        } else return
+        await dispatch(getServers());
+        const newPersist = document.querySelector(`.server-${serverId}`);
+        const anotherPersist = document.querySelector('.current-chosen-server');
+        if (anotherPersist) anotherPersist.classList.remove('current-chosen-server');
+        if (newPersist) newPersist.classList.add('current-chosen-server');
+        return
     }, [dispatch, serverId])
 
     if (!user) {
@@ -72,7 +50,6 @@ const Server = () => {
                             return (
                                 <li className={`serverButtons server-pop server-${server.serverId}`} key={server.id} title={`${server.title}`}>
                                     <NavLink title={`${server.title}`} to={`/channels/${server.serverId}`}><button className='server-buttons'
-                                        onClick={() => chosenServer(server.serverId)}
                                         style={{backgroundImage: `url(${server.image})`,
                                         backgroundSize: 'cover',
                                         backgroundRepeat: "no-repeat",

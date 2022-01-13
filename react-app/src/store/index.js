@@ -4,12 +4,14 @@ import session from './session';
 import serversReducer from './servers';
 import channelReducer from './channel';
 import messageReducer from './messages';
+import reactionReducer from './reaction';
 
 const rootReducer = combineReducers({
   session,
   servers: serversReducer,
   channels: channelReducer,
-  messages: messageReducer
+  messages: messageReducer,
+  reactions: reactionReducer
 });
 
 let enhancer;

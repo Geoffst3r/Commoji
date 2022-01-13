@@ -18,7 +18,7 @@ const Messages = () => {
     const channels = useSelector(state => state.channels)
     const serverId = params.serverId;
     const channelId = params.channelId;
-
+    let intChannelId = parseInt(channelId)
 
 
     useEffect(() => {
@@ -38,14 +38,12 @@ const Messages = () => {
         })
     }, [dispatch, channelId])
 
-
-    let intChannelId = parseInt(channelId)
-
     useEffect(() => {
         dispatch(getMessages(channelId))
     }, [dispatch, channelId, serverId])
 
-    if (messages && user) {
+
+    if (messages && user && channels[intChannelId]?.title) {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
@@ -69,22 +67,19 @@ const Messages = () => {
                                 })}
                             </ul >
                         </div>
-                        <MessageForm />
                     </div>
-
                     <MessageForm socket={socket}/>
-
                 </div>
             </>
         )
     } else {
+
         return (
             <div className='messageWrapper'>
                 <div className='MessageContainer'>
                     <ul className="MessageUl">
-                        <li key='key'> Be the first to post a message to this channel! </li>
+                        <li key='key'> Loading Chats... </li>
                     </ul >
-                    <MessageForm socket={socket}/>
                 </div>
             </div>
         )
