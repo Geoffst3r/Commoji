@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createMessage } from '../../store/messages';
 import { getMessages } from '../../store/messages';
 import './MessageForm.css'
 
-const MessageForm = () => {
+const MessageForm = ({socket}) => {
   const [errors, setErrors] = useState([]);
   const [messageContent, setMessageContent] = useState('');
   const dispatch = useDispatch();
   const params = useParams();
   const channelId = params.channelId;
 
+  const user = useSelector(state => state.session.user)
+
+
+
   const onPost = async (e) => {
     e.preventDefault();
     setErrors([]);
-    await dispatch(createMessage(messageContent, channelId))
-      .catch(async (res) => {
-        // console.log('res', res)
-        // const data = await res.json();
-        // if (data && data.errors) return setErrors(data.errors);
-      });
+    socket.emit("message", messageContent );
+    // await dispatch(createMessage(messageContent, channelId))
+      // .catch(async (res) => {
+      //   // console.log('res', res)
+      //   // const data = await res.json();
+      //   // if (data && data.errors) return setErrors(data.errors);
+      // });
     setMessageContent('');
     await dispatch(getMessages(channelId))
     return
