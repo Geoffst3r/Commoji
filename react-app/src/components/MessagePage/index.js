@@ -67,7 +67,7 @@ const Messages = () => {
                                 })}
                             </ul >
                         </div>
-                        <MessageForm />
+
                     </div>
 
                     <MessageForm socket={socket}/>
@@ -76,13 +76,13 @@ const Messages = () => {
             </>
         )
     } else {
+
         return (
             <div className='messageWrapper'>
                 <div className='MessageContainer'>
                     <ul className="MessageUl">
-                        <li key='key'> Be the first to post a message to this channel! </li>
+                        <li key='key'> Loading Chats... </li>
                     </ul >
-                    <MessageForm socket={socket}/>
                 </div>
             </div>
         )
