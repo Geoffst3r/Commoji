@@ -1,5 +1,5 @@
 .ChannelContainer{
-    height: 90%;
+    height: 94%;
     width: 300px;
     left: 0;
     top: 0;
@@ -68,6 +68,8 @@
 }
 .mod-channel-visible{
     visibility: visible;
+    display: flex;
+    gap: 1px;
 }
 .channel:hover .mod-channel-button {
     visibility: visible;
@@ -83,10 +85,30 @@
 .mod-channel-button, .mod-channel-button-persist, .add-channel{
     color: gray;
 }
+.edit-channel-button{
+    color: #5865f2;
+    padding: 5px 7px;
+    font-size: 15px;
+    border-radius: 5px;
+    transition-property: background-color;
+    transition-duration: .3s;
+}
+.edit-channel-button:hover{
+    background-color: #202225;
+}
 .delete-channel-button{
     color: red;
+    padding: 5px 7px;
+    font-size: 15px;
+    border-radius: 5px;
+    transition-property: color, background-color;
+    transition-duration: .3s;
 }
-.edit-channel-button, .add-channel:hover, .mod-channel-button:hover, .mod-channel-button-persist:hover{
+.delete-channel-button:hover{
+    background-color: rgb(248, 68, 68);
+    color: white;
+}
+.add-channel:hover, .mod-channel-button:hover, .mod-channel-button-persist:hover{
     color: white;
 }
 .mod-channel-hidden, .mod-channel-visible{
@@ -122,7 +144,7 @@
 .user-bar {
     border-top: #1e1f22 solid 1px;
     background-color: #2f3136;
-    height: 10%;
+    height: 6%;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -140,4 +162,26 @@
 .channels-none{
     color: gray;
     margin-left: 10px;
+}
+.mod-channel-button:hover:after {
+    background: #202225;
+    border-radius: 5px;
+    color: white;
+    content: 'Edit Channel';
+    padding: 5px 8px;
+    position: fixed;
+    z-index: 98;
+    width: 77px;
+    transform: translate(-50px, -50px);
+}
+.mod-channel-button-persist:hover:after {
+    background: #202225;
+    border-radius: 5px;
+    color: white;
+    content: 'Close Menu';
+    padding: 5px 8px;
+    position: fixed;
+    z-index: 98;
+    width: auto;
+    transform: translate(-45px, -50px);
 }
