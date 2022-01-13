@@ -43,7 +43,7 @@ const Messages = () => {
     }, [dispatch, channelId, serverId])
 
 
-    if (messages && user && channels[intChannelId].title) {
+    if (messages && user && channels[intChannelId]?.title) {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
