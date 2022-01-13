@@ -33,7 +33,7 @@ const MessageForm = () => {
   return (
     <>
       <div className='MessageFormContainer'>
-        <form onSubmit={onPost} className='message-form'>
+        <form autocomplete="off" onSubmit={onPost} className='message-form'>
           <div className='message-error-box'>
             {errors.length > 0 && errors.map((error, ind) => (
               <div key={ind}>{error}</div>
@@ -42,6 +42,7 @@ const MessageForm = () => {
           <label htmlFor='message'></label>
           <div>
             <input
+              autocomplete="off"
               name='message'
               type='text'
               value={messageContent}
