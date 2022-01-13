@@ -16,6 +16,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin-left: 15px;
 }
 .ChannelsEmptySpace{
@@ -50,6 +52,7 @@
 }
 .channel-wrap:hover{
     background-color: #606163;
+    border-radius: 5px;
 }
 .mod-channel-button-hidden{
     border: none;
