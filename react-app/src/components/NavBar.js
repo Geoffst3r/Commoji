@@ -6,7 +6,6 @@ import SignUpModal from './SignUpModal'
 import './NavBar.css'
 import { useSelector } from 'react-redux';
 
-
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
   let sessionLinks;

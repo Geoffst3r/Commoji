@@ -10,9 +10,7 @@ const rootReducer = combineReducers({
   servers: serversReducer,
   channels: channelReducer,
   messages: messageReducer
-
 });
-
 
 let enhancer;
 

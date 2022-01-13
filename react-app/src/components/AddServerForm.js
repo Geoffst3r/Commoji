@@ -6,7 +6,6 @@ import { getServers } from '../store/servers';
 import { useEffect } from 'react';
 import "./ServerForms.css"
 
-
 const AddServerForm = ({ modalSetter }) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
@@ -33,15 +32,12 @@ const AddServerForm = ({ modalSetter }) => {
         if (newServer) {
             newServerDb = await dispatch(createServer(newServer));
             console.log('newServer____________________________', newServerDb)
-
             dispatch(getServers())
         }
         modalSetter();
         console.log('newServer_______OUT_____________________', newServerDb['generalId'])
 
-        // return history.push(`/channels/${newServerDb['id']}`)
         return history.push(`/channels/${newServerDb['id']}/${newServerDb['generalId']}`)
-
     };
 
     const updateTitle = (e) => {
@@ -55,7 +51,6 @@ const AddServerForm = ({ modalSetter }) => {
     const updateImage = (e) => {
         setImage(e.target.value);
     };
-
 
     return (
         <>
@@ -93,8 +88,6 @@ const AddServerForm = ({ modalSetter }) => {
                         value={image}
                     ></input>
                 </div>
-
-
                 <button className='newserver-submit-button' type='submit'>Create Server</button>
             </form>
         </>

@@ -2,33 +2,25 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-
-
 import { getMessages } from '../../store/messages';
-import './MessagePage.css'
 import MessageForm from './MessageForm';
-
-
+import './MessagePage.css'
 
 const Messages = () => {
     const params = useParams();
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
+    const messages = useSelector(state => state.messages.messages);
+
     const serverId = params.serverId;
     const channelId = params.channelId;
+
     useEffect(() => {
         dispatch(getMessages(channelId))
     }, [dispatch, channelId, serverId])
 
-
-
-    const messages = useSelector(state => state.messages.messages);
-
-
     if (messages && user) {
         return (
-
-
             <div className='messageWrapper'>
                 <div className='messageOuterWrapper'>
                     <div className='MessagesContainer'>
@@ -49,10 +41,8 @@ const Messages = () => {
                     <MessageForm />
                 </div>
             </div>
-
         )
-    }
-    else {
+    } else {
         return (
             <div className='messageWrapper'>
                 <div className='MessageContainer'>
@@ -62,10 +52,8 @@ const Messages = () => {
                     <MessageForm />
                 </div>
             </div>
-
         )
     }
-
 }
 
 export default Messages;

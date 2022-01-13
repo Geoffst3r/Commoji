@@ -5,8 +5,6 @@ import { getServers } from '../store/servers';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-
-
 const EditServerForm = ({ modalSetter }) => {
     const { serverId } = useParams()
     const id = parseInt(serverId)
@@ -35,11 +33,10 @@ const EditServerForm = ({ modalSetter }) => {
             ownerId
         }
         if (newServer) {
-            await dispatch(editServer(newServer));
-            dispatch(getServers())
+            dispatch(editServer(newServer));
+            dispatch(getServers());
         }
         modalSetter();
-
     };
 
     const updateTitle = (e) => {
@@ -53,7 +50,6 @@ const EditServerForm = ({ modalSetter }) => {
     const updateImage = (e) => {
         setImage(e.target.value);
     };
-
 
     return (
         <>
@@ -91,10 +87,7 @@ const EditServerForm = ({ modalSetter }) => {
                         value={image}
                     ></input>
                 </div>
-
-
                 <button className='editserver-submit-button' type='submit'>Edit Server</button>
-
             </form>
         </>
     );

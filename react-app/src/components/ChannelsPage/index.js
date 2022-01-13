@@ -61,8 +61,8 @@ const Channels = () => {
         if (confirmed) {
             dispatch(channelActions.removeChannel(individualChannel));
             history.push(`/channels/${serverId}`);
-        }
-    }
+        };
+    };
 
     useEffect(() => {
         if (!cogWheelClicked && !individualChannel) return;
@@ -88,7 +88,6 @@ const Channels = () => {
     useEffect(() => {
         dispatch(channelActions.getChannels(serverId));
     }, [dispatch, serverId]);
-
 
     if (serverId && sessionUser) {
 
@@ -121,7 +120,7 @@ const Channels = () => {
                                     <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
                                         hidden={owner_define === true && channel.title.toLowerCase() !== 'general' ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
                                 </div>
-                                {owner_define && <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
+                                <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                                     <li>
                                         <button className='edit-channel-button' onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
                                         {showEditChannelModal && (
@@ -133,16 +132,13 @@ const Channels = () => {
                                     <li>
                                         <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
                                     </li>
-                                </ul>}
-
+                                </ul>
                             </div>
                         ))}
-
                         <div className='ChannelsEmptySpace'></div>
                     </ul>
                     }
                 </div>
-
                 <div className='user-bar'>
                     <h2>{sessionUser.username}</h2>
                     <LogoutButton />
@@ -152,10 +148,16 @@ const Channels = () => {
         )
     } else {
         return (
-            <div className='ChannelContainer'>
-                <p className='channels-none'>CHANNELS</p>
-                <div className='noServerSelected'>Select a server to view the channels within it...</div>
-            </div>
+            <>
+                <div className='ChannelContainer'>
+                    <p className='channels-none'>CHANNELS</p>
+                    <div className='noServerSelected'>Select a server to view the channels within it...</div>
+                    <div className='user-bar'>
+                        <h2>{sessionUser.username}</h2>
+                        <LogoutButton />
+                    </div>
+                </div>
+            </>
         )
     }
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal } from '../context/Modal';
-
 import EditServerForm from './EditServerForm';
 
 function EditServerModal() {
@@ -8,7 +7,7 @@ function EditServerModal() {
 
   const modalSetter = () => {
     setShowModal(false)
-  }
+  };
 
   return (
     <>
