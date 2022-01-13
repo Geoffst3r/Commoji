@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createMessage } from '../../store/messages';
-import './MessageForm.css'
 import { getMessages } from '../../store/messages';
-
-
+import './MessageForm.css'
 
 const MessageForm = () => {
   const [errors, setErrors] = useState([]);
@@ -17,21 +15,16 @@ const MessageForm = () => {
   const onPost = async (e) => {
     e.preventDefault();
     setErrors([]);
-    // const requestChannel = {title, serverId};
     await dispatch(createMessage(messageContent, channelId))
       .catch(async (res) => {
         // console.log('res', res)
         // const data = await res.json();
         // if (data && data.errors) return setErrors(data.errors);
-
       });
     setMessageContent('');
     await dispatch(getMessages(channelId))
     return
-  }
-
-
-  // return <Redirect to='/channels' />;
+  };;
 
   const updateMessageContent = (e) => {
     setMessageContent(e.target.value);

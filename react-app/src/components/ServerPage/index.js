@@ -12,7 +12,6 @@ import './ServerPage.css'
 const Server = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
-    // const [selected, setSelected] = useState()
 
     let servers = useSelector(state => {
         return state.servers.serversArray
@@ -58,7 +57,6 @@ const Server = () => {
                         <li className="server-pop" title="Add a server" key='add-server-modal'>
                             <AddServerModal />
                         </li>
-
                         <div key='empty-space' className='emptySpace'></div>
                     </ul>
                 </div>
