@@ -115,3 +115,11 @@
 .channel-wrap{
     width: 290px;
 }
+.noServerSelected{
+    padding: 10px;
+    color: white;
+}
+.channels-none{
+    color: gray;
+    margin-left: 10px;
+}
