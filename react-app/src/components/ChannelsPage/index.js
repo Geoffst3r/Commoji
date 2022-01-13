@@ -90,58 +90,59 @@ const Channels = () => {
     }, [dispatch, serverId]);
 
 
-    if (serverId) {
+    if (serverId && sessionUser) {
 
         return (
-            <div className='ChannelContainer'>
-                <div className='server-name-container'>
-                    {title}
-                    <div className='server-options'>
-                        <ServerDetail />
-                    </div>
-                </div>
-                <div className='channel-modsANDinfo'>
-                    <p className='channels'>CHANNELS</p>
-                    <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>
-                    {showAddChannelModal && (
-                        <Modal onClose={() => setShowAddChannelModal(false)}>
-                            <ChannelForm callSetter={callAddSetter} />
-                        </Modal>
-                    )}
-                </div>
-                {channels.length > 0 && <ul className='channel-list'>
-                    {channels.map(channel => (
-                        <div className='channel' key={channel.id}>
-                            <div className='channel-wrap'>
-                                <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
-                                    {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().slice(0, 19)}</li>
-                                        : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}
-                                </NavLink>
-                                {owner_define && channel.title.toLowerCase() !== 'general' &&
-                                <button className='mod-channel-button' id={`cog-wheel-${channel.id}`}
-                                onClick={() => modChannel(channel)}><i className='fas fa-cog'
-                                id={`cog-icon-${channel.id}`}></i></button>}
-                            </div>
-                            {owner_define && <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
-                                <li>
-                                    <button className='edit-channel-button' onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
-                                    {showEditChannelModal && (
-                                        <Modal onClose={() => setShowEditChannelModal(false)}>
-                                            <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
-                                        </Modal>
-                                    )}
-                                </li>
-                                <li>
-                                    <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
-                                </li>
-                            </ul>}
+            <div className='channel-user-container'>
+                <div className='ChannelContainer'>
+                    <div className='server-name-container'>
+                        {title}
+                        <div className='server-options'>
+                            <ServerDetail />
                         </div>
-                    ))}
+                    </div>
+                    <div className='channel-modsANDinfo'>
+                        <p className='channels'>CHANNELS</p>
+                        <button className="add-channel" onClick={() => setShowAddChannelModal(true)} hidden={owner_define === true ? false : true}>+</button>
+                        {showAddChannelModal && (
+                            <Modal onClose={() => setShowAddChannelModal(false)}>
+                                <ChannelForm callSetter={callAddSetter} />
+                            </Modal>
+                        )}
+                    </div>
+                    {channels.length > 0 && <ul className='channel-list'>
+                        {channels.map(channel => (
+                            <div className='channel' key={channel.id}>
+                                <div className='channel-wrap'>
+                                    <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
+                                        {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().slice(0, 19)}</li>
+                                            : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}
+                                    </NavLink>
+                                    <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
+                                        hidden={owner_define === true && channel.title.toLowerCase() !== 'general' ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                                </div>
+                                {owner_define && <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
+                                    <li>
+                                        <button className='edit-channel-button' onClick={() => setShowEditChannelModal(true)}>Change Channel Name</button>
+                                        {showEditChannelModal && (
+                                            <Modal onClose={() => setShowEditChannelModal(false)}>
+                                                <ChannelForm callSetter={callEditSetter} inputChannel={individualChannel} />
+                                            </Modal>
+                                        )}
+                                    </li>
+                                    <li>
+                                        <button className='delete-channel-button' onClick={() => handleDelete()}>Delete Channel</button>
+                                    </li>
+                                </ul>}
 
+                            </div>
+                        ))}
 
-                    <div className='ChannelsEmptySpace'></div>
-                </ul>
-                }
+                        <div className='ChannelsEmptySpace'></div>
+                    </ul>
+                    }
+                </div>
+
                 <div className='user-bar'>
                     <h2>{sessionUser.username}</h2>
                     <LogoutButton />
