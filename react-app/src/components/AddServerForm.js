@@ -34,7 +34,7 @@ const AddServerForm = ({ modalSetter }) => {
             console.log('newServer____________________________', newServerDb)
             dispatch(getServers())
         }
-        modalSetter();
+        modalSetter(newServerDb['id']);
         console.log('newServer_______OUT_____________________', newServerDb['generalId'])
 
         return history.push(`/channels/${newServerDb['id']}/${newServerDb['generalId']}`)

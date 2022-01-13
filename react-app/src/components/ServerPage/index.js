@@ -1,8 +1,7 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { getServers } from '../../store/servers';
 
 import AddServerModal from '../AddServerModal';
@@ -10,16 +9,15 @@ import './ServerPage.css'
 
 
 const Server = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const params = useParams();
+    let serverId;
+    if (params) serverId = params.serverId
     const user = useSelector(state => state.session.user);
 
     let servers = useSelector(state => {
         return state.servers.serversArray
     })
-
-    // const newServerAsChosen = (id) => {
-    //     const newServer = document.querySelector(`.server-${id}`);
-    // }
 
     const chosenServer = (id) => {
         const chosen = document.querySelector(`.server-${id}`);
@@ -41,9 +39,15 @@ const Server = () => {
         return () => document.removeEventListener("click", homeOrAdd);
     };
 
-    useEffect(() => {
-        dispatch(getServers())
-    }, [dispatch])
+    useEffect(async () => {
+        await dispatch(getServers())
+        const prevChosen = document.querySelector('.current-chosen-server');
+        if (prevChosen) prevChosen.classList.remove('current-chosen-server')
+        if (serverId) {
+            const chosen = document.querySelector(`.server-${serverId}`);
+            chosen.classList.add('current-chosen-server');
+        } else return
+    }, [dispatch, serverId])
 
     if (!user) {
         return <Redirect to='/' />;
