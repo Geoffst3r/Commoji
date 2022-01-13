@@ -19,15 +19,15 @@ const MessageForm = ({socket}) => {
   const onPost = async (e) => {
     e.preventDefault();
     setErrors([]);
-    socket.emit("message", messageContent );
-    // await dispatch(createMessage(messageContent, channelId))
-      // .catch(async (res) => {
+    await dispatch(createMessage(messageContent, channelId))
+    // .catch(async (res) => {
       //   // console.log('res', res)
       //   // const data = await res.json();
       //   // if (data && data.errors) return setErrors(data.errors);
       // });
-    setMessageContent('');
-    await dispatch(getMessages(channelId))
+      socket.emit("message", messageContent );
+      setMessageContent('');
+      await dispatch(getMessages(channelId))
     return
   };;
 

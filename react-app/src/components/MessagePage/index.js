@@ -27,7 +27,8 @@ const Messages = () => {
         socket.on("message", (chat) => {
             // when we recieve a chat, add it into our messages array in state
             // setMessages(messages => [...messages, chat])
-            dispatch(createMessage(chat, channelId))
+            //dispatch(createMessage(chat, channelId))
+            dispatch(getMessages(channelId))
         })
 
         // when component unmounts, disconnect
@@ -38,7 +39,7 @@ const Messages = () => {
 
     useEffect(() => {
         dispatch(getMessages(channelId))
-    }, [dispatch, channelId, serverId, socket])
+    }, [dispatch, channelId, serverId])
 
     if (messages && user) {
         return (
