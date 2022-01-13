@@ -121,6 +121,7 @@
     flex-direction: row;
     z-index: 999;
     justify-content: space-around;
+    color: white;
 }
 
 .user-bar button {

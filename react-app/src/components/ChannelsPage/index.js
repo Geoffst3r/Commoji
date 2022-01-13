@@ -91,7 +91,7 @@ const Channels = () => {
     }, [dispatch, serverId]);
 
 
-    if (serverId) {
+    if (serverId && sessionUser) {
 
         return (
             <div className='channel-user-container'>
