@@ -26,20 +26,20 @@ export const getReactions = (messageId) => async (dispatch) => {
   };
 };
 
-export const addReaction = (reaction) => async (dispatch) => {
-  const { messageId, userId, reactionString: reaction } = reaction;
+export const addReaction = (inputReaction) => async (dispatch) => {
+  const { messageId, userId, reaction } = inputReaction;
   const res = await fetch(`/api/reactions/${messageId}/`, {
     method: 'POST',
     body: JSON.stringify({
-        messageId, userId, reactionString
+        messageId, userId, reaction
     })
   });
   if (res.ok) {
-    const reaction = await res.json();
-    if (reaction !== "bad data") {
-      dispatch(add_Reaction(reaction));
+    const outputReaction = await res.json();
+    if (outputReaction !== "bad data") {
+      dispatch(add_Reaction(outputReaction));
     }
-    return reaction;
+    return outputReaction;
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {
