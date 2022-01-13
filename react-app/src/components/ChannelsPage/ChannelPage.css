@@ -12,7 +12,6 @@
 .channel-title{
     display: flex;
     color: gray;
-    padding: 2px;
     width: 95%;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -20,6 +19,13 @@
     padding-top: 5px;
     padding-bottom: 5px;
     margin-left: 15px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size: 17px;
 }
 .ChannelsEmptySpace{
     width: 270px;
@@ -184,4 +190,11 @@
     z-index: 98;
     width: auto;
     transform: translate(-45px, -50px);
+}
+.persist{
+    background-color: #606163;
+    border-radius: 5px;
+}
+.persist .channel-title{
+    color: honeydew;
 }
