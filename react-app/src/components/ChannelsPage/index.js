@@ -154,7 +154,8 @@ const Channels = () => {
     } else {
         return (
             <div className='ChannelContainer'>
-                Select a server to view the channels within it...
+                <p className='channels-none'>CHANNELS</p>
+                <div className='noServerSelected'>Select a server to view the channels within it...</div>
             </div>
         )
     }
