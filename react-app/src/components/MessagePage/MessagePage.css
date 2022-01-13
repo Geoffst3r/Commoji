@@ -110,3 +110,7 @@ background-color: #40444b;
 .userMessage{
   color: rgb(230, 171, 230);
 }
+
+.fa-hashtag{
+  padding-right: 5px;
+}
