@@ -22,7 +22,6 @@ def all_reactions():
 
 @reaction_routes.route('/<int:message_id>/', methods=['GET'])
 def get_reactions(message_id):
-    print('_________________________Inside get rout')
     print(message_id)
     reactions = Reaction.query.filter(Reaction.messageId == message_id).all()
     print(reactions)
@@ -36,7 +35,6 @@ def get_reactions(message_id):
 
 @reaction_routes.route('/<int:message_id>/', methods=['POST'])
 def new_reaction(message_id):
-    print('HITTING ROUTE')
     userId = None
     if current_user.is_authenticated:
             user = current_user.to_dict()
@@ -48,16 +46,26 @@ def new_reaction(message_id):
     else:
         data = request.json
         try:
-            new_reaction = {
-                "messageId": message_id,
-                "reaction": data['reaction'],
-                'userId': userId
-            }
+            existing_reaction = Reaction.query.filter(
+                Reaction.userId == userId, 
+                Reaction.messageId == message_id, 
+                Reaction.reaction == data['reaction']
+                ).first()
+            if existing_reaction:
+                db.session.delete(existing_reaction)
+                db.session.commit()
+                return jsonify('reaction removed')
+            else:
+                new_reaction = {
+                    "messageId": message_id,
+                    "reaction": data['reaction'],
+                    'userId': userId
+                }
 
-            new_reaction_db = Reaction(**new_reaction)
-            db.session.add(new_reaction_db)
-            db.session.commit()
-            return new_reaction
+                new_reaction_db = Reaction(**new_reaction)
+                db.session.add(new_reaction_db)
+                db.session.commit()
+                return new_reaction
 
         except IntegrityError as e:
             print(e)
