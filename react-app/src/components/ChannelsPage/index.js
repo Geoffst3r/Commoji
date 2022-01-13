@@ -10,7 +10,6 @@ import './ChannelPage.css';
 import ServerDetail from '../ServerDetail';
 import LogoutButton from '../auth/LogoutButton';
 
-
 const Channels = () => {
     const dispatch = useDispatch();
     const params = useParams();
