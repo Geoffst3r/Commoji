@@ -19,9 +19,12 @@ const ServerDetail = () => {
     console.log('USER', user);
 
     const handleDelete = async () => {
-        await dispatch(deleteServer(server))
-        await dispatch(getServers());
-        history.push(`/channels/`);
+        const confirmed = window.confirm('Are you sure you want to remove this server?')
+        if (confirmed) {
+            await dispatch(deleteServer(server))
+            await dispatch(getServers());
+            history.push(`/channels/`);
+        }
     };
 
     useEffect(() => {

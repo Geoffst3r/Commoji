@@ -146,20 +146,23 @@ const Channels = () => {
             </div>
 
         )
-    } else {
+    } else if (sessionUser) {
         return (
-            <>
+            <div className='channel-user-container'>
                 <div className='ChannelContainer'>
                     <p className='channels-none'>CHANNELS</p>
                     <div className='noServerSelected'>Select a server to view the channels within it...</div>
-                    <div className='user-bar'>
-                        <h2>{sessionUser.username}</h2>
-                        <LogoutButton />
-                    </div>
                 </div>
-            </>
+                <div className='user-bar'>
+                    <h2>{sessionUser.username}</h2>
+                    <LogoutButton />
+                </div>
+            </div>
         )
-    }
+    } else return (
+        <>
+        </>
+    )
 }
 
 
