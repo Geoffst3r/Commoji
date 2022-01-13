@@ -8,6 +8,7 @@ import * as channelActions from '../../store/channel';
 import ChannelForm from './ChannelForm';
 import './ChannelPage.css';
 import ServerDetail from '../ServerDetail';
+import LogoutButton from '../auth/LogoutButton';
 
 const Channels = () => {
     const dispatch = useDispatch();
@@ -141,7 +142,12 @@ const Channels = () => {
                     <div className='ChannelsEmptySpace'></div>
                 </ul>
                 }
+                <div className='user-bar'>
+                    <h2>{sessionUser.username}</h2>
+                    <LogoutButton />
+                </div>
             </div>
+
         )
     } else {
         return (
