@@ -9,12 +9,14 @@
     width: 0;
 }
 .channel-title{
+    display: flex;
     color: gray;
     padding: 2px;
     width: 95%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin-left: 15px;
 }
 .ChannelsEmptySpace{
     width: 270px;
@@ -25,11 +27,12 @@
     display: flex;
     row-gap: 5px;
     flex-direction: column;
-    margin-left: 30px;
 }
 
 .ChannelLinks{
+    display: flex;
     text-decoration: none;
+    width: 100%;
 }
 .channel{
     display: flex;
@@ -42,10 +45,10 @@
     transition-duration: .2s;
     transition-property: background-color,color;
 }
-.channel:hover .channel-title{
+.channel-wrap:hover .channel-title{
     color: honeydew;
 }
-.channel:hover{
+.channel-wrap:hover{
     background-color: #606163;
 }
 .mod-channel-button-hidden{
@@ -93,14 +96,14 @@
     justify-self: flex-end;
 }
 .channels{
-    margin: 10px 5px 5px 5px;
+    margin: 0px 5px 5px 5px;
     color: gray;
 }
 .add-channel{
     margin-right: 10px;
     font-size: 30px;
+    margin-top: -8px;
 }
-
 .server-name-container {
     display: flex;
     text-align: center;
@@ -108,5 +111,7 @@
     margin-bottom: 20px;
     padding: 10px;
     border-bottom: #1e1f22 1px solid;
-
+}
+.channel-wrap{
+    width: 290px;
 }
