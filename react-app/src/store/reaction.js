@@ -27,7 +27,7 @@ export const getReactions = (messageId) => async (dispatch) => {
 };
 
 export const addReaction = (reaction) => async (dispatch) => {
-  const { messageId, userId, reactionString } = reaction;
+  const { messageId, userId, reactionString: reaction } = reaction;
   const res = await fetch(`/api/reactions/${messageId}/`, {
     method: 'POST',
     body: JSON.stringify({
@@ -55,12 +55,14 @@ const reactionReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_REACTIONS:
       action.reactions.forEach(reaction => {
-        newState[reaction.id] = reaction;
+        if (newState[reaction.messageId]) {
+          newState[reaction.messageId] = {...newState[reaction.messageId], reaction}
+        } else newState[reaction.id] = reaction;
       });
       return newState;
     case ADD_REACTION:
       newState = Object.assign({}, state);
-      newState[action.reaction.id] = action.reaction;
+      newState[action.reaction.messageId] = action.reaction;
       return newState;
     default:
       return state;
