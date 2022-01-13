@@ -16,9 +16,8 @@ const add_Reaction = (reaction) => {
   }
 }
 
-export const getReactions = (messageId) => async (dispatch) => {
-  if (!messageId) return;
-  const res = await fetch(`/api/reactions/${messageId}/`);
+export const getReactions = () => async (dispatch) => {
+  const res = await fetch(`/api/reactions/`);
   if (res.ok) {
     const reactions = await res.json();
     dispatch(get_Reactions(reactions));

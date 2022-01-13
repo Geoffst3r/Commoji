@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { getMessages, createMessage } from '../../store/messages';
+import * as reactionActions from '../../store/reaction';
 import { io } from 'socket.io-client';
 import MessageForm from './MessageForm';
 import './MessagePage.css'
@@ -15,7 +16,8 @@ const Messages = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
     const messages = useSelector(state => state.messages.messages);
-    const channels = useSelector(state => state.channels)
+    const channels = useSelector(state => state.channels);
+    const reactions = useSelector(state => state.reactions);
     const serverId = params.serverId;
     const channelId = params.channelId;
     let intChannelId = parseInt(channelId)
@@ -40,6 +42,7 @@ const Messages = () => {
 
     useEffect(() => {
         dispatch(getMessages(channelId))
+        dispatch(reactionActions.getReactions());
     }, [dispatch, channelId, serverId])
 
 
