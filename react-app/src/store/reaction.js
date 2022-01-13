@@ -1,6 +1,6 @@
 // constants
-const GET_REACTIONS = '/channels/getAllChannels'
-const ADD_REACTION = 'channels/addChannel'
+const GET_REACTIONS = '/reactions/getMessageReactions'
+const ADD_REACTION = '/reactions/addReaction'
 
 const get_Reactions = (reactions) => {
   return {
