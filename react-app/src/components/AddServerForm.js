@@ -68,6 +68,7 @@ const AddServerForm = ({ modalSetter }) => {
                         name='title'
                         onChange={updateTitle}
                         value={title}
+                        required
                     ></input>
                 </div>
                 <div className='LabelAndInputContainer'>
@@ -77,6 +78,7 @@ const AddServerForm = ({ modalSetter }) => {
                         name='email'
                         onChange={updateDescription}
                         value={description}
+                        required
                     ></input>
                 </div>
                 <div className='LabelAndInputContainer'>
