@@ -1,12 +1,16 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { getMessages } from '../../store/messages';
+import { getMessages, createMessage } from '../../store/messages';
+import { io } from 'socket.io-client';
 import MessageForm from './MessageForm';
 import './MessagePage.css'
 
+let socket;
+
 const Messages = () => {
+    // const [messages, setMessages] = useState([])
     const params = useParams();
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user);
@@ -14,7 +18,29 @@ const Messages = () => {
     const channels = useSelector(state => state.channels)
     const serverId = params.serverId;
     const channelId = params.channelId;
+
+
+
+    useEffect(() => {
+        // create websocket/connect
+        socket = io();
+
+        socket.on("message", (chat) => {
+            // when we recieve a chat, add it into our messages array in state
+            // setMessages(messages => [...messages, chat])
+            //dispatch(createMessage(chat, channelId))
+            dispatch(getMessages(channelId))
+        })
+
+        // when component unmounts, disconnect
+        return (() => {
+            socket.disconnect()
+        })
+    }, [dispatch, channelId])
+
+
     let intChannelId = parseInt(channelId)
+
     useEffect(() => {
         dispatch(getMessages(channelId))
     }, [dispatch, channelId, serverId])
@@ -45,6 +71,9 @@ const Messages = () => {
                         </div>
                         <MessageForm />
                     </div>
+
+                    <MessageForm socket={socket}/>
+
                 </div>
             </>
         )
@@ -55,7 +84,7 @@ const Messages = () => {
                     <ul className="MessageUl">
                         <li key='key'> Be the first to post a message to this channel! </li>
                     </ul >
-                    <MessageForm />
+                    <MessageForm socket={socket}/>
                 </div>
             </div>
         )

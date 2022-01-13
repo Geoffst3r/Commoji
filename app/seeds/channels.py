@@ -3,6 +3,10 @@ from app.models import db, Channel
 
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
+    general1 = Channel(
+        title='Potato Seed', serverId=1)
+    general2 = Channel(
+        title='Potato Seed', serverId=2)
     channel1 = Channel(
         title='Apple Seed', serverId=1)
     channel2 = Channel(
@@ -10,6 +14,8 @@ def seed_channels():
     channel3 = Channel(
         title='Potato Seed', serverId=2)
 
+    db.session.add(general1)
+    db.session.add(general2)
     db.session.add(channel1)
     db.session.add(channel2)
     db.session.add(channel3)
