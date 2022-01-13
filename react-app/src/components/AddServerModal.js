@@ -6,7 +6,7 @@ function AddServerModal() {
   const [showModal, setShowModal] = useState(false);
 
   const modalSetter = () => {
-    setShowModal(false)
+    setShowModal(false);
   }
 
   return (
