@@ -5,7 +5,8 @@
     position: fixed;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
+    background-color: #625794;
 }
 .splash-description{
     display: flex;
