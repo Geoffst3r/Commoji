@@ -89,14 +89,14 @@
     transform: translate(70px, 2px);
 }
 
-.current-chosen-server:after{
+.current-chosen-server::before{
     background: white;
     border-radius: 5px;
     color: white;
     content: '';
-    padding: 24px 5px;
-    position: fixed;
+    padding: 5px 3px;
+    position: sticky;
     z-index: 98;
     width: auto;
-    transform: translate(-67px, 2px);
+    margin-right: 5px;
 }
