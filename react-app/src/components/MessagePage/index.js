@@ -19,7 +19,7 @@ const Messages = () => {
     const serverId = params.serverId;
     const channelId = params.channelId;
     let intChannelId = parseInt(channelId)
-    
+
 
     useEffect(() => {
         // create websocket/connect
@@ -67,11 +67,8 @@ const Messages = () => {
                                 })}
                             </ul >
                         </div>
-
                     </div>
-
                     <MessageForm socket={socket}/>
-
                 </div>
             </>
         )
