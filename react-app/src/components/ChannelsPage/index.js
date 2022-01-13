@@ -121,7 +121,7 @@ const Channels = () => {
                             <div className='channel' key={channel.id}>
                                 <div onClick={() => persist(channel.id)} className='channel-wrap' id={`channel-${channel.id}`}>
                                     <NavLink className={"ChannelLinks"} to={`/channels/${serverId}/${channel.id}`}>
-                                        {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().buttonce(0, 19)}</li>
+                                        {channel.title.length > 19 ? <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase().slice(0, 19)}</li>
                                             : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}
                                     </NavLink>
                                     <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
