@@ -75,7 +75,7 @@ const Messages = () => {
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
                                                             <div className='userMessage messageUser'>{messages[message].username}</div>
-                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}><i class="far fa-grin-alt"></i></button>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                             <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
                                                                 <span>1</span>
                                                                 <span>2</span>
@@ -90,7 +90,7 @@ const Messages = () => {
                                                         <div className='MessageAndButton'>
                                                             <div className='justNameAndButton'>
                                                                 <div className='messageUser'>{messages[message].username}</div>
-                                                                <button className='ReactionsButton' onClick={() => showReactions(message)}><i class="far fa-grin-alt"></i></button>
+                                                                <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                                 <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
                                                                     <span>1</span>
                                                                     <span>2</span>
