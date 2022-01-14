@@ -28,7 +28,6 @@ export const getReactions = () => async (dispatch) => {
   const res = await fetch(`/api/reactions/`);
   if (res.ok) {
     const reactions = await res.json();
-    console.log('_________________reactions', reactions)
     dispatch(get_Reactions(reactions));
     return reactions;
   };

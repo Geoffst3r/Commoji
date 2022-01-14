@@ -11,8 +11,6 @@ server_routes = Blueprint('servers', __name__)
 # SERVER ROUTES:
 @server_routes.route('/', methods=['POST'])
 def new_server():
-
-    print('befor dict!!!!!1', request.json)
     data = request.json
     title = data["title"]
     if title == '':
@@ -23,7 +21,6 @@ def new_server():
             'ownerId': data['ownerId']
         }
         if 'image' in data and data["image"] != '':
-            print('image here')
             new_server['image'] = data['image']
         new_server_db = Server(
             **new_server
@@ -99,7 +96,6 @@ def update_server(server_id):
         return jsonify('bad data'), 400
     elif server:
         data = request.json
-        print('DATA', data)
         if 'title' in data:
             server.title = data['title']
         if 'image' in data:
