@@ -1,4 +1,4 @@
-# Kommoji - A Discord Clone
+# Commoji - A Discord Clone
 [Commoji](https://commoji.herokuapp.com)
 
 [Wiki](https://github.com/Geoffst3r/python-group-project/wiki)
