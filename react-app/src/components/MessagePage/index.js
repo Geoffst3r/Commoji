@@ -64,7 +64,8 @@ const Messages = () => {
         // console.log('unicode AFTER on comp', unicode)
         // console.log('shortname on comp', shortName)
         await dispatch(reactionActions.addReaction(unicode, messageId));
-        dispatch(reactionActions.getReactions());
+        await dispatch(reactionActions.getReactions());
+        return 
     };
 
     console.log('_______messages', messages, 'reactions', reactions)
@@ -86,7 +87,7 @@ const Messages = () => {
                                     return (
                                         <>
                                             <li className='messageContentHolder' key={message}>
-                                                <div>&#x1F600;</div>
+                                                {/* <div>&#x1F600;</div> */}
                                                 {user.id === messages[message].userId ? <>
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
@@ -113,7 +114,7 @@ const Messages = () => {
                                                                 if (individualReaction === '&#x1F600;') {
                                                                     return (
                                                                         <div className='reaction-individual'>
-                                                                            <div>&#x1F600;</div>
+                                                                            <div className='emoji-display'>&#x1F600;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
                                                                     )
@@ -121,7 +122,7 @@ const Messages = () => {
                                                                 if (individualReaction === '&#x1F602;') {
                                                                     return (
                                                                         <div className='reaction-individual'>
-                                                                            <div>&#x1F602;</div>
+                                                                            <div className='emoji-display'>&#x1F602;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
                                                                     )
@@ -129,7 +130,7 @@ const Messages = () => {
                                                                 if (individualReaction === '&#x1F643;') {
                                                                     return (
                                                                         <div className='reaction-individual'>
-                                                                            <div>&#x1F643;</div>
+                                                                            <div className='emoji-display'>&#x1F643;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
                                                                     )
@@ -137,7 +138,7 @@ const Messages = () => {
                                                                 if (individualReaction === '&#x1F607;') {
                                                                     return (
                                                                         <div className='reaction-individual'>
-                                                                            <div>&#x1F607;</div>
+                                                                            <div className='emoji-display'>&#x1F607;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
                                                                     )
@@ -145,7 +146,7 @@ const Messages = () => {
                                                                 if (individualReaction === '&#x1F615;') {
                                                                     return (
                                                                         <div className='reaction-individual'>
-                                                                            <div>&#x1F615;</div>
+                                                                            <div className='emoji-display'>&#x1F615;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
                                                                     )
@@ -153,7 +154,7 @@ const Messages = () => {
                                                                 }
                                                             } else {
                                                                 return (
-                                                                    <div className='reaction-individual'></div>
+                                                                    <div></div>
                                                                 )
                                                             }
                                                         })}
@@ -186,7 +187,7 @@ const Messages = () => {
                                                                     if (individualReaction === '&#x1F600;') {
                                                                         return (
                                                                             <div className='reaction-individual'>
-                                                                                <div>&#x1F600;</div>
+                                                                                <div className='emoji-display'>&#x1F600;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
                                                                         )
@@ -194,7 +195,7 @@ const Messages = () => {
                                                                     if (individualReaction === '&#x1F602;') {
                                                                         return (
                                                                             <div className='reaction-individual'>
-                                                                                <div>&#x1F602;</div>
+                                                                                <div className='emoji-display'>&#x1F602;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
                                                                         )
@@ -202,7 +203,7 @@ const Messages = () => {
                                                                     if (individualReaction === '&#x1F643;') {
                                                                         return (
                                                                             <div className='reaction-individual'>
-                                                                                <div>&#x1F643;</div>
+                                                                                <div className='emoji-display'>&#x1F643;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
                                                                         )
@@ -210,7 +211,7 @@ const Messages = () => {
                                                                     if (individualReaction === '&#x1F607;') {
                                                                         return (
                                                                             <div className='reaction-individual'>
-                                                                                <div>&#x1F607;</div>
+                                                                                <div className='emoji-display'>&#x1F607;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
                                                                         )
@@ -218,7 +219,7 @@ const Messages = () => {
                                                                     if (individualReaction === '&#x1F615;') {
                                                                         return (
                                                                             <div className='reaction-individual'>
-                                                                                <div>&#x1F615;</div>
+                                                                                <div className='emoji-display'>&#x1F615;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
                                                                         )
@@ -226,7 +227,7 @@ const Messages = () => {
                                                                     }
                                                                 } else {
                                                                     return (
-                                                                        <div className='reaction-individual'></div>
+                                                                        <div></div>
                                                                     )
                                                                 }
                                                             })}
