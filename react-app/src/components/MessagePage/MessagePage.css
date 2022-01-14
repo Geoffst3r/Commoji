@@ -147,9 +147,9 @@ background-color: #40444b;
 }
 .reactionsContainer{
   width: fit-content;
-  height: 35px;
+  height: 28px;
   display: flex;
-
+  gap: 5px;
 }
 .ReactionsButton{
   background-color: transparent;
@@ -176,6 +176,7 @@ background-color: #40444b;
 .justNameAndButton{
   display: flex;
   column-gap: 20px;
+  margin-top: 5px;
 }
 .Reactions{
   display: flex;
@@ -203,17 +204,17 @@ background-color: #40444b;
 .reaction-individual{
   display: flex;
   background-color: #262729;
-  justify-content: center;
-  margin-right: 2px;
-  width: 38px;
+  justify-content: space-around;
+  padding: 2px 4px;
+  width: fit-content;
   border-radius: 13px;
   align-items: center;
-
+  gap: 5px;
 }
 
 
 .emoji-display{
-margin-right: 6px;
+  padding-bottom: 2px;
 }
 
 .emoji-display:hover {
@@ -226,10 +227,11 @@ margin-right: 6px;
 }
 
 .ReactionChoice > span {
-  margin: 3px;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .ReactionChoice span:hover {
   cursor: pointer;
-
+  background-color: gray;
 }

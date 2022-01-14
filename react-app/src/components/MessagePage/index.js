@@ -68,7 +68,6 @@ const Messages = () => {
             else if ((reactionList && addReactionButton && e.target !== addReactionButton) || e.target.classList.contains('individual-reaction--')) {
                 reactionList.classList.remove('show-reaction-list');
                 reactionList.classList.add('hidden-reactions');
-                // setAddReactionClicked(false);
             };
             return setAddReactionClicked(false);;
         };
@@ -84,10 +83,6 @@ const Messages = () => {
     }, [dispatch, channelId, serverId, userId]);
 
     const postReaction = async (unicode, messageId) => {
-        // console.log('unicode B4 on comp', unicode)
-        // const shortName = emojione.toShort(unicode);
-        // console.log('unicode AFTER on comp', unicode)
-        // console.log('shortname on comp', shortName)
         await dispatch(reactionActions.addReaction(unicode, messageId));
         await dispatch(reactionActions.getReactions());
         return
