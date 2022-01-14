@@ -4,9 +4,9 @@ from app.models import db, Channel
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
     general1 = Channel(
-        title='Potato Seed', serverId=1)
+        title='general', serverId=1)
     general2 = Channel(
-        title='Potato Seed', serverId=2)
+        title='general', serverId=2)
     channel1 = Channel(
         title='Apple Seed', serverId=1)
     channel2 = Channel(
