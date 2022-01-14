@@ -25,7 +25,6 @@ const ChannelForm = ({ inputChannel, callSetter }) => {
         if (data && data.errors) return setErrors(data.errors);
       });
     callSetter();
-    console.log('!!!!!!!!!!!!!! newChannel', newChannel, 'servid', serverId)
     return history.push(`/channels/${serverId}/${newChannel['id']}`)
   };
 

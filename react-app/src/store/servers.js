@@ -34,15 +34,12 @@ export const getServers = () => async dispatch => {
 }
 
 export const createServer = (newServer) => async dispatch => {
-    // console.log('made it here')
-    console.log("NEW SERVER",newServer)
     const response = await fetch(`/api/channels/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newServer)
     })
     const server = await response.json()
-    //console.log('RESPONSE', server)
     if (response.ok) dispatch(addOneServer(server))
     return server
 }
@@ -58,7 +55,6 @@ export const deleteServer = (serverToDelete) => async dispatch => {
 }
 
 export const editServer = (serverToEdit) => async dispatch => {
-    console.log('SERVEREDIT',serverToEdit)
     const response = await fetch(`/api/channels/${serverToEdit.id}/`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
@@ -77,7 +73,6 @@ const serversReducer = (state = initialState, action) => {
         case LOAD:{
             const servers = {}
             const serversArray = action.serversArray
-            // console.log('serversARRAY',serversArray)
             action.serversArray.forEach(server => {
                 servers[server.serverId] = server
             });
@@ -85,30 +80,15 @@ const serversReducer = (state = initialState, action) => {
                 ...state, servers, serversArray
             }}
         case ADD_ONE:{
-            console.log(action)
-            // console.log('ADDONESTATE', state)
             let newState = Object.assign({}, state);
             newState[action.server.id] = action.server;
             return newState;
-            // const server = action.server
-            // const servers = state.servers
-            // //console.log('SERVERID', typeof server.id)
-            // const serversArray = state.serversArray;
-            // serversArray[server.id] = server
-            // servers[server.id]= server
-            // const newState = {
-            //     ...state, servers, serversArray
-            // }
-            // return newState
         }
         case DELETE_ONE:{
             const deleteServer = action.server;
-            //console.log(deleteServer)
             const serversArray = state.serversArray;
             const servers = state.servers;
-            //console.log('SERVERID',servers[deleteServer.serverId])
             delete servers[deleteServer.serverId]
-            //console.log(servers)
             let index;
             for (let i = 0; i < serversArray.length; i++) {
                 const server = serversArray[i];

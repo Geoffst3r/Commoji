@@ -15,8 +15,6 @@ const ServerDetail = () => {
     const serversContainer = useSelector(state => state.servers);
     const servers = serversContainer.servers;
     const server = servers?.[id];
-    console.log('SERVER', server);
-    console.log('USER', user);
 
     const handleDelete = async () => {
         const confirmed = window.confirm('Are you sure you want to remove this server?')

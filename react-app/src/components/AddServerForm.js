@@ -9,7 +9,6 @@ import "./ServerForms.css"
 const AddServerForm = ({ modalSetter }) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
@@ -24,28 +23,21 @@ const AddServerForm = ({ modalSetter }) => {
         const ownerId = user.id
         const newServer = {
             title,
-            description,
             ownerId,
             image
         }
         let newServerDb = null
         if (newServer) {
             newServerDb = await dispatch(createServer(newServer));
-            console.log('newServer____________________________', newServerDb)
             dispatch(getServers())
         }
         modalSetter(newServerDb['id']);
-        console.log('newServer_______OUT_____________________', newServerDb['generalId'])
 
         return history.push(`/channels/${newServerDb['id']}/${newServerDb['generalId']}`)
     };
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
-    };
-
-    const updateDescription = (e) => {
-        setDescription(e.target.value);
     };
 
     const updateImage = (e) => {
@@ -68,17 +60,6 @@ const AddServerForm = ({ modalSetter }) => {
                         name='title'
                         onChange={updateTitle}
                         value={title}
-                        required
-                        autoComplete="off"
-                    ></input>
-                </div>
-                <div className='LabelAndInputContainer'>
-                    <label>Server Description</label>
-                    <input
-                        type='text'
-                        name='email'
-                        onChange={updateDescription}
-                        value={description}
                         required
                         autoComplete="off"
                     ></input>
