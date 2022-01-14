@@ -31,7 +31,7 @@ def get_reactions(message_id):
                             'userId': reaction.userId,
                             'messageId': reaction.messageId,} for reaction in reactions]
     return jsonify(reaction_list)
-   
+
 
 @reaction_routes.route('/<int:message_id>/', methods=['POST'])
 def new_reaction(message_id):
@@ -44,11 +44,12 @@ def new_reaction(message_id):
         return jsonify('bad data'), 400
 
     else:
-        data = request.json
+        data = request.get_json(force=True)
+        print(request)
         try:
             existing_reaction = Reaction.query.filter(
-                Reaction.userId == userId, 
-                Reaction.messageId == message_id, 
+                Reaction.userId == userId,
+                Reaction.messageId == message_id,
                 Reaction.reaction == data['reaction']
                 ).first()
             if existing_reaction:

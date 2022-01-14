@@ -51,7 +51,7 @@ const MessageForm = ({socket}) => {
           <label htmlFor='message'></label>
           <div>
             <input
-              autocomplete="off"
+              autoComplete="off"
               name='message'
               type='text'
               value={messageContent}
