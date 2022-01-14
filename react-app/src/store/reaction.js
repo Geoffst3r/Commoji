@@ -1,24 +1,24 @@
+
 // constants
-const GET_REACTIONS = '/channels/getAllChannels'
-const ADD_REACTION = 'channels/addChannel'
+const GET_REACTIONS = '/reactions/getMessageReactions'
+const ADD_REACTION = '/reactions/addReaction'
 
-const get_Reactions = (reactions) => {
-  return {
-    type: GET_REACTIONS,
-    reactions
-  }
-}
+// const get_Reactions = (reactions) => {
+//   return {
+//     type: GET_REACTIONS,
+//     reactions
+//   }
+// }
 
-const add_Reaction = (reaction) => {
-  return {
-    type: ADD_REACTION,
-    reaction
-  }
-}
+// const add_Reaction = (reaction) => {
+//   return {
+//     type: ADD_REACTION,
+//     reaction
+//   }
+// }
 
-export const getReactions = (messageId) => async (dispatch) => {
-  if (!messageId) return;
-  const res = await fetch(`/api/reactions/${messageId}/`);
+export const getReactions = () => async (dispatch) => {
+  const res = await fetch(`/api/reactions/`);
   if (res.ok) {
     const reactions = await res.json();
     dispatch(get_Reactions(reactions));
@@ -26,20 +26,20 @@ export const getReactions = (messageId) => async (dispatch) => {
   };
 };
 
-export const addReaction = (reaction) => async (dispatch) => {
-  const { messageId, userId, reactionString: reaction } = reaction;
+export const addReaction = (inputReaction) => async (dispatch) => {
+  const { messageId, userId, reaction } = inputReaction;
   const res = await fetch(`/api/reactions/${messageId}/`, {
     method: 'POST',
     body: JSON.stringify({
-        messageId, userId, reactionString
+        messageId, userId, reaction
     })
   });
   if (res.ok) {
-    const reaction = await res.json();
-    if (reaction !== "bad data") {
-      dispatch(add_Reaction(reaction));
+    const outputReaction = await res.json();
+    if (outputReaction !== "bad data") {
+      dispatch(add_Reaction(outputReaction));
     }
-    return reaction;
+    return outputReaction;
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {
@@ -62,7 +62,11 @@ const reactionReducer = (state = {}, action) => {
       return newState;
     case ADD_REACTION:
       newState = Object.assign({}, state);
-      newState[action.reaction.messageId] = action.reaction;
+      const newReaction = action.reaction;
+      const msgId = newReaction.messageId;
+      if (newState[msgId]) {
+        newState[msgId] = {...newState[msgId], newReaction}
+      } else newState[msgId] = newReaction;
       return newState;
     default:
       return state;
