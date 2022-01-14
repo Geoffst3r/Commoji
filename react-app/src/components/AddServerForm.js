@@ -55,7 +55,7 @@ const AddServerForm = ({ modalSetter }) => {
     return (
         <>
             <h2 className='modal-label'>New Server</h2>
-            <form className='add-server-form' onSubmit={onSubmit}>
+            <form autoComplete="off" className='add-server-form' onSubmit={onSubmit}>
                 <div>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
@@ -69,6 +69,7 @@ const AddServerForm = ({ modalSetter }) => {
                         onChange={updateTitle}
                         value={title}
                         required
+                        autoComplete="off"
                     ></input>
                 </div>
                 <div className='LabelAndInputContainer'>
@@ -79,6 +80,7 @@ const AddServerForm = ({ modalSetter }) => {
                         onChange={updateDescription}
                         value={description}
                         required
+                        autoComplete="off"
                     ></input>
                 </div>
                 <div className='LabelAndInputContainer'>
@@ -88,6 +90,7 @@ const AddServerForm = ({ modalSetter }) => {
                         name='image'
                         onChange={updateImage}
                         value={image}
+                        autoComplete="off"
                     ></input>
                 </div>
                 <button className='newserver-submit-button' type='submit'>Create Server</button>

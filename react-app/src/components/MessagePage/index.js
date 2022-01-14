@@ -116,10 +116,11 @@ const Messages = () => {
                                                         <div className='userMessage messageContent'>{messages[message].message}</div>
                                                     </div>
                                                     <div className='reactionsContainer'>
-                                                    {reactions[message] && Object.values(reactions[message]).map(individualReaction => {
+                                                    {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
                                                             return (
                                                                 <div className='reaction-individual'>
-                                                                    <i className={`${individualReaction.reaction}`}></i>
+                                                                    <i className={`${individualReaction}`}></i>
+                                                                    <span className='reactions-counter'>{reactions[message].individualReaction}</span>
                                                                 </div>
                                                             )
                                                         })}

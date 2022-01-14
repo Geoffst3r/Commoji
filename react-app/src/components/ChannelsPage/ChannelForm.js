@@ -48,7 +48,7 @@ const ChannelForm = ({ inputChannel, callSetter }) => {
 
   return (
     <>
-      <form onSubmit={inputChannel ? onEdit : onCreate} className='channel-form'>
+      <form autoComplete="off" onSubmit={inputChannel ? onEdit : onCreate} className='channel-form'>
         <div className='channel-error-box'>
           {errors.length > 0 && errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -62,6 +62,7 @@ const ChannelForm = ({ inputChannel, callSetter }) => {
             value={title}
             onChange={updateTitle}
             required
+            autoComplete="off"
           />
         </div>
         <button className='channel-button' type='submit'>{text}</button>

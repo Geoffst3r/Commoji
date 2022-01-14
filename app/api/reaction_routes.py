@@ -22,9 +22,7 @@ def all_reactions():
 
 @reaction_routes.route('/<int:message_id>/', methods=['GET'])
 def get_reactions(message_id):
-    print(message_id)
     reactions = Reaction.query.filter(Reaction.messageId == message_id).all()
-    print(reactions)
     if reactions:
         reaction_list = [{'id': reaction.id,
                             'reaction': reaction.reaction,
@@ -41,11 +39,11 @@ def new_reaction(message_id):
             userId = user['id']
 
     if not request.data:
-        return jsonify('bad data'), 400
+        msg = 'bad data'
+        return jsonify(msg), 400
 
     else:
         data = request.get_json(force=True)
-        print(request)
         try:
             existing_reaction = Reaction.query.filter(
                 Reaction.userId == userId,
@@ -55,7 +53,9 @@ def new_reaction(message_id):
             if existing_reaction:
                 db.session.delete(existing_reaction)
                 db.session.commit()
-                return jsonify('reaction removed')
+                output = [{'reaction': existing_reaction.reaction}]
+                msg = [{'reaction removed'}]
+                return jsonify(output, msg)
             else:
                 new_reaction = {
                     "messageId": message_id,
@@ -66,7 +66,10 @@ def new_reaction(message_id):
                 new_reaction_db = Reaction(**new_reaction)
                 db.session.add(new_reaction_db)
                 db.session.commit()
-                return new_reaction
+                output = [{'id': new_reaction_db.id, 'userId': userId, 'reaction': new_reaction_db.reaction,
+                'messageId': new_reaction_db.messageId}]
+                msg = [{'success'}]
+                return jsonify(output, msg)
 
         except IntegrityError as e:
             print(e)
