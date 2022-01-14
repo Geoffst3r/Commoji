@@ -220,6 +220,10 @@ background-color: #40444b;
 margin-right: 6px;
 }
 
+.emoji-display:hover {
+  cursor:initial
+}
+
 .reactions-counter{
   color: rgb(181, 181, 181);
   font: 13px  "Fira Sans", sans-serif;
@@ -227,4 +231,9 @@ margin-right: 6px;
 
 .ReactionChoice > span {
   margin: 3px;
+}
+
+.ReactionChoice span:hover {
+  cursor: pointer;
+
 }
