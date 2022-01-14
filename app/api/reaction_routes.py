@@ -53,9 +53,10 @@ def new_reaction(message_id):
             if existing_reaction:
                 db.session.delete(existing_reaction)
                 db.session.commit()
-                output = [{'reaction': existing_reaction.reaction}]
-                msg = [{'reaction removed'}]
-                return jsonify(output, msg)
+                output = {'id': existing_reaction.id, 'userId': existing_reaction.userId,
+                    'messageId': existing_reaction.messageId, 'reaction': existing_reaction.reaction,
+                    'msg': 'reaction removed'}
+                return jsonify(output)
             else:
                 new_reaction = {
                     "messageId": message_id,
@@ -66,10 +67,10 @@ def new_reaction(message_id):
                 new_reaction_db = Reaction(**new_reaction)
                 db.session.add(new_reaction_db)
                 db.session.commit()
-                output = [{'id': new_reaction_db.id, 'userId': userId, 'reaction': new_reaction_db.reaction,
-                'messageId': new_reaction_db.messageId}]
-                msg = [{'success'}]
-                return jsonify(output, msg)
+                output = {'id': new_reaction_db.id, 'userId': new_reaction_db.userId,
+                    'messageId': new_reaction_db.messageId, 'reaction': new_reaction_db.reaction,
+                    'msg': 'success'}
+                return jsonify(output)
 
         except IntegrityError as e:
             print(e)
