@@ -57,10 +57,10 @@ const Channels = () => {
         };
     };
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         const confirmed = window.confirm('Are you sure you want to remove this channel from your server?')
         if (confirmed) {
-            dispatch(channelActions.removeChannel(individualChannel));
+            await dispatch(channelActions.removeChannel(individualChannel));
             history.push(`/channels/${serverId}`);
         };
     };
