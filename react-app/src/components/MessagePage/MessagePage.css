@@ -106,7 +106,7 @@ background-color: #40444b;
   display: flex;
   flex-wrap: wrap;
   /* width: 400px; */
-
+  width: 70%;
 }
 .messageUser {
   margin-right: 5px;
