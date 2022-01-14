@@ -14,6 +14,7 @@ Commoji is a full stack web application that allows only logged users to:
  - Post a message to a channel
  - Post a reaction to a message
 
+
 ## Application Architecture
 Commoji is built with a REACT frontend and an Flask backend. PostgreSQL is also used as a database. And with socket.io to allow live chat.
 
@@ -22,6 +23,15 @@ Commoji uses REACT to generate the HTML elements, and then we use CSS to handlin
 
 ## Backend Technologies Used
 We used an Flask server to handle the backend communication. We used PostgreSQL to use and manipulate the database with sequelize.
+
+## Wiki
+* [Feature List](https://github.com/Geoffst3r/python-group-project/wiki/feature-list)
+* [Frontend Routes](https://github.com/Geoffst3r/python-group-project/wiki/Front-End-Routes)
+* [API Routes](https://github.com/Geoffst3r/python-group-project/wiki/API-routes)
+* [Redux Store](https://github.com/Geoffst3r/python-group-project/wiki/Redux-State)
+
+## Technical Implementation
+
 
 ![Splash Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/NewSplashPageScreenShor.png)
 On our splash page you can create a account and log into a account with a model that pops up when you click on the login or sighn in buttons. You can also use the Demo Now button to log in as a demo user.
