@@ -3,9 +3,9 @@ from app.models import db, Reaction
 
 # Adds a demo user, you can add other users here if you want
 def seed_reactions():
-    reaction1 = Reaction(reaction='Testing', userId=1, messageId=1)
-    reaction2 = Reaction(reaction='Testing', userId=2, messageId=2)
-    reaction3 = Reaction(reaction='Testing', userId=3, messageId=3)
+    reaction1 = Reaction(reaction='far fa-grin-beam fa-2x', userId=1, messageId=1)
+    reaction2 = Reaction(reaction='far fa-grin-beam fa-2x', userId=2, messageId=2)
+    reaction3 = Reaction(reaction='far fa-grin-beam fa-2x', userId=3, messageId=3)
 
     db.session.add(reaction1)
     db.session.add(reaction2)
