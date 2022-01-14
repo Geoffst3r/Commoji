@@ -1,8 +1,8 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { getMessages, createMessage } from '../../store/messages';
+import { getMessages } from '../../store/messages';
 import * as reactionActions from '../../store/reaction';
 import { io } from 'socket.io-client';
 import MessageForm from './MessageForm';
@@ -11,7 +11,6 @@ import './MessagePage.css'
 let socket;
 
 const Messages = () => {
-    // const [messages, setMessages] = useState([])
     const params = useParams();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
@@ -20,6 +19,7 @@ const Messages = () => {
     const reactions = useSelector(state => state.reactions);
     const serverId = params.serverId;
     const channelId = params.channelId;
+    const userId = user.id;
     let intChannelId = parseInt(channelId);
 
     const showReactions = (id) => {
@@ -30,7 +30,7 @@ const Messages = () => {
             oldReactionList.classList.add('hidden-reactions');
         };
         newReactionList.classList.remove('hidden-reactions');
-        return newReactionList.classList.add('show-reaction-list');
+        newReactionList.classList.add('show-reaction-list');
     };
 
     useEffect(() => {
@@ -53,10 +53,14 @@ const Messages = () => {
     useEffect(() => {
         dispatch(getMessages(channelId))
         dispatch(reactionActions.getReactions());
-    }, [dispatch, channelId, serverId])
+    }, [dispatch, channelId, serverId, userId]);
 
+    const postReaction = async (data, messageId) => {
+        await dispatch(reactionActions.addReaction(data, messageId));
+        dispatch(reactionActions.getReactions());
+    };
 
-    if (messages && user && channels[intChannelId]?.title) {
+    if (messages && user && channels[intChannelId]?.title && reactions) {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
@@ -76,31 +80,67 @@ const Messages = () => {
                                                         <div className='justNameAndButton'>
                                                             <div className='userMessage messageUser'>{messages[message].username}</div>
                                                             <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
-                                                            <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
-                                                                <span>1</span>
-                                                                <span>2</span>
-                                                                <span>3</span>
+                                                            <div id={`message-${message}`} className='ReactionChoice hidden-reactions'>
+                                                                <span onClick={() => postReaction('far fa-grin-beam fa-2x', message)}><i className='far fa-grin-beam fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-smile-wink fa-2x', message)}><i className='far fa-smile-wink fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-grin-squint-tears fa-2x', message)}><i className='far fa-grin-squint-tears fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span>
                                                             </div>
                                                         </div>
                                                         <div className='userMessage messageContent'>{messages[message].message}</div>
                                                     </div>
-                                                    <div className='reactionsContainer'><span>hello</span></div>
+                                                    <div className='reactionsContainer'>
+                                                    {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
+                                                            if (reactions[message][individualReaction] > 0) {
+                                                                return (
+                                                                    <div className='reaction-individual'>
+                                                                        <i className={`${individualReaction}`}></i>
+                                                                        <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                    </div>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <div className='reaction-individual'></div>
+                                                                )
+                                                            }
+                                                    })}
+                                                    </div>
                                                 </> :
-                                                    <>
-                                                        <div className='MessageAndButton'>
-                                                            <div className='justNameAndButton'>
-                                                                <div className='messageUser'>{messages[message].username}</div>
-                                                                <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
-                                                                <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
-                                                                    <span>1</span>
-                                                                    <span>2</span>
-                                                                    <span>3</span>
-                                                                </div>
+
+                                                <>
+                                                    <div className='MessageAndButton'>
+                                                        <div className='justNameAndButton'>
+                                                            <div className='messageUser'>{messages[message].username}</div>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
+                                                            <div id={`message-${message}`} className='ReactionChoice hidden-reactions'>
+                                                                <span onClick={() => postReaction('far fa-grin-beam fa-2x', message)}><i className='far fa-grin-beam fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-smile-wink fa-2x', message)}><i className='far fa-smile-wink fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-grin-squint-tears fa-2x', message)}><i className='far fa-grin-squint-tears fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span>
                                                             </div>
                                                             <div className='userMessage messageContent'>{messages[message].message}</div>
                                                         </div>
-                                                        {/* <div className='reactionsContainer'><div className='Reactions'>hello</div></div> */}
-                                                    </>}
+                                                        <div className='userMessage messageContent'>{messages[message].message}</div>
+                                                    </div>
+                                                    <div className='reactionsContainer'>
+                                                    {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
+                                                            if (reactions[message][individualReaction] > 0) {
+                                                                return (
+                                                                    <div className='reaction-individual'>
+                                                                        <i className={`${individualReaction}`}></i>
+                                                                        <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                    </div>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <div className='reaction-individual'></div>
+                                                                )
+                                                            }
+                                                    })}
+                                                    </div>
+                                                </>}
                                             </li>
                                         </>
                                     )

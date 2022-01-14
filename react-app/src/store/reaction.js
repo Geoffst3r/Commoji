@@ -1,6 +1,7 @@
 // constants
 const GET_REACTIONS = '/reactions/getMessageReactions'
 const ADD_REACTION = '/reactions/addReaction'
+const DELETE_REACTION = '/reactions/deleteReaction'
 
 const get_Reactions = (reactions) => {
   return {
@@ -16,6 +17,13 @@ const add_Reaction = (reaction) => {
   }
 }
 
+const delete_Reaction = (reactionEmoji) => {
+  return {
+    type: DELETE_REACTION,
+    reactionEmoji
+  }
+}
+
 export const getReactions = () => async (dispatch) => {
   const res = await fetch(`/api/reactions/`);
   if (res.ok) {
@@ -25,20 +33,24 @@ export const getReactions = () => async (dispatch) => {
   };
 };
 
-export const addReaction = (inputReaction) => async (dispatch) => {
-  const { messageId, userId, reaction } = inputReaction;
+
+export const addReaction = (data, messageId) => async (dispatch) => {
   const res = await fetch(`/api/reactions/${messageId}/`, {
     method: 'POST',
     body: JSON.stringify({
-        messageId, userId, reaction
+        messageId, reaction: data
     })
   });
   if (res.ok) {
-    const outputReaction = await res.json();
-    if (outputReaction !== "bad data") {
-      dispatch(add_Reaction(outputReaction));
+    const output = await res.json();
+    if (output['msg'] === 'reaction removed') {
+      dispatch(delete_Reaction(output['reaction']));
     }
-    return outputReaction;
+    if (output !== "bad data") {
+      const reaction = delete output['msg'];
+      dispatch(add_Reaction(reaction));
+      return output;
+    }
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {
@@ -51,22 +63,35 @@ export const addReaction = (inputReaction) => async (dispatch) => {
 
 const reactionReducer = (state = {}, action) => {
   let newState = {};
+  let reactions = {};
   switch (action.type) {
     case GET_REACTIONS:
-      action.reactions.forEach(reaction => {
-        if (newState[reaction.messageId]) {
-          newState[reaction.messageId] = {...newState[reaction.messageId], reaction}
-        } else newState[reaction.messageId] = reaction;
+      action.reactions.forEach(individualReaction => {
+        if (newState[individualReaction.messageId]) {
+          let currentReactions = newState[individualReaction.messageId];
+          currentReactions[individualReaction.reaction]++;
+        } else {
+          reactions = {'far fa-grin-beam fa-2x': 0, 'far fa-smile-wink fa-2x': 0,
+          'far fa-grin-squint-tears fa-2x': 0, 'far fa-sad-tear fa-2x': 0,
+          'far fa-angry fa-2x': 0};
+          reactions[individualReaction.reaction]++;
+          newState[individualReaction.messageId] = reactions;
+        };
       });
       return newState;
     case ADD_REACTION:
-      newState = Object.assign({}, state);
-      const newReaction = action.reaction;
-      const msgId = newReaction.messageId;
-      if (newState[msgId]) {
-        newState[msgId] = {...newState[msgId], newReaction}
-      } else newState[msgId] = newReaction;
-      return newState;
+      const individualReaction = action.reaction;
+      if (newState[individualReaction.messageId]) {
+        let currentReactions = newState[individualReaction.messageId];
+        currentReactions[individualReaction.reaction]++;
+      } else {
+        reactions = {'far fa-grin-beam fa-2x': 0, 'far fa-smile-wink fa-2x': 0,
+        'far fa-grin-squint-tears fa-2x': 0, 'far fa-sad-tear fa-2x': 0,
+        'far fa-angry fa-2x': 0};
+        reactions[individualReaction.reaction]++;
+        newState[individualReaction.messageId] = reactions;
+      };
+    // case DELETE_REACTION:
     default:
       return state;
   }
