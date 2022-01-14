@@ -1,7 +1,7 @@
 // constants
 const GET_REACTIONS = '/reactions/getMessageReactions'
 const ADD_REACTION = '/reactions/addReaction'
-// const DELETE_REACTION = '/reactions/deleteReaction'
+const DELETE_REACTION = '/reactions/deleteReaction'
 
 const get_Reactions = (reactions) => {
   return {
@@ -17,12 +17,12 @@ const add_Reaction = (reaction) => {
   }
 }
 
-// const delete_Reaction = (reaction) => {
-//   return {
-//     type: DELETE_REACTION,
-//     reaction
-//   }
-// }
+const delete_Reaction = (reactionEmoji) => {
+  return {
+    type: DELETE_REACTION,
+    reactionEmoji
+  }
+}
 
 export const getReactions = () => async (dispatch) => {
   const res = await fetch(`/api/reactions/`);
@@ -42,12 +42,13 @@ export const addReaction = (data, messageId) => async (dispatch) => {
     })
   });
   if (res.ok) {
-    const [output, msg] = await res.json();
-    // if (msg === 'reaction removed') {
-    //   dispatch(delete_Reaction(output.reaction));
-    // }
-    if (msg !== "bad data") {
-      dispatch(add_Reaction(output));
+    const output = await res.json();
+    if (output['msg'] === 'reaction removed') {
+      dispatch(delete_Reaction(output['reaction']));
+    }
+    if (output !== "bad data") {
+      const reaction = delete output['msg'];
+      dispatch(add_Reaction(reaction));
       return output;
     }
   } else if (res.status < 500) {
