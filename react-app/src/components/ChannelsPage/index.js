@@ -124,7 +124,7 @@ const Channels = () => {
                                             : <li className='channel-title'><i className="fas fa-hashtag"></i> {channel.title.toLowerCase()}</li>}
                                     </NavLink>
                                     <button className='mod-channel-button' id={`cog-wheel-${channel.id}`} onClick={() => modChannel(channel)}
-                                        hidden={owner_define === true && channel.title.toLowerCase() !== 'general' ? false : true}><i className='fas fa-cog' id={`cog-icon-${channel.id}`}></i></button>
+                                        hidden={owner_define === true && channel.title.toLowerCase() !== 'general' ? false : true}>{cogWheelClicked ? <i className='fas fa-cog AnimationOn' id={`cog-icon-${channel.id}`}></i> : <i className='fas fa-cog AnimationOff' id={`cog-icon-${channel.id}`}></i>}</button>
                                 </div>
                                 <ul className='mod-channel-hidden' id={`channel-mod-${channel.id}`}>
                                     <li>
