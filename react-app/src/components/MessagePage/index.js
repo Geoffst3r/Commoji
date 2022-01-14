@@ -126,7 +126,7 @@ const Messages = () => {
                                                             if (reactions[message][individualReaction] > 0) {
                                                                 if (individualReaction === '&#x1F600;') {
                                                                     return (
-                                                                        <div className='reaction-individual'>
+                                                                        <div onClick={() => postReaction('&#x1F600;', message)} className='reaction-individual'>
                                                                             <div className='emoji-display'>&#x1F600;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
@@ -134,7 +134,7 @@ const Messages = () => {
                                                                 }
                                                                 if (individualReaction === '&#x1F602;') {
                                                                     return (
-                                                                        <div className='reaction-individual'>
+                                                                        <div onClick={() => postReaction('&#x1F602;', message)} className='reaction-individual'>
                                                                             <div className='emoji-display'>&#x1F602;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
@@ -142,7 +142,7 @@ const Messages = () => {
                                                                 }
                                                                 if (individualReaction === '&#x1F643;') {
                                                                     return (
-                                                                        <div className='reaction-individual'>
+                                                                        <div onClick={() => postReaction('&#x1F643;', message)} className='reaction-individual'>
                                                                             <div className='emoji-display'>&#x1F643;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
@@ -150,7 +150,7 @@ const Messages = () => {
                                                                 }
                                                                 if (individualReaction === '&#x1F607;') {
                                                                     return (
-                                                                        <div className='reaction-individual'>
+                                                                        <div onClick={() => postReaction('&#x1F607;', message)} className='reaction-individual'>
                                                                             <div className='emoji-display'>&#x1F607;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
@@ -158,7 +158,7 @@ const Messages = () => {
                                                                 }
                                                                 if (individualReaction === '&#x1F615;') {
                                                                     return (
-                                                                        <div className='reaction-individual'>
+                                                                        <div onClick={() => postReaction('&#x1F615;', message)} className='reaction-individual'>
                                                                             <div className='emoji-display'>&#x1F615;</div>
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
@@ -194,7 +194,7 @@ const Messages = () => {
                                                                 if (reactions[message][individualReaction] > 0) {
                                                                     if (individualReaction === '&#x1F600;') {
                                                                         return (
-                                                                            <div className='reaction-individual'>
+                                                                            <div onClick={() => postReaction('&#x1F600;', message)} className='reaction-individual'>
                                                                                 <div className='emoji-display'>&#x1F600;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
@@ -202,7 +202,7 @@ const Messages = () => {
                                                                     }
                                                                     if (individualReaction === '&#x1F602;') {
                                                                         return (
-                                                                            <div className='reaction-individual'>
+                                                                            <div onClick={() => postReaction('&#x1F602;', message)} className='reaction-individual'>
                                                                                 <div className='emoji-display'>&#x1F602;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
@@ -210,7 +210,7 @@ const Messages = () => {
                                                                     }
                                                                     if (individualReaction === '&#x1F643;') {
                                                                         return (
-                                                                            <div className='reaction-individual'>
+                                                                            <div onClick={() => postReaction('&#x1F643;', message)} className='reaction-individual'>
                                                                                 <div className='emoji-display'>&#x1F643;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
@@ -218,7 +218,7 @@ const Messages = () => {
                                                                     }
                                                                     if (individualReaction === '&#x1F607;') {
                                                                         return (
-                                                                            <div className='reaction-individual'>
+                                                                            <div onClick={() => postReaction('&#x1F607;', message)} className='reaction-individual'>
                                                                                 <div className='emoji-display'>&#x1F607;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
@@ -226,7 +226,7 @@ const Messages = () => {
                                                                     }
                                                                     if (individualReaction === '&#x1F615;') {
                                                                         return (
-                                                                            <div className='reaction-individual'>
+                                                                            <div onClick={() => postReaction('&#x1F615;', message)} className='reaction-individual'>
                                                                                 <div className='emoji-display'>&#x1F615;</div>
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
