@@ -7,7 +7,7 @@ import * as reactionActions from '../../store/reaction';
 import { io } from 'socket.io-client';
 import MessageForm from './MessageForm';
 import './MessagePage.css'
-import emojione from 'emojione'
+// import emojione from 'emojione'
 // import * as emojione from emojione;
 
 
@@ -149,7 +149,7 @@ const Messages = () => {
                                                                             <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                         </div>
                                                                     )
-                                                                    
+
                                                                 }
                                                             } else {
                                                                 return (
@@ -222,7 +222,7 @@ const Messages = () => {
                                                                                 <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
                                                                             </div>
                                                                         )
-                                                                        
+
                                                                     }
                                                                 } else {
                                                                     return (
