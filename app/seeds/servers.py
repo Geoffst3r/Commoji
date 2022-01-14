@@ -4,12 +4,12 @@ from app.models import db, Server
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
     server1 = Server(
-        title='Fruit Seeds', description='This is for seeding data, need to update',
+        title='Fruit Seeds',
         ownerId=2,
         image="https://cdn.shopify.com/s/files/1/1061/1924/products/16_large.png"
-        )
+    )
     server2 = Server(
-        title='Vegetable Seeds', description='This is for seeding data, need to update',
+        title='Vegetable Seeds',
         ownerId=2,
         image="https://image.emojisky.com/542/2542-middle.png")
     # server3 = Server(
