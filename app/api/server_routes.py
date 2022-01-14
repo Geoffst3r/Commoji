@@ -15,13 +15,11 @@ def new_server():
     print('befor dict!!!!!1', request.json)
     data = request.json
     title = data["title"]
-    description = data["description"]
-    if title == '' or description == '':
+    if title == '':
         return jsonify("bad data")
     try:
         new_server = {
             'title': data['title'],
-            'description': data['description'],
             'ownerId': data['ownerId']
         }
         if 'image' in data and data["image"] != '':
@@ -55,7 +53,6 @@ def new_server():
         new_server_db_dict = {
             'id': new_server_db.id,
             'title': new_server_db.title,
-            'description': new_server_db.description,
             'ownerId': new_server_db.ownerId,
             'generalId': new_channel_db.id
         }
@@ -73,7 +70,7 @@ def get_all_server():
     # servers = Server.query.filter(Server.ownerId == user.id).all()
     servers = Server.query.all()
     if servers:
-        server_list = [{'serverId': server.id, 'title': server.title, 'description': server.description,
+        server_list = [{'serverId': server.id, 'title': server.title,
                         'image': server.image if server.image else 'none', 'ownerId': server.ownerId} for server in servers]
         return jsonify(server_list)
     else:
@@ -94,7 +91,6 @@ def update_server(server_id):
     pass
 
     title = None
-    description = None
     image = None
     ownerId = None
     server = Server.query.filter(Server.id == server_id).first()
@@ -106,8 +102,6 @@ def update_server(server_id):
         print('DATA', data)
         if 'title' in data:
             server.title = data['title']
-        if 'description' in data:
-            server.description = data['description']
         if 'image' in data:
             server.image = data['image']
         if 'ownerId' in data:
@@ -167,7 +161,7 @@ def get_all_channels(server_id):
         channels_list = [{"id": channel.id, "title": channel.title,
                           "serverId": channel.serverId} for channel in channels]
         servers_list = {"id": server.id, "title": server.title,
-                        "description": server.description, "image": server.image, "ownerId": server.ownerId}
+                        "image": server.image, "ownerId": server.ownerId}
         return jsonify(channels_list, servers_list)
     else:
         return jsonify("no servers with that channel")
