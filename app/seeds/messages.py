@@ -3,13 +3,17 @@ from app.models import db, Message
 
 # Adds a demo user, you can add other users here if you want
 def seed_messages():
-    message1 = Message(channelId=3, userId=2, message="Welcome to #Apple Seed")
-    message2 = Message(channelId=4, userId=2, message="Welcome to #Strawberry Seed")
-    message3 = Message(channelId=5, userId=2, message="Welcome to #Potato Seed")
+    message1 = Message(channelId=1, userId=2, message="Welcome to #General!")
+    message2 = Message(channelId=2, userId=2, message="Welcome to  #General!")
+    message3 = Message(channelId=3, userId=2, message="Welcome to #Apple Seed!")
+    message4 = Message(channelId=4, userId=2, message="Welcome to #Strawberry Seed!")
+    message5 = Message(channelId=5, userId=2, message="Welcome to #Potato Seed!")
 
     db.session.add(message1)
     db.session.add(message2)
     db.session.add(message3)
+    db.session.add(message4)
+    db.session.add(message5)
 
     db.session.commit()
 
