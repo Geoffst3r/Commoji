@@ -87,7 +87,7 @@ const Messages = () => {
                                     return (
                                         <>
                                             <li className='messageContentHolder' key={message}>
-                                                {/* <div>&#x1F600;</div> */}
+
                                                 {user.id === messages[message].userId ? <>
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
@@ -179,8 +179,8 @@ const Messages = () => {
                                                                 <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span> */}
                                                                 </div>
                                                             </div>
-                                                                <div className='messageContent'>{messages[message].message}</div>
-                                                            </div>
+                                                            <div className='messageContent'>{messages[message].message}</div>
+                                                        </div>
                                                         <div className='reactionsContainer'>
                                                             {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
                                                                 if (reactions[message][individualReaction] > 0) {
@@ -232,12 +232,12 @@ const Messages = () => {
                                                                 }
                                                             })}
                                                         </div>
-                                                        </>}
-                                                    </li>
+                                                    </>}
+                                            </li>
                                         </>
-                                            )
+                                    )
                                 })}
-                                        </ul>
+                            </ul>
                         </div>
                     </div>
                     <MessageForm socket={socket} />
