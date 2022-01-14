@@ -33,6 +33,12 @@ const Messages = () => {
         return newReactionList.classList.add('show-reaction-list');
     };
 
+    function convertToImage(shortName) {
+        // var input = document.getElementById('inputText').value;
+        var output = emojione.shortnameToImage(input);
+        // document.getElementById('outputText').innerHTML = output;
+    }
+
     useEffect(() => {
         // create websocket/connect
         socket = io();

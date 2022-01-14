@@ -25,6 +25,7 @@ export const getReactions = () => async (dispatch) => {
   };
 };
 
+
 export const addReaction = (data, messageId) => async (dispatch) => {
   const res = await fetch(`/api/reactions/${messageId}/`, {
     method: 'POST',
