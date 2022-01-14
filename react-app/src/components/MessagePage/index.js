@@ -75,7 +75,7 @@ const Messages = () => {
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
                                                             <div className='userMessage messageUser'>{messages[message].username}</div>
-                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}><i class="far fa-grin-alt"></i></button>
                                                             <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
                                                                 <span>1</span>
                                                                 <span>2</span>
@@ -86,21 +86,21 @@ const Messages = () => {
                                                     </div>
                                                     <div className='reactionsContainer'><span>hello</span></div>
                                                 </> :
-                                                <>
-                                                    <div className='MessageAndButton'>
-                                                        <div className='justNameAndButton'>
-                                                            <div className='messageUser'>{messages[message].username}</div>
-                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
-                                                            <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
-                                                                <span>1</span>
-                                                                <span>2</span>
-                                                                <span>3</span>
+                                                    <>
+                                                        <div className='MessageAndButton'>
+                                                            <div className='justNameAndButton'>
+                                                                <div className='messageUser'>{messages[message].username}</div>
+                                                                <button className='ReactionsButton' onClick={() => showReactions(message)}><i class="far fa-grin-alt"></i></button>
+                                                                <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
+                                                                    <span>1</span>
+                                                                    <span>2</span>
+                                                                    <span>3</span>
+                                                                </div>
                                                             </div>
+                                                            <div className='userMessage messageContent'>{messages[message].message}</div>
                                                         </div>
-                                                        <div className='userMessage messageContent'>{messages[message].message}</div>
-                                                    </div>
-                                                    {/* <div className='reactionsContainer'><div className='Reactions'>hello</div></div> */}
-                                                </>}
+                                                        {/* <div className='reactionsContainer'><div className='Reactions'>hello</div></div> */}
+                                                    </>}
                                             </li>
                                         </>
                                     )
@@ -108,7 +108,7 @@ const Messages = () => {
                             </ul >
                         </div>
                     </div>
-                    <MessageForm socket={socket}/>
+                    <MessageForm socket={socket} />
                 </div>
             </>
         )
