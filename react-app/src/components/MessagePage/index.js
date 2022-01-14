@@ -7,6 +7,9 @@ import * as reactionActions from '../../store/reaction';
 import { io } from 'socket.io-client';
 import MessageForm from './MessageForm';
 import './MessagePage.css'
+import emojione from 'emojione'
+// import * as emojione from emojione;
+
 
 let socket;
 
@@ -55,10 +58,16 @@ const Messages = () => {
         dispatch(reactionActions.getReactions());
     }, [dispatch, channelId, serverId, userId]);
 
-    const postReaction = async (data, messageId) => {
-        await dispatch(reactionActions.addReaction(data, messageId));
+    const postReaction = async (unicode, messageId) => {
+        // console.log('unicode B4 on comp', unicode)
+        // const shortName = emojione.toShort(unicode);
+        // console.log('unicode AFTER on comp', unicode)
+        // console.log('shortname on comp', shortName)
+        await dispatch(reactionActions.addReaction(unicode, messageId));
         dispatch(reactionActions.getReactions());
     };
+
+    console.log('_______messages', messages, 'reactions', reactions)
 
     if (messages && user && channels[intChannelId]?.title && reactions) {
         return (
@@ -77,17 +86,23 @@ const Messages = () => {
                                     return (
                                         <>
                                             <li className='messageContentHolder' key={message}>
+                                                <div>&#x1F600;</div>
                                                 {user.id === messages[message].userId ? <>
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
                                                             <div className='userMessage messageUser'>{messages[message].username}</div>
                                                             <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                             <div id={`message-${message}`} className='ReactionChoice hidden-reactions'>
-                                                                <span onClick={() => postReaction('far fa-grin-beam fa-2x', message)}><i className='far fa-grin-beam fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('&#x1F600;', message)}>&#x1F600;</span>
+                                                                <span onClick={() => postReaction('&#x1F602;', message)}>&#x1F602;</span>
+                                                                <span onClick={() => postReaction('&#x1F643;', message)}>&#x1F643;</span>
+                                                                <span onClick={() => postReaction('&#x1F607;', message)}>&#x1F607;</span>
+                                                                <span onClick={() => postReaction('&#x1F615;', message)}>&#x1F615;</span>
+                                                                {/* <span onClick={() => postReaction('far fa-grin-beam fa-2x', message)}><i className='far fa-grin-beam fa-2x'></i></span>
                                                                 <span onClick={() => postReaction('far fa-smile-wink fa-2x', message)}><i className='far fa-smile-wink fa-2x'></i></span>
                                                                 <span onClick={() => postReaction('far fa-grin-squint-tears fa-2x', message)}><i className='far fa-grin-squint-tears fa-2x'></i></span>
                                                                 <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
-                                                                <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span> */}
                                                             </div>
                                                         </div>
                                                         <div className='userMessage messageContent'>{messages[message].message}</div>
@@ -116,24 +131,64 @@ const Messages = () => {
                                                                 <div className='messageUser'>{messages[message].username}</div>
                                                                 <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                                 <div id={`message-${message}`} className='ReactionChoice hidden-reactions'>
-                                                                    <span onClick={() => postReaction('far fa-grin-beam fa-2x', message)}><i className='far fa-grin-beam fa-2x'></i></span>
-                                                                    <span onClick={() => postReaction('far fa-smile-wink fa-2x', message)}><i className='far fa-smile-wink fa-2x'></i></span>
-                                                                    <span onClick={() => postReaction('far fa-grin-squint-tears fa-2x', message)}><i className='far fa-grin-squint-tears fa-2x'></i></span>
-                                                                    <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
-                                                                    <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span>
+                                                                    <span onClick={() => postReaction('&#x1F600;', message)}>&#x1F600;</span>
+                                                                    <span onClick={() => postReaction('&#x1F602;', message)}>&#x1F602;</span>
+                                                                    <span onClick={() => postReaction('&#x1F643;', message)}>&#x1F643;</span>
+                                                                    <span onClick={() => postReaction('&#x1F607;', message)}>&#x1F607;</span>
+                                                                    <span onClick={() => postReaction('&#x1F615;', message)}>&#x1F615;</span>
+                                                                    {/* <span onClick={() => postReaction('far fa-grin-beam fa-2x', message)}><i className='far fa-grin-beam fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-smile-wink fa-2x', message)}><i className='far fa-smile-wink fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-grin-squint-tears fa-2x', message)}><i className='far fa-grin-squint-tears fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
+                                                                <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span> */}
                                                                 </div>
+                                                                <div className='userMessage messageContent'>{messages[message].message}</div>
                                                             </div>
-                                                            <div className='messageContent'>{messages[message].message}</div>
-                                                        </div>
+                                                            </div>
                                                         <div className='reactionsContainer'>
                                                             {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
                                                                 if (reactions[message][individualReaction] > 0) {
-                                                                    return (
-                                                                        <div className='reaction-individual'>
-                                                                            <i className={`${individualReaction}`}></i>
-                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
-                                                                        </div>
-                                                                    )
+                                                                    if (individualReaction === '&#x1F600;') {
+                                                                        return (
+                                                                            <div className='reaction-individual'>
+                                                                                <div>&#x1F600;</div>
+                                                                                <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                    if (individualReaction === '&#x1F602;') {
+                                                                        return (
+                                                                            <div className='reaction-individual'>
+                                                                                <div>&#x1F602;</div>
+                                                                                <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                    if (individualReaction === '&#x1F643;') {
+                                                                        return (
+                                                                            <div className='reaction-individual'>
+                                                                                <div>&#x1F643;</div>
+                                                                                <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                    if (individualReaction === '&#x1F607;') {
+                                                                        return (
+                                                                            <div className='reaction-individual'>
+                                                                                <div>&#x1F607;</div>
+                                                                                <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                    if (individualReaction === '&#x1F615;') {
+                                                                        return (
+                                                                            <div className='reaction-individual'>
+                                                                                <div>&#x1F615;</div>
+                                                                                <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                            </div>
+                                                                        )
+                                                                        
+                                                                    }
                                                                 } else {
                                                                     return (
                                                                         <div className='reaction-individual'></div>
@@ -141,12 +196,12 @@ const Messages = () => {
                                                                 }
                                                             })}
                                                         </div>
-                                                    </>}
-                                            </li>
+                                                        </>}
+                                                    </li>
                                         </>
-                                    )
+                                            )
                                 })}
-                            </ul >
+                                        </ul>
                         </div>
                     </div>
                     <MessageForm socket={socket} />

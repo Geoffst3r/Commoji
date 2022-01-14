@@ -28,6 +28,7 @@ export const getReactions = () => async (dispatch) => {
   const res = await fetch(`/api/reactions/`);
   if (res.ok) {
     const reactions = await res.json();
+    console.log('_________________reactions', reactions)
     dispatch(get_Reactions(reactions));
     return reactions;
   };
@@ -65,9 +66,9 @@ const reactionReducer = (state = {}, action) => {
           let currentReactions = newState[individualReaction.messageId];
           currentReactions[individualReaction.reaction]++;
         } else {
-          reactions = {'far fa-grin-beam fa-2x': 0, 'far fa-smile-wink fa-2x': 0,
-          'far fa-grin-squint-tears fa-2x': 0, 'far fa-sad-tear fa-2x': 0,
-          'far fa-angry fa-2x': 0};
+          reactions = {'&#x1F600;': 0, '&#x1F602;': 0,
+          '&#x1F643;': 0, '&#x1F607;': 0,
+          '&#x1F615;': 0};
           reactions[individualReaction.reaction]++;
           newState[individualReaction.messageId] = reactions;
         };
@@ -86,9 +87,9 @@ const reactionReducer = (state = {}, action) => {
           let currentReactions = newState[individualReaction.messageId];
           currentReactions[individualReaction.reaction]++;
         } else {
-          reactions = {'far fa-grin-beam fa-2x': 0, 'far fa-smile-wink fa-2x': 0,
-          'far fa-grin-squint-tears fa-2x': 0, 'far fa-sad-tear fa-2x': 0,
-          'far fa-angry fa-2x': 0};
+          reactions = {'&#x1F600;': 0, '&#x1F602;': 0,
+          '&#x1F643;': 0, '&#x1F607;': 0,
+          '&#x1F615;': 0};
           reactions[individualReaction.reaction]++;
           newState[individualReaction.messageId] = reactions;
         };
