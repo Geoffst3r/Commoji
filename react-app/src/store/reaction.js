@@ -1,6 +1,7 @@
-// // constants
-// const GET_REACTIONS = '/channels/getAllChannels'
-// const ADD_REACTION = 'channels/addChannel'
+
+// constants
+const GET_REACTIONS = '/reactions/getMessageReactions'
+const ADD_REACTION = '/reactions/addReaction'
 
 // const get_Reactions = (reactions) => {
 //   return {
@@ -16,55 +17,60 @@
 //   }
 // }
 
-// export const getReactions = (messageId) => async (dispatch) => {
-//   if (!messageId) return;
-//   const res = await fetch(`/api/reactions/${messageId}/`);
-//   if (res.ok) {
-//     const reactions = await res.json();
-//     dispatch(get_Reactions(reactions));
-//     return reactions;
-//   };
-// };
+export const getReactions = () => async (dispatch) => {
+  const res = await fetch(`/api/reactions/`);
+  if (res.ok) {
+    const reactions = await res.json();
+    dispatch(get_Reactions(reactions));
+    return reactions;
+  };
+};
 
-// export const addReaction = (reaction) => async (dispatch) => {
-//   const { messageId, userId, reactionString } = reaction;
-//   const res = await fetch(`/api/reactions/${messageId}/`, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//         messageId, userId, reactionString
-//     })
-//   });
-//   if (res.ok) {
-//     const reaction = await res.json();
-//     if (reaction !== "bad data") {
-//       dispatch(add_Reaction(reaction));
-//     }
-//     return reaction;
-//   } else if (res.status < 500) {
-//     const data = await res.json();
-//     if (data.errors) {
-//       return data.errors;
-//     }
-//   } else {
-//     return ['An error occurred. Please try again.']
-//   }
-// };
+export const addReaction = (inputReaction) => async (dispatch) => {
+  const { messageId, userId, reaction } = inputReaction;
+  const res = await fetch(`/api/reactions/${messageId}/`, {
+    method: 'POST',
+    body: JSON.stringify({
+        messageId, userId, reaction
+    })
+  });
+  if (res.ok) {
+    const outputReaction = await res.json();
+    if (outputReaction !== "bad data") {
+      dispatch(add_Reaction(outputReaction));
+    }
+    return outputReaction;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ['An error occurred. Please try again.']
+  }
+};
 
-// const reactionReducer = (state = {}, action) => {
-//   let newState = {};
-//   switch (action.type) {
-//     case GET_REACTIONS:
-//       action.reactions.forEach(reaction => {
-//         newState[reaction.id] = reaction;
-//       });
-//       return newState;
-//     case ADD_REACTION:
-//       newState = Object.assign({}, state);
-//       newState[action.reaction.id] = action.reaction;
-//       return newState;
-//     default:
-//       return state;
-//   }
-// };
+const reactionReducer = (state = {}, action) => {
+  let newState = {};
+  switch (action.type) {
+    case GET_REACTIONS:
+      action.reactions.forEach(reaction => {
+        if (newState[reaction.messageId]) {
+          newState[reaction.messageId] = {...newState[reaction.messageId], reaction}
+        } else newState[reaction.messageId] = reaction;
+      });
+      return newState;
+    case ADD_REACTION:
+      newState = Object.assign({}, state);
+      const newReaction = action.reaction;
+      const msgId = newReaction.messageId;
+      if (newState[msgId]) {
+        newState[msgId] = {...newState[msgId], newReaction}
+      } else newState[msgId] = newReaction;
+      return newState;
+    default:
+      return state;
+  }
+};
 
-// export default reactionReducer;
+export default reactionReducer;
