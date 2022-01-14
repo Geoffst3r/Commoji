@@ -21,7 +21,7 @@ const Messages = () => {
     const serverId = params.serverId;
     const channelId = params.channelId;
     let intChannelId = parseInt(channelId);
-  
+
     const showReactions = (id) => {
         const newReactionList = document.querySelector(`#message-${id}`);
         const oldReactionList = document.querySelector('.show-reaction-list');
@@ -75,7 +75,7 @@ const Messages = () => {
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
                                                             <div className='userMessage messageUser'>{messages[message].username}</div>
-                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}></button>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                             <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
                                                                 <span>1</span>
                                                                 <span>2</span>
@@ -90,7 +90,7 @@ const Messages = () => {
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
                                                             <div className='messageUser'>{messages[message].username}</div>
-                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}></button>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                             <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
                                                                 <span>1</span>
                                                                 <span>2</span>

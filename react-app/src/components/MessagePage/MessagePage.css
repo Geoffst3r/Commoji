@@ -106,7 +106,7 @@ background-color: #40444b;
   display: flex;
   flex-wrap: wrap;
   width: 400px;
-  
+
 }
 .messageUser {
   margin-right: 5px;
@@ -148,13 +148,26 @@ background-color: #40444b;
   background-color: blanchedalmond;
 }
 .ReactionsButton{
-  width: 10px;
-  height: 10px;
-  margin-left: 10px;
-  background-color: blue;
-}
-.ReactionsButton:hover{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
   cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: gray;
+  font-size: 20px;
+}
+.ReactionsButton:hover:after{
+  background: #202225;
+  border-radius: 8px;
+  color: white;
+  content: 'React to Message';
+  font-size: 12px;
+  padding: 5px 8px;
+  position: fixed;
+  z-index: 98;
+  width: 100px;
+  transform: translate(-60px, -23px);
 }
 .justNameAndButton{
   display: flex;

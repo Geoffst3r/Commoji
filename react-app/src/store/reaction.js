@@ -1,21 +1,20 @@
-
 // constants
 const GET_REACTIONS = '/reactions/getMessageReactions'
 const ADD_REACTION = '/reactions/addReaction'
 
-// const get_Reactions = (reactions) => {
-//   return {
-//     type: GET_REACTIONS,
-//     reactions
-//   }
-// }
+const get_Reactions = (reactions) => {
+  return {
+    type: GET_REACTIONS,
+    reactions
+  }
+}
 
-// const add_Reaction = (reaction) => {
-//   return {
-//     type: ADD_REACTION,
-//     reaction
-//   }
-// }
+const add_Reaction = (reaction) => {
+  return {
+    type: ADD_REACTION,
+    reaction
+  }
+}
 
 export const getReactions = () => async (dispatch) => {
   const res = await fetch(`/api/reactions/`);
