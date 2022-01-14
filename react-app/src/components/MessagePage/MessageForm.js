@@ -42,7 +42,7 @@ const MessageForm = ({socket}) => {
   return (
     <>
       <div className='MessageFormContainer'>
-        <form autocomplete="off" onSubmit={onPost} className='message-form'>
+        <form autoComplete="off" onSubmit={onPost} className='message-form'>
           <div className='message-error-box'>
             {errors.length > 0 && errors.map((error, ind) => (
               <div key={ind}>{error}</div>

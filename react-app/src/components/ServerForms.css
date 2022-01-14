@@ -1,4 +1,4 @@
-.add-server-form{
+/* .add-server-form{
     display: flex;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
     box-shadow: -1px 2px 15px rgb(0 0 0 / 20%);
     color: #5865f2;
     cursor: pointer;
-}
+} */
 .editserver-submit-button{
     border: none;
     background-color: #fff;
@@ -45,4 +45,51 @@
 .LabelAndInputContainer input{
     padding: 5px;
     font-size: 15px;
+}
+
+.add-server-form {
+    background-color: #2f2f2f;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.LabelAndInputContainer input {
+    width: 200px;
+    display: flex;
+    background-color: #1f1f1f;
+    border: 1px solid #1f1f1f;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: white;
+}
+
+.LabelAndInputContainer label {
+    font-family: sans-serif;
+    color: #6f6f6f;
+    font-size: 12px;
+    /* color: #1f1f1f; */
+}
+
+.newserver-submit-button {
+   color: white;
+   background-color: #6d668c;
+   border: 1px solid #6d668c;
+   border-radius: 3px;
+   width: 100%;
+   margin-top: 10px;
+   padding: 5px;
+}
+.newserver-submit-button:hover{
+    cursor: pointer;
+    box-shadow: -1px 2px 15px rgb(0 0 0 / 20%);
+    background-color: #3a374b;
+    color: green;
+    transition-duration: .5s;
+    transition-property: box-shadow, color;
+}
+.newserver-submit-button:active{
+    background-color: #605980;
+    border: 1px solid #695c5c;
 }

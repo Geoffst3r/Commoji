@@ -34,28 +34,29 @@
 }
 
 .message-form {
-  /* position: absolute; */
+  position: absolute;
+  width: 80%;
   /* bottom: 8%;
   left: 50%;
   right: 0; */
   height: 50px;
   margin-bottom: 20px;
-  width: 100%;
-  margin: 0 15px 0 15px;
+  width: 80%;
+  margin: -40px 15px 0 15px;
 
 }
 
 .MessageUl{
   flex-direction: column;
   justify-content: center;
-  overflow: scroll;
+  overflow-y: scroll;
   overscroll-behavior-y: contain;
   scroll-snap-type: y proximity;
   flex-direction: column;
   justify-content: flex-end;
-  max-width: 860px;
+  width: 100%;
   padding: 0;
-
+  overflow-wrap: break-word;
 }
 
 /* .message-form {
@@ -78,6 +79,7 @@ background-color: #40444b;
   width: 90%;
   padding: 4px 8px 4px 8px;
   border: none;
+
 }
 
 
@@ -104,7 +106,7 @@ background-color: #40444b;
   display: flex;
   flex-wrap: wrap;
   width: 400px;
-  
+
 }
 .messageUser {
   margin-right: 5px;
@@ -134,4 +136,52 @@ background-color: #40444b;
 }
 .MessageAndTitleContainer{
   width: 100%;
+}
+.MessageAndButton{
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+.reactionsContainer{
+  width: fit-content;
+  height: 25px;
+  background-color: blanchedalmond;
+}
+.ReactionsButton{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: gray;
+  font-size: 20px;
+}
+.ReactionsButton:hover:after{
+  background: #202225;
+  border-radius: 8px;
+  color: white;
+  content: 'React to Message';
+  font-size: 12px;
+  padding: 5px 8px;
+  position: fixed;
+  z-index: 98;
+  width: 100px;
+  transform: translate(-60px, -23px);
+}
+.justNameAndButton{
+  display: flex;
+  column-gap: 20px;
+}
+.Reactions{
+  display: flex;
+}
+.dontDisplay{
+  display: none;
+}
+.hidden-reactions{
+  visibility: hidden;
+}
+.show-reaction-list{
+  visibility: visible;
 }

@@ -16,9 +16,8 @@ const add_Reaction = (reaction) => {
   }
 }
 
-export const getReactions = (messageId) => async (dispatch) => {
-  if (!messageId) return;
-  const res = await fetch(`/api/reactions/${messageId}/`);
+export const getReactions = () => async (dispatch) => {
+  const res = await fetch(`/api/reactions/`);
   if (res.ok) {
     const reactions = await res.json();
     dispatch(get_Reactions(reactions));
@@ -62,7 +61,11 @@ const reactionReducer = (state = {}, action) => {
       return newState;
     case ADD_REACTION:
       newState = Object.assign({}, state);
-      newState[action.reaction.messageId] = action.reaction;
+      const newReaction = action.reaction;
+      const msgId = newReaction.messageId;
+      if (newState[msgId]) {
+        newState[msgId] = {...newState[msgId], newReaction}
+      } else newState[msgId] = newReaction;
       return newState;
     default:
       return state;
