@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { editServer } from '../store/servers';
 import { getServers } from '../store/servers';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { getChannels } from '../store/channel';
 
 const EditServerForm = ({ modalSetter }) => {
     const { serverId } = useParams()
@@ -18,6 +19,7 @@ const EditServerForm = ({ modalSetter }) => {
     const [image, setImage] = useState(server.image);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getServers())
@@ -33,10 +35,13 @@ const EditServerForm = ({ modalSetter }) => {
             ownerId
         }
         if (newServer) {
-            dispatch(editServer(newServer));
-            dispatch(getServers());
+            await dispatch(editServer(newServer));
+            await dispatch(getServers());
+            
+
         }
         modalSetter();
+
     };
 
     const updateTitle = (e) => {
