@@ -20,6 +20,7 @@ const Messages = () => {
     const reactions = useSelector(state => state.reactions);
     const serverId = params.serverId;
     const channelId = params.channelId;
+    const userId = user.id;
     let intChannelId = parseInt(channelId);
 
     const showReactions = (id) => {
@@ -53,12 +54,12 @@ const Messages = () => {
     useEffect(() => {
         dispatch(getMessages(channelId))
         dispatch(reactionActions.getReactions());
-    }, [dispatch, channelId, serverId])
+    }, [dispatch, channelId, serverId, userId]);
 
     const postReaction = (data, messageId) => {
-        dispatch(reactionActions.addReaction(data, messageId))
-    }
-
+        dispatch(reactionActions.addReaction(data, messageId));
+        dispatch(reactionActions.getReactions());
+    };
 
     if (messages && user && channels[intChannelId]?.title && reactions) {
         return (
