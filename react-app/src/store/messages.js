@@ -22,7 +22,11 @@ export const getMessages = (channelId) => async dispatch => {
 
     if (response.ok) {
         const messageArr = await response.json()
-        // console.log("messageArr ##########',:",messageArr)
+        console.log("messageArr ##########',:", messageArr[0].timeStamp)
+        const date = messageArr[0].timeStamp
+        console.log('____date', date)
+        const newDate = new Date(date)
+        console.log('_______________newDate', newDate)
         dispatch(load(messageArr))
     }
 }

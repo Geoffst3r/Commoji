@@ -3,6 +3,7 @@ from app.models import db, Server, Channel, Message, User
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user
 from sqlalchemy import desc
+import json
 
 
 message_routes = Blueprint('messages', __name__)
@@ -43,14 +44,20 @@ def new_message(channel_id):
             print(e)
             return jsonify('Database entry error'), 400
 
+date_handler = lambda obj: (
+    obj.isoformat()
+    if isinstance(obj, (datetime.datetime, datetime.date))
+    else None
+)
 
 @message_routes.route('/<int:channel_id>/')
 def get_all_messages(channel_id):
     messages = db.session.query(Message, User).join(User).filter(Message.channelId == channel_id).all()
     if messages:
         message_list = [{'id': message.id, 'message': message.message, 'userId': message.userId,
-                        'channelId': message.channelId, 'username': user.username} for message, user in messages]
+                        'channelId': message.channelId, 'username': user.username, 'timeStamp': json.dumps(message.created_on.isoformat())} for message, user in messages]
 
+        print('****************   ******* messages', message_list[0]['timeStamp'])
         return jsonify(message_list)
     else:
         return jsonify("Messages not found in database for this channel."), 404
