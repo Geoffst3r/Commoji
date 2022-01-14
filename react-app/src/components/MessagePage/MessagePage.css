@@ -211,14 +211,12 @@ background-color: #40444b;
   align-items: center;
   gap: 5px;
 }
-
+.reaction-individual:hover{
+ cursor: pointer;
+}
 
 .emoji-display{
   padding-bottom: 2px;
-}
-
-.emoji-display:hover {
-  cursor:initial
 }
 
 .reactions-counter{
