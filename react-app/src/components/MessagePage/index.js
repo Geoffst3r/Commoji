@@ -55,6 +55,10 @@ const Messages = () => {
         dispatch(reactionActions.getReactions());
     }, [dispatch, channelId, serverId])
 
+    const postReaction = (data, messageId) => {
+        dispatch(reactionActions.addReaction(data, messageId))
+    }
+
 
     if (messages && user && channels[intChannelId]?.title) {
         return (
@@ -77,7 +81,7 @@ const Messages = () => {
                                                             <div className='userMessage messageUser'>{messages[message].username}</div>
                                                             <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                             <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
-                                                                <span>1</span>
+                                                                <span onClick={() => postReaction('reaction1', message)}>1</span>
                                                                 <span>2</span>
                                                                 <span>3</span>
                                                             </div>
@@ -92,7 +96,7 @@ const Messages = () => {
                                                             <div className='messageUser'>{messages[message].username}</div>
                                                             <button className='ReactionsButton' onClick={() => showReactions(message)}>+</button>
                                                             <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
-                                                                <span>1</span>
+                                                                <span onClick={() => postReaction('reaction1', message)}>1</span>
                                                                 <span>2</span>
                                                                 <span>3</span>
                                                             </div>
