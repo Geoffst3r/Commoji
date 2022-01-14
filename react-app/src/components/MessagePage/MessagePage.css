@@ -148,6 +148,7 @@ background-color: #40444b;
   background-color: blanchedalmond;
 }
 .ReactionsButton{
+  display: none;
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -168,6 +169,9 @@ background-color: #40444b;
   z-index: 98;
   width: 100px;
   transform: translate(-60px, -23px);
+}
+.messageContentHolder:hover .ReactionsButton{
+  display: unset;
 }
 .justNameAndButton{
   display: flex;

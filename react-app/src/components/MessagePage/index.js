@@ -107,6 +107,7 @@ const Messages = () => {
                                                     })}
                                                     </div>
                                                 </> :
+
                                                 <>
                                                     <div className='MessageAndButton'>
                                                         <div className='justNameAndButton'>
@@ -119,6 +120,7 @@ const Messages = () => {
                                                                 <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
                                                                 <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span>
                                                             </div>
+                                                            <div className='userMessage messageContent'>{messages[message].message}</div>
                                                         </div>
                                                         <div className='userMessage messageContent'>{messages[message].message}</div>
                                                     </div>
@@ -146,7 +148,7 @@ const Messages = () => {
                             </ul >
                         </div>
                     </div>
-                    <MessageForm socket={socket}/>
+                    <MessageForm socket={socket} />
                 </div>
             </>
         )
