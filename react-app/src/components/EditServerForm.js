@@ -15,7 +15,6 @@ const EditServerForm = ({ modalSetter }) => {
 
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(server.title);
-    const [description, setDescription] = useState(server.description);
     const [image, setImage] = useState(server.image);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch()
@@ -31,7 +30,6 @@ const EditServerForm = ({ modalSetter }) => {
         const newServer = {
             id,
             title,
-            description,
             ownerId
         }
         if (newServer) {
@@ -46,10 +44,6 @@ const EditServerForm = ({ modalSetter }) => {
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
-    };
-
-    const updateDescription = (e) => {
-        setDescription(e.target.value);
     };
 
     const updateImage = (e) => {
@@ -75,15 +69,6 @@ const EditServerForm = ({ modalSetter }) => {
                     ></input>
                 </div>
                 <div className='LabelAndInputContainer'>
-                    <label>Server Description</label>
-                    <input
-                        type='text'
-                        name='email'
-                        onChange={updateDescription}
-                        value={description}
-                    ></input>
-                </div>
-                <div className='LabelAndInputContainer'>
                     <label>Image Url</label>
                     <input
                         type='text'
@@ -92,7 +77,7 @@ const EditServerForm = ({ modalSetter }) => {
                         value={image}
                     ></input>
                 </div>
-                <button className='editserver-submit-button' type='submit'>Edit Server</button>
+                <button className='newserver-submit-button' type='submit'>Edit Server</button>
             </form>
         </>
     );
