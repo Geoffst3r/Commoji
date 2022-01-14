@@ -110,12 +110,47 @@ const Messages = () => {
                                                     <div className='reactionsContainer'>
                                                         {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
                                                             if (reactions[message][individualReaction] > 0) {
-                                                                return (
-                                                                    <div className='reaction-individual'>
-                                                                        <i className={`${individualReaction}`}></i>
-                                                                        <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
-                                                                    </div>
-                                                                )
+                                                                if (individualReaction === '&#x1F600;') {
+                                                                    return (
+                                                                        <div className='reaction-individual'>
+                                                                            <div>&#x1F600;</div>
+                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                if (individualReaction === '&#x1F602;') {
+                                                                    return (
+                                                                        <div className='reaction-individual'>
+                                                                            <div>&#x1F602;</div>
+                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                if (individualReaction === '&#x1F643;') {
+                                                                    return (
+                                                                        <div className='reaction-individual'>
+                                                                            <div>&#x1F643;</div>
+                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                if (individualReaction === '&#x1F607;') {
+                                                                    return (
+                                                                        <div className='reaction-individual'>
+                                                                            <div>&#x1F607;</div>
+                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                if (individualReaction === '&#x1F615;') {
+                                                                    return (
+                                                                        <div className='reaction-individual'>
+                                                                            <div>&#x1F615;</div>
+                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                        </div>
+                                                                    )
+                                                                    
+                                                                }
                                                             } else {
                                                                 return (
                                                                     <div className='reaction-individual'></div>
@@ -142,8 +177,8 @@ const Messages = () => {
                                                                 <span onClick={() => postReaction('far fa-sad-tear fa-2x', message)}><i className='far fa-sad-tear fa-2x'></i></span>
                                                                 <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span> */}
                                                                 </div>
-                                                                <div className='userMessage messageContent'>{messages[message].message}</div>
                                                             </div>
+                                                                <div className='messageContent'>{messages[message].message}</div>
                                                             </div>
                                                         <div className='reactionsContainer'>
                                                             {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
