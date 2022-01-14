@@ -147,8 +147,9 @@ background-color: #40444b;
 }
 .reactionsContainer{
   width: fit-content;
-  height: 25px;
-  background-color: blanchedalmond;
+  height: 35px;
+  display: flex;
+
 }
 .ReactionsButton{
   display: none;
@@ -201,4 +202,38 @@ background-color: #40444b;
   flex-direction: row;
   align-items: center;
   margin-left: 8px;
+}
+
+.reaction-individual{
+  display: flex;
+  background-color: #262729;
+  justify-content: center;
+  margin-right: 2px;
+  width: 38px;
+  border-radius: 13px;
+  align-items: center;
+
+}
+
+
+.emoji-display{
+margin-right: 6px;
+}
+
+.emoji-display:hover {
+  cursor:initial
+}
+
+.reactions-counter{
+  color: rgb(181, 181, 181);
+  font: 13px  "Fira Sans", sans-serif;
+}
+
+.ReactionChoice > span {
+  margin: 3px;
+}
+
+.ReactionChoice span:hover {
+  cursor: pointer;
+
 }
