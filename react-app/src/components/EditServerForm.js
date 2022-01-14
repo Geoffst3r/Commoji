@@ -37,7 +37,7 @@ const EditServerForm = ({ modalSetter }) => {
         if (newServer) {
             await dispatch(editServer(newServer));
             await dispatch(getServers());
-            
+
 
         }
         modalSetter();

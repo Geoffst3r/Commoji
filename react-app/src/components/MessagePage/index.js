@@ -123,7 +123,7 @@ const Messages = () => {
                                                                     <span onClick={() => postReaction('far fa-angry fa-2x', message)}><i className='far fa-angry fa-2x'></i></span>
                                                                 </div>
                                                             </div>
-                                                            <div className='userMessage messageContent'>{messages[message].message}</div>
+                                                            <div className='messageContent'>{messages[message].message}</div>
                                                         </div>
                                                         <div className='reactionsContainer'>
                                                             {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
