@@ -13,15 +13,25 @@ let socket;
 const Messages = () => {
     // const [messages, setMessages] = useState([])
     const params = useParams();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const messages = useSelector(state => state.messages.messages);
     const channels = useSelector(state => state.channels);
     const reactions = useSelector(state => state.reactions);
     const serverId = params.serverId;
     const channelId = params.channelId;
-    let intChannelId = parseInt(channelId)
-
+    let intChannelId = parseInt(channelId);
+  
+    const showReactions = (id) => {
+        const newReactionList = document.querySelector(`#message-${id}`);
+        const oldReactionList = document.querySelector('.show-reaction-list');
+        if (oldReactionList) {
+            oldReactionList.classList.remove('show-reaction-list');
+            oldReactionList.classList.add('hidden-reactions');
+        };
+        newReactionList.classList.remove('hidden-reactions');
+        return newReactionList.classList.add('show-reaction-list');
+    };
 
     useEffect(() => {
         // create websocket/connect
@@ -60,10 +70,37 @@ const Messages = () => {
                                 {Object.keys(messages).map(message => {
                                     return (
                                         <>
-                                            <li className='messageContentHolder' key={message.id}>
-                                                {/* <div className='mesageContent'>{message.id}</div> */}
-                                                {user.id === messages[message].userId ? <><div className='userMessage messageUser'>{messages[message].username}</div><div className='userMessage messageContent'>{messages[message].message}</div></> :
-                                                    <><div className='messageUser'>{messages[message].username}</div><div className='messageContent'>{messages[message].message}</div></>}
+                                            <li className='messageContentHolder' key={message}>
+                                                {user.id === messages[message].userId ? <>
+                                                    <div className='MessageAndButton'>
+                                                        <div className='justNameAndButton'>
+                                                            <div className='userMessage messageUser'>{messages[message].username}</div>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}></button>
+                                                            <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
+                                                                <span>1</span>
+                                                                <span>2</span>
+                                                                <span>3</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className='userMessage messageContent'>{messages[message].message}</div>
+                                                    </div>
+                                                    <div className='reactionsContainer'><span>hello</span></div>
+                                                </> :
+                                                <>
+                                                    <div className='MessageAndButton'>
+                                                        <div className='justNameAndButton'>
+                                                            <div className='messageUser'>{messages[message].username}</div>
+                                                            <button className='ReactionsButton' onClick={() => showReactions(message)}></button>
+                                                            <div id={`message-${message}`} className='ReactionChoice display hidden-reactions'>
+                                                                <span>1</span>
+                                                                <span>2</span>
+                                                                <span>3</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className='userMessage messageContent'>{messages[message].message}</div>
+                                                    </div>
+                                                    {/* <div className='reactionsContainer'><div className='Reactions'>hello</div></div> */}
+                                                </>}
                                             </li>
                                         </>
                                     )
