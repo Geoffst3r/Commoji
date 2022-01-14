@@ -41,6 +41,34 @@
     cursor: pointer;
 }
 
-.description-text {
-   
+
+.about-links {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba( 20, 2, 20, .2);
+    display: flex;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.about-links a {
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.about-links a:hover {
+    color: #5865f2;
+    transition-duration: .5s;
+    transition-property: color;
+}
+
+.about-container {
+    margin-top: 20px;
+}
+
+.built {
+    padding: 0%;
+    margin-left: 20px;
 }

@@ -39,6 +39,7 @@ const NavBar = () => {
     <nav>
     <div className='app-name'>👁‍🗨 Commoji</div>
       <ul>
+        
         {sessionLinks}
       </ul>
     </nav>
