@@ -64,9 +64,11 @@ const Messages = () => {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
-                    < h1 >
-                        {channels[intChannelId].title}
-                    </h1 >
+                    <div className='channel-name'>
+                        <i className="fas fa-hashtag"></i>< h1 className='channel-name' >
+                            {channels[intChannelId].title}
+                        </h1 >
+                    </div>
                 </div >
                     <div className='messageOuterWrapper'>
                         <div className='MessagesContainer'>
