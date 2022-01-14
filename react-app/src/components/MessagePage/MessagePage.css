@@ -161,12 +161,12 @@ background-color: #40444b;
 .Reactions{
   display: flex;
 }
-.ReactionChoice{
-
-}
 .dontDisplay{
   display: none;
 }
-.display{
-
+.hidden-reactions{
+  visibility: hidden;
+}
+.show-reaction-list{
+  visibility: visible;
 }
