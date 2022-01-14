@@ -25,12 +25,11 @@ export const getReactions = () => async (dispatch) => {
   };
 };
 
-export const addReaction = (inputReaction) => async (dispatch) => {
-  const { messageId, userId, reaction } = inputReaction;
+export const addReaction = (data, messageId) => async (dispatch) => {
   const res = await fetch(`/api/reactions/${messageId}/`, {
     method: 'POST',
     body: JSON.stringify({
-        messageId, userId, reaction
+        messageId, reaction: data
     })
   });
   if (res.ok) {
