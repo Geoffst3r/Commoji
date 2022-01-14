@@ -129,6 +129,9 @@ background-color: #40444b;
   background-color: #3a3c41;
   border-bottom: #2b2a2a4b 1px solid;
   box-shadow: 0px 0.5px 5px 2px #2c2c2c;
+  display: flex;
+  align-items: center;
+
 
 }
 .ChannelName h1{
@@ -188,4 +191,14 @@ background-color: #40444b;
 }
 .show-reaction-list{
   visibility: visible;
+}
+
+.channel-name {
+  font-size: 20px;
+  color:gray;
+  font-weight: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 8px;
 }

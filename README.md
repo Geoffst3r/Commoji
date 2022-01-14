@@ -23,13 +23,13 @@ Commoji uses REACT to generate the HTML elements, and then we use CSS to handlin
 ## Backend Technologies Used
 We used an Flask server to handle the backend communication. We used PostgreSQL to use and manipulate the database with sequelize.
 
-![Splash Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/Splash-Page.png)
+![Splash Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/NewSplashPageScreenShor.png)
 On our splash page you can create a account and log into a account with a model that pops up when you click on the login or sighn in buttons. You can also use the Demo Now button to log in as a demo user.
 
 ***
 
 ![The Servers,Channels,and Messages Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/Screenshot%202022-01-13%20192220.png)
-On our Servers,Channels,and Messages Page you can create a server,channel,message or edit a server,channel. You click on the greed plus sighn to create a Server and the grey plus sighn to create a Channel. You can not create a server or channel with empty names and discriptions, but the url can be empty.
+On our Servers,Channels,and Messages Page you can create a server,channel,message or edit a server,channel. You click on the green plus sighn to create a Server and the grey plus sighn to create a Channel. You can not create a server or channel with empty names and discriptions, but the url can be empty.
 
 ***
 

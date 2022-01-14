@@ -66,9 +66,11 @@ const Messages = () => {
         return (
             <>
                 <div className='MessageAndTitleContainer'><div className='ChannelName'>
-                    < h1 >
-                        {channels[intChannelId].title}
-                    </h1 >
+                    <div className='channel-name'>
+                        <i className="fas fa-hashtag"></i>< h1 className='channel-name' >
+                            {channels[intChannelId].title}
+                        </h1 >
+                    </div>
                 </div >
                     <div className='messageOuterWrapper'>
                         <div className='MessagesContainer'>
@@ -99,7 +101,7 @@ const Messages = () => {
                                                         <div className='userMessage messageContent'>{messages[message].message}</div>
                                                     </div>
                                                     <div className='reactionsContainer'>
-                                                    {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
+                                                        {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
                                                             if (reactions[message][individualReaction] > 0) {
                                                                 return (
                                                                     <div className='reaction-individual'>
@@ -112,7 +114,7 @@ const Messages = () => {
                                                                     <div className='reaction-individual'></div>
                                                                 )
                                                             }
-                                                    })}
+                                                        })}
                                                     </div>
                                                 </> :
 
@@ -135,25 +137,24 @@ const Messages = () => {
                                                             </div>
                                                             <div className='userMessage messageContent'>{messages[message].message}</div>
                                                         </div>
-                                                        <div className='userMessage messageContent'>{messages[message].message}</div>
-                                                    </div>
-                                                    <div className='reactionsContainer'>
-                                                    {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
-                                                            if (reactions[message][individualReaction] > 0) {
-                                                                return (
-                                                                    <div className='reaction-individual'>
-                                                                        <i className={`${individualReaction}`}></i>
-                                                                        <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
-                                                                    </div>
-                                                                )
-                                                            } else {
-                                                                return (
-                                                                    <div className='reaction-individual'></div>
-                                                                )
-                                                            }
-                                                    })}
-                                                    </div>
-                                                </>}
+                                                        </div>
+                                                        <div className='reactionsContainer'>
+                                                            {reactions[message] && Object.keys(reactions[message]).map(individualReaction => {
+                                                                if (reactions[message][individualReaction] > 0) {
+                                                                    return (
+                                                                        <div className='reaction-individual'>
+                                                                            <i className={`${individualReaction}`}></i>
+                                                                            <span className='reactions-counter'>{reactions[message][individualReaction]}</span>
+                                                                        </div>
+                                                                    )
+                                                                } else {
+                                                                    return (
+                                                                        <div className='reaction-individual'></div>
+                                                                    )
+                                                                }
+                                                            })}
+                                                        </div>
+                                                    </>}
                                             </li>
                                         </>
                                     )
