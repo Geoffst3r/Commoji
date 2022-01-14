@@ -32,7 +32,8 @@ const EditServerForm = ({ modalSetter }) => {
             id,
             title,
             description,
-            ownerId
+            ownerId,
+            image
         }
         if (newServer) {
             await dispatch(editServer(newServer));
