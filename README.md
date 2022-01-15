@@ -16,13 +16,13 @@ Commoji is a full stack web application that allows only logged users to:
 
 
 ## Application Architecture
-Commoji is built with a REACT frontend and an Flask backend. PostgreSQL is also used as a database. And with socket.io to allow live chat.
+Commoji is built with a REACT frontend and a Flask backend. PostgreSQL is also used as a database. And with socket.io to allow live chat.
 
 ## Frontend Technologies Used
-Commoji uses REACT to generate the HTML elements, and then we use CSS to handling the styling of those elements.
+Commoji uses REACT to generate the HTML elements, and then we use CSS to handle the styling of those elements.
 
 ## Backend Technologies Used
-We used an Flask server to handle the backend communication. We used PostgreSQL to use and manipulate the database with sequelize.
+We used a Flask server to handle the backend communication. We used PostgreSQL to use and manipulate the database with sequelize.
 
 ## Wiki
 * [Feature List](https://github.com/Geoffst3r/python-group-project/wiki/feature-list)
@@ -34,17 +34,17 @@ We used an Flask server to handle the backend communication. We used PostgreSQL 
 
 
 ![Splash Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/NewSplashPageScreenShor.png)
-On our splash page you can create a account and log into a account with a model that pops up when you click on the login or sighn in buttons. You can also use the Demo Now button to log in as a demo user.
+On our splash page, you can create an account and log into an account with a model that pops up when you click on the login or sign-in buttons. You can also use the Demo Now button to log in as a demo user.
 
 ***
 
 ![The Servers,Channels,and Messages Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/latest%20servers%20and%20channels%20page.png)
-On our Servers,Channels,and Messages Page you can create a server,channel,message or edit a server,channel. You click on the green plus sighn to create a Server and the grey plus sighn to create a Channel. You can not create a server or channel with empty names and discriptions, but the url can be empty.
+On our Servers, Channels, and Messages Page you can create a server, channel, message, or edit a server, channel. You click on the green plus sign-in to create a Server and the grey plus sign-in to create a Channel. You can not create a server or channel with empty names and descriptions, but the URL can be empty.
 
 ***
 
 ![Reactions Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/Reactions.png)
-On our reactions page you can open the reactions menu by pressing the plus button. From there you can select from the reactions and upon clicking one it will be added to a message and if you click your own reaction it will be deleated. You can also increase the number of reactions on a post either through the menu or clicking the reaction iself below the message.
+On our reactions page, you can open the reactions menu by pressing the plus button. From there you can select from the reactions and upon clicking one it will be added to a message and if you click your reaction it will be deleted. You can also increase the number of reactions on a post either through the menu or by clicking the reaction itself below the message.
 
 ***
 
