@@ -38,12 +38,18 @@ On our splash page you can create a account and log into a account with a model 
 
 ***
 
-![The Servers,Channels,and Messages Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/Screenshot%202022-01-13%20192220.png)
+![The Servers,Channels,and Messages Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/latest%20servers%20and%20channels%20page.png)
 On our Servers,Channels,and Messages Page you can create a server,channel,message or edit a server,channel. You click on the green plus sighn to create a Server and the grey plus sighn to create a Channel. You can not create a server or channel with empty names and discriptions, but the url can be empty.
 
 ***
 
-![Reactions Page]()
-On our reactions page you can open the reactions menu by pressing the button. If you click on a reaction it will be added to a message.
+![Reactions Page](https://github.com/Geoffst3r/python-group-project/blob/main/images/Reactions.png)
+On our reactions page you can open the reactions menu by pressing the plus button. From there you can select from the reactions and upon clicking one it will be added to a message and if you click your own reaction it will be deleated. You can also increase the number of reactions on a post either through the menu or clicking the reaction iself below the message.
 
 ***
+
+## Future Features
+- Private servers
+- Friends
+- DMs
+- Emojis in the messages
