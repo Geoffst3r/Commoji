@@ -19,7 +19,7 @@ const Landing = () => {
             <div className='splash-description'>
                 <h1 className='splash_text'>Welcome to Commoji 👁‍🗨</h1>
                 <div className='description-text'>
-                    <h2 className='splash_text'>Commoji can be anything...</h2>
+                    <h2 className='splash_text'>Commoji can be anything</h2>
                     <p className='splash_text'>Create a world and community for you and your friends...</p>
                     <p>to chat whenever and wherever you are.</p>
                 </div>
@@ -27,10 +27,34 @@ const Landing = () => {
                 <div className='about-container'>
                     <div className='built'>Built By:</div>
                     <div className='about-links'>
-                        <a target='_blank' rel='noreferrer' href='https://github.com/Geoffst3r'>Geoffrey Cox</a>
-                        <a target='_blank' rel='noreferrer' href='https://github.com/mothwork'>Brett Hageft</a>
-                        <a target='_blank' rel='noreferrer' href='https://github.com/depash'>Depash Nepal</a>
-                        <a target='_blank' rel='noreferrer' href='https://github.com/JacobNicotra'>Jacob Nicotra</a>
+                        <div>
+                            <p>Geoffrey Cox</p>
+                            <div className='icons'>
+                                <a target='_blank' rel='noreferrer' href='https://github.com/Geoffst3r'><i className='fab fa-github fa-2x' /></a>
+                                <a target='_blank' rel='noreferrer' href='https://www.linkedin.com/in/geoffreyptcox/'><i className='fab fa-linkedin-in fa-2x' /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Brett Hageft</p>
+                            <div className='icons'>
+                                <a target='_blank' rel='noreferrer' href='https://github.com/mothwork'><i className='fab fa-github fa-2x' /></a>
+                                <a target='_blank' rel='noreferrer' href='https://www.linkedin.com/in/mothwork/'><i className='fab fa-linkedin-in fa-2x' /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Depash Nepal</p>
+                            <div className='icons'>
+                                <a target='_blank' rel='noreferrer' href='https://github.com/depash'><i className='fab fa-github fa-2x' /></a>
+                                <a target='_blank' rel='noreferrer' href='https://www.linkedin.com/in/depashnepal/'><i className='fab fa-linkedin-in fa-2x' /></a>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Jacob Nicotra</p>
+                            <div className='icons'>
+                                <a target='_blank' rel='noreferrer' href='https://github.com/JacobNicotra'><i className='fab fa-github fa-2x' /></a>
+                                <a target='_blank' rel='noreferrer' href='https://www.linkedin.com/in/jacobnicotra/'><i className='fab fa-linkedin-in fa-2x' /></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
